@@ -27,15 +27,20 @@ const { title } = Astro.props;
   </body>
 </html>
 <style is:global>
+  @font-face {
+    font-family: "Royal Fight";
+    src: url("/fonts/Royal%20Fighter.otf") format("opentype");
+    font-style: normal;
+    font-weight: normal;
+  }
   :root {
-    --accent: 136, 58, 234;
-    --accent-light: 224, 204, 250;
-    --accent-dark: 49, 10, 101;
-    --accent-gradient: linear-gradient(
+    --grey-dark: 50, 50, 50; /* Gris oscuro */
+    --grey-light: 220, 220, 220; /* Gris claro */
+
+    --description-gradient: linear-gradient(
       45deg,
-      rgb(var(--accent)),
-      rgb(var(--accent-light)) 30%,
-      white 60%
+      rgb(var(--grey-dark)) 0%,
+      /* Gris oscuro */ rgb(var(--grey-light)) 100% /* Gris claro */
     );
   }
   html {

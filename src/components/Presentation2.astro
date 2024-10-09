@@ -1,0 +1,124 @@
+---
+const messages: string[] = [
+  "Hi there...",
+  "Welcome to my portfolio...",
+  "I'm...",
+  "FacuDev",
+];
+---
+
+<div class="presentation-container">
+  <!-- Este div servirá para mostrar los mensajes -->
+  <div id="message-container"></div>
+</div>
+
+<script lang="ts">
+  // Tipamos las variables correctamente para evitar errores de TypeScript
+
+  const messageContainer = document.getElementById("message-container");
+
+  const messages = [
+    "Hi there...",
+    "Welcome to my portfolio...",
+    "I'm...",
+    "FacuDev",
+  ];
+
+  let currentMessageIndex = 0;
+  let messageElement; // Aseguramos el tipo correcto
+
+  if (messageContainer) {
+    function showMessage() {
+      if (messageElement) {
+        // Si ya hay un mensaje visible, aplicamos fade-out
+        messageElement.classList.remove("fade-in");
+        messageElement.classList.add("fade-out");
+
+        // Esperamos que se complete el fade-out
+        setTimeout(() => {
+          // Si es el último mensaje, lo dejamos visible sin fade-out
+          if (currentMessageIndex === messages.length - 1) {
+            messageElement.textContent = messages[currentMessageIndex];
+            messageElement.classList.remove("fade-out");
+            messageElement.classList.add("fade-in-final");
+          } else {
+            // Cambiamos el mensaje después del fade-out
+            messageElement.textContent = messages[currentMessageIndex];
+            messageElement.classList.remove("fade-out");
+            messageElement.classList.add("fade-in");
+          }
+        }, 1000); // Tiempo para el fade-out
+      } else {
+        // Primer mensaje
+        messageElement = document.createElement("p");
+        messageElement.textContent = messages[currentMessageIndex];
+        messageElement.classList.add("message", "fade-in");
+        messageContainer.appendChild(messageElement);
+      }
+
+      // Pasamos al siguiente mensaje o detenemos si ya mostramos todos
+      currentMessageIndex++;
+      if (currentMessageIndex < messages.length) {
+        setTimeout(showMessage, 3000); // Tiempo entre mensajes
+      }
+    }
+
+    // Iniciar la secuencia de mostrar mensajes
+    showMessage();
+  }
+</script>
+
+<style>
+  .presentation-container {
+    text-align: center;
+    margin-top: 50px;
+  }
+
+  .message {
+    font-size: 1.5rem;
+    opacity: 0;
+    transition:
+      opacity 1s ease,
+      transform 1s ease;
+  }
+
+  /* Animación para el fade-in */
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Animación para el fade-out */
+  @keyframes fadeOut {
+    0% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+  }
+
+  /* Fade-in */
+  .fade-in {
+    animation: fadeIn 1s forwards;
+  }
+
+  /* Fade-out */
+  .fade-out {
+    animation: fadeOut 1s forwards;
+  }
+
+  /* Mantener el último mensaje fijo */
+  .fade-in-final {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>

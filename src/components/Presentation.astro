@@ -1,0 +1,127 @@
+<div class="presentation-container">
+  <p class="message-1 hidden">Hi there!</p>
+  <p class="message-2 hidden">Welcome to my portfolio...</p>
+  <p class="message-3 hidden">My name is Facundo Botta...</p>
+  <p class="message-4 hidden">But everybody call me...</p>
+  <h1 class="message-5 hidden">FacuDev</h1>
+  <p
+    class="message-description hidden text-gradient w-[80%] text-center ml-10 mt-5"
+  >
+  </p>
+</div>
+
+<script>
+  const message1 = document.querySelector(".message-1");
+  const message2 = document.querySelector(".message-2");
+  const message3 = document.querySelector(".message-3");
+  const message4 = document.querySelector(".message-4");
+  const message5 = document.querySelector(".message-5");
+  const messageDescription = document.querySelector(".message-description");
+
+  const myDescription =
+    "I'm a fullstack developer student, passionate about building and learning new things every day. I always put my best effort into taking my applications to the next level.\n Let's work together!";
+
+  const fillPresentation = () => {
+    let tempMessage = "";
+    const typingSpeed = 50;
+
+    for (let i = 0; i < myDescription.length; i++) {
+      setTimeout(() => {
+        if (messageDescription) {
+          tempMessage += myDescription[i];
+          messageDescription.textContent = tempMessage;
+        }
+      }, typingSpeed * i);
+    }
+  };
+
+  window.addEventListener("load", () => {
+    message1?.classList.toggle("animate-message");
+    setTimeout(() => {
+      message1?.classList.toggle("animate-message");
+      message2?.classList.toggle("animate-message");
+    }, 1500);
+    setTimeout(() => {
+      message2?.classList.toggle("animate-message");
+      message3?.classList.toggle("animate-message");
+    }, 3000);
+    setTimeout(() => {
+      message3?.classList.toggle("animate-message");
+      message4?.classList.toggle("animate-message");
+    }, 4500);
+    setTimeout(() => {
+      message4?.classList.toggle("animate-message");
+      message5?.classList.toggle("animate-facuDev");
+    }, 6500);
+    setTimeout(() => {
+      messageDescription?.classList.toggle("hidden");
+      fillPresentation();
+    }, 7500);
+  });
+</script>
+<style>
+  .presentation-container {
+    height: 100%;
+    width: 100%;
+    padding-top: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+  }
+  .presentation-container p {
+    font-size: 2rem;
+  }
+  .presentation-container .message-description {
+    font-size: 1.4rem;
+  }
+  .animate-message {
+    display: inline-block;
+    animation: fadeIn 1s forwards;
+  }
+  .animate-facuDev {
+    display: inline-block;
+    animation: fadeInFacuDev 1s forwards;
+  }
+  .presentation-container h1 {
+    font-family: "Royal Fight", serif;
+    font-size: 7rem;
+    color: transparent;
+    -webkit-text-stroke: 3px #d6f4f4;
+    text-shadow:
+      8px 8px 0px #07bccc,
+      13px 13px 0px #e601c0,
+      18px 18px 0px #e9019a,
+      23px 23px 0px #f40468;
+    /* 45px 45px 10px #e9e4a444; */
+  }
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(120px);
+    }
+  }
+  @keyframes fadeInFacuDev {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .text-gradient {
+    font-weight: 600;
+    background-image: var(--description-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 100%;
+    background-position: 0%;
+  }
+</style>
