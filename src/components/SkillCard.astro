@@ -1,0 +1,142 @@
+---
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<div>
+  <h2 class="sub-title text-white text-4xl mt-10 mb-10">{title}</h2>
+  <div class="icons-container flex flex-wrap gap-5 w-full justify-center px-10">
+    <slot />
+  </div>
+</div>
+
+<style>
+  h2.sub-title {
+    font-family: "Royal Fight", serif;
+    animation-timeline: view(50% 10%);
+    animation-name: animate-sub-title;
+    animation-fill-mode: both;
+    animation-duration: 1ms;
+  }
+  @keyframes animate-sub-title {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+</style>
+
+<script>
+  import { observeElementInViewport } from "../scripts/isElementInViewPort";
+  let heartIntervals: number[] = [];
+  const skillsContainer = document.getElementById("skills-container");
+
+  const iconsContainers = document.querySelectorAll(".icons-container");
+
+  const allIcons = skillsContainer?.querySelectorAll("svg");
+
+  allIcons?.forEach((icon) => {
+    icon.style.filter = "grayscale(100%)";
+    icon.style.height = "50px";
+  });
+  function addHeartsOfLove(loveIndex: number, heartsContainer: any) {
+    const interval = 1000 / loveIndex; // Cuanto mayor sea loveIndex, menor será el intervalo
+
+    // Crear intervalo para añadir corazones periódicamente
+    /* for (let i = 0; i < loveIndex; i++) {
+      setTimeout(() => {
+        if (heartsContainer) {
+          heartsContainer.className = "heart";
+          heartsContainer.textContent = "❤️";
+
+          // Posicionar el corazón
+          heartsContainer.style.bottom = `50px`;
+
+          // Eliminar corazón tras la animación
+          heartsContainer.addEventListener("animationend", () => {
+            heartsContainer.textContent = "";
+          });
+        }
+      }, interval); // Aumenta la frecuencia basada en loveLevel
+    } */
+    const heartInterval = setInterval(() => {
+      if (heartsContainer) {
+        heartsContainer.className = "heart";
+        heartsContainer.textContent = "❤️";
+
+        heartsContainer.style.bottom = `50px`;
+
+        heartsContainer.addEventListener("animationend", () => {
+          heartsContainer.textContent = "";
+        });
+      }
+    }, interval);
+
+    // Guardar referencia al intervalo para poder limpiarlo luego
+    heartIntervals.push(heartInterval);
+  }
+
+  // Limpia todos los intervalos cuando el elemento no es visible
+  function clearAllHeartIntervals(): void {
+    heartIntervals.forEach((interval) => clearInterval(interval));
+    heartIntervals = []; // Limpiar la lista de intervalos
+  }
+
+  const onVisibilityChange = (result: any) => {
+    if (result.isVisible) {
+      iconsContainers?.forEach((iconsContainer, i) => {
+        const thisIcons = iconsContainer.querySelectorAll("svg");
+
+        // Hearts animation
+        const skillHeartsContainers =
+          iconsContainer.querySelectorAll("#hearts");
+
+        skillHeartsContainers?.forEach((currentHeartsContainer) => {
+          const currentLoveLevel = parseInt(
+            currentHeartsContainer?.getAttribute("data-love-level") || "0"
+          );
+          if (currentLoveLevel > 0) {
+            setTimeout(
+              () => {
+                console.log(currentLoveLevel);
+                addHeartsOfLove(currentLoveLevel, currentHeartsContainer);
+              },
+              5000 * Math.random() * (currentLoveLevel / 3)
+            );
+          }
+        });
+
+        // Coloring the icons
+        if (i % 2 === 0) {
+          for (let j = 0; j < thisIcons.length; j++) {
+            setTimeout(() => {
+              thisIcons[j].style.filter = "none";
+            }, j * 300);
+          }
+        } else {
+          for (let k = 0; k < thisIcons.length; k++) {
+            setTimeout(() => {
+              thisIcons[thisIcons.length - 1 - k].style.filter = "none";
+            }, k * 300);
+          }
+        }
+      });
+    } else {
+      allIcons?.forEach((icon) => {
+        icon.style.filter = "grayscale(100%)";
+      });
+      clearAllHeartIntervals();
+    }
+  };
+
+  observeElementInViewport(
+    skillsContainer as HTMLElement,
+    onVisibilityChange,
+    0.5
+  );
+</script>

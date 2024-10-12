@@ -13,7 +13,6 @@ export function setupVideoScroll() {
       scrollFraction = Math.max(0, scrollFraction);
       scrollFraction = Math.min(1, scrollFraction);
       video.currentTime = video.duration * scrollFraction;
-      console.log(scrollFraction);
       videoContainer.style.opacity = (1 - scrollFraction).toString();
     };
 
