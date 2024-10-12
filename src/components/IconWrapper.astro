@@ -19,6 +19,10 @@ try {
 <div class="group flex flex-col items-center relative">
   <span data-love-level={loveLevel} id="hearts" class="hearts flex flex-col"
   ></span>
+  <span
+    class="absolute bottom-16 flex px-2 rounded-lg opacity-0 group-hover:opacity-100 duration-300 ease-in-out border bg-black"
+    >🏋️ <p>{loveLevel}</p></span
+  >
   {SvgIcon && <SvgIcon />}
   <p
     class="font-semibold text-nowrap text-sm opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out absolute top-full"
@@ -29,6 +33,7 @@ try {
 <style>
   .heart {
     position: absolute;
+    bottom: 50px;
     font-size: 24px;
     animation: heart-animation 1s ease-in-out forwards;
   }

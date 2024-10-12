@@ -33,83 +33,42 @@ const { title } = Astro.props;
 
 <script>
   import { observeElementInViewport } from "../scripts/isElementInViewPort";
-  let heartIntervals: number[] = [];
+
   const skillsContainer = document.getElementById("skills-container");
-
   const iconsContainers = document.querySelectorAll(".icons-container");
-
   const allIcons = skillsContainer?.querySelectorAll("svg");
+
+  const heartsContainers = document.querySelectorAll("span#hearts");
+  const loveLevels = Array.from(heartsContainers)?.map(
+    (currentHeartsContainer: any) =>
+      parseInt(currentHeartsContainer?.getAttribute("data-love-level") || "0")
+  );
 
   allIcons?.forEach((icon) => {
     icon.style.filter = "grayscale(100%)";
     icon.style.height = "50px";
   });
-  function addHeartsOfLove(loveIndex: number, heartsContainer: any) {
-    const interval = 1000 / loveIndex; // Cuanto mayor sea loveIndex, menor será el intervalo
+  function addHeartsOfLove(loveLevel: number, heartsContainer: any) {
+    if (heartsContainer) {
+      console.log("Animando corazón");
+      heartsContainer.classList.remove("heart");
+      void heartsContainer.offsetWidth; // Trigger reflow para reiniciar la animación. Obliga al navegador a recalcular el tamaño del elemento, void es para que no tome en cuenta el valor de offsetWidth, solo obliga al navegador a no pasar por alto el cambio de la clase por optimizar automaticamente la cosa...
+      heartsContainer.classList.add("heart");
 
-    // Crear intervalo para añadir corazones periódicamente
-    /* for (let i = 0; i < loveIndex; i++) {
-      setTimeout(() => {
-        if (heartsContainer) {
-          heartsContainer.className = "heart";
-          heartsContainer.textContent = "❤️";
-
-          // Posicionar el corazón
-          heartsContainer.style.bottom = `50px`;
-
-          // Eliminar corazón tras la animación
-          heartsContainer.addEventListener("animationend", () => {
-            heartsContainer.textContent = "";
-          });
-        }
-      }, interval); // Aumenta la frecuencia basada en loveLevel
-    } */
-    const heartInterval = setInterval(() => {
-      if (heartsContainer) {
-        heartsContainer.className = "heart";
+      // Asignar el contenido solo si no existe o si necesitas actualizar el contenido dinámico
+      if (!heartsContainer.textContent) {
         heartsContainer.textContent = "❤️";
-
-        heartsContainer.style.bottom = `50px`;
-
-        heartsContainer.addEventListener("animationend", () => {
-          heartsContainer.textContent = "";
-        });
       }
-    }, interval);
 
-    // Guardar referencia al intervalo para poder limpiarlo luego
-    heartIntervals.push(heartInterval);
+      setTimeout(() => {
+        heartsContainer.textContent = "";
+      }, 1000);
+    }
   }
-
-  // Limpia todos los intervalos cuando el elemento no es visible
-  function clearAllHeartIntervals(): void {
-    heartIntervals.forEach((interval) => clearInterval(interval));
-    heartIntervals = []; // Limpiar la lista de intervalos
-  }
-
   const onVisibilityChange = (result: any) => {
     if (result.isVisible) {
       iconsContainers?.forEach((iconsContainer, i) => {
         const thisIcons = iconsContainer.querySelectorAll("svg");
-
-        // Hearts animation
-        const skillHeartsContainers =
-          iconsContainer.querySelectorAll("#hearts");
-
-        skillHeartsContainers?.forEach((currentHeartsContainer) => {
-          const currentLoveLevel = parseInt(
-            currentHeartsContainer?.getAttribute("data-love-level") || "0"
-          );
-          if (currentLoveLevel > 0) {
-            setTimeout(
-              () => {
-                console.log(currentLoveLevel);
-                addHeartsOfLove(currentLoveLevel, currentHeartsContainer);
-              },
-              5000 * Math.random() * (currentLoveLevel / 3)
-            );
-          }
-        });
 
         // Coloring the icons
         if (i % 2 === 0) {
@@ -126,11 +85,21 @@ const { title } = Astro.props;
           }
         }
       });
+      // Animation hearts
+      console.log("Animando corazones");
+      heartsContainers?.forEach((currentHeartsContainer: any, i: number) => {
+        const currentLoveLevel = loveLevels[i];
+        setTimeout(
+          () => {
+            addHeartsOfLove(currentLoveLevel, currentHeartsContainer);
+          },
+          2000 * Math.random() * 6
+        );
+      });
     } else {
       allIcons?.forEach((icon) => {
         icon.style.filter = "grayscale(100%)";
       });
-      clearAllHeartIntervals();
     }
   };
 
