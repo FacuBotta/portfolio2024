@@ -1,8 +1,10 @@
 <div class="presentation-container">
-  <p class="message-1 hidden">Hi there!</p>
-  <p class="message-2 hidden">Welcome to my portfolio...</p>
-  <p class="message-3 hidden">My name is Facundo Botta...</p>
-  <p class="message-4 hidden">But everybody call me...</p>
+  <div class="absolute top-20">
+    <p class="message-1"></p>
+    <p class="message-2"></p>
+    <p class="message-3"></p>
+    <p class="message-4"></p>
+  </div>
   <h1 class="message-5 hidden">FacuDev</h1>
   <p
     class="message-description hidden text-gradient w-[80%] text-center ml-10 mt-5"
@@ -21,33 +23,46 @@
   const myDescription =
     "I'm a fullstack developer student, passionate about building and learning new things every day. I always put my best effort into taking my applications to the next level.\n Let's work together!";
 
-  const fillPresentation = () => {
+  const welcomeMessages = [
+    "Hi there!",
+    "Welcome to my portfolio...",
+    "My name is Facundo Botta...",
+    "But everybody call me...",
+  ];
+  const writeTextAnimation = (
+    textToInsert: string,
+    elementTarget: any,
+    typingSpeed: number = 50
+  ) => {
     let tempMessage = "";
-    const typingSpeed = 50;
 
-    for (let i = 0; i < myDescription.length; i++) {
+    for (let i = 0; i < textToInsert.length; i++) {
       setTimeout(() => {
-        if (messageDescription) {
-          tempMessage += myDescription[i];
-          messageDescription.textContent = tempMessage;
+        if (elementTarget) {
+          tempMessage += textToInsert[i];
+          elementTarget.textContent = tempMessage;
         }
       }, typingSpeed * i);
     }
   };
 
   window.addEventListener("load", () => {
-    message1?.classList.toggle("animate-message");
+    // message1?.classList.toggle("animate-message");
+    writeTextAnimation(welcomeMessages[0], message1);
     setTimeout(() => {
       message1?.classList.toggle("animate-message");
-      message2?.classList.toggle("animate-message");
+      writeTextAnimation(welcomeMessages[1], message2);
+      // message2?.classList.toggle("animate-message");
     }, 1500);
     setTimeout(() => {
       message2?.classList.toggle("animate-message");
-      message3?.classList.toggle("animate-message");
+      writeTextAnimation(welcomeMessages[2], message3);
+      // message3?.classList.toggle("animate-message");
     }, 3000);
     setTimeout(() => {
       message3?.classList.toggle("animate-message");
-      message4?.classList.toggle("animate-message");
+      writeTextAnimation(welcomeMessages[3], message4);
+      // message4?.classList.toggle("animate-message");
     }, 4500);
     setTimeout(() => {
       message4?.classList.toggle("animate-message");
@@ -55,7 +70,7 @@
     }, 6500);
     setTimeout(() => {
       messageDescription?.classList.toggle("hidden");
-      fillPresentation();
+      writeTextAnimation(myDescription, messageDescription, 30);
     }, 7500);
   });
 </script>
@@ -63,7 +78,7 @@
   .presentation-container {
     height: 100%;
     width: 100%;
-    padding-top: 100px;
+    /* padding-top: 100px; */
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -77,8 +92,7 @@
     font-size: 1.4rem;
   }
   .animate-message {
-    display: inline-block;
-    animation: fadeIn 1s forwards;
+    animation: fadeOut 1s forwards;
   }
   .animate-facuDev {
     display: inline-block;
@@ -96,20 +110,20 @@
       23px 23px 0px #f40468;
     /* 45px 45px 10px #e9e4a444; */
   }
-  @keyframes fadeIn {
+  @keyframes fadeOut {
     0% {
-      opacity: 0;
-      transform: translateY(20px);
+      opacity: 1;
+      /* transform: translateY(-20px); */
     }
     100% {
-      opacity: 1;
-      transform: translateY(120px);
+      opacity: 0;
+      /* transform: translateY(-120px); */
     }
   }
   @keyframes fadeInFacuDev {
     0% {
       opacity: 0;
-      transform: translateY(20px);
+      transform: translateY(50px);
     }
     100% {
       opacity: 1;

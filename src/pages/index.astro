@@ -10,7 +10,7 @@ import IconWrapper from "../components/IconWrapper.astro";
   <main>
     <section
       id="video-container"
-      class="fixed top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 w-screen max-w-[1400px] flex items-center justify-center bg-black z-10"
+      class="fixed top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 w-screen max-w-[1400px] flex items-center justify-center bg-red-400 z-10"
     >
       <div
         class="absolute left-2 w-1/2 flex flex-col justify-center items-center p-5 h-full z-20"
@@ -28,47 +28,170 @@ import IconWrapper from "../components/IconWrapper.astro";
       class="relative min-h-screen flex justify-center bg-black z-30 pt-[100px] shadow-custom"
     >
       <div id="skills-container" class="text-center pb-[200px]">
-        <SkillCard title="Skills">
-          <IconWrapper skill="HTML" iconName="HtmlIcon" loveLevel={8} />
-          <IconWrapper skill="CSS" iconName="CssIcon" loveLevel={0} />
-          <IconWrapper skill="Tailwind" iconName="TailwindIcon" loveLevel={8} />
+        <SkillCard title="Skills" subTitle="Skills I use everyday">
+          <IconWrapper
+            skill="HTML"
+            iconName="HtmlIcon"
+            isInLove="true"
+            trainingLevel={8}
+          />
+          <IconWrapper
+            skill="CSS"
+            iconName="CssIcon"
+            isInLove="true"
+            trainingLevel={7}
+          />
+          <IconWrapper
+            skill="Tailwind"
+            iconName="TailwindIcon"
+            isInLove="true"
+            trainingLevel={7}
+          />
           <IconWrapper
             skill="JavaScript"
             iconName="JavaScriptIcon"
-            loveLevel={10}
+            isInLove="true"
+            trainingLevel={10}
           />
-          <IconWrapper skill="React" iconName="ReactIcon" loveLevel={9} />
-          <IconWrapper skill="Node" iconName="NodeIcon" loveLevel={8} />
-          <IconWrapper skill="MySQL" iconName="MysqlIcon" loveLevel={7} />
+          <IconWrapper
+            skill="React"
+            iconName="ReactIcon"
+            isInLove="true"
+            trainingLevel={9}
+          />
+          <IconWrapper
+            skill="Node"
+            iconName="NodeIcon"
+            isInLove="true"
+            trainingLevel={7}
+          />
+          <IconWrapper
+            skill="MySQL"
+            iconName="MysqlIcon"
+            isInLove="true"
+            trainingLevel={7}
+          />
         </SkillCard>
-
-        <SkillCard title="Stack">
-          <IconWrapper skill="VS Code" iconName="VsCodeIcon" loveLevel={5} />
-          <IconWrapper skill="Git" iconName="GitColoredIcon" loveLevel={7} />
-          <IconWrapper skill="NPM" iconName="NpmIcon" loveLevel={7} />
-          <IconWrapper skill="Docker" iconName="DockerIcon" loveLevel={6} />
+        <SkillCard title="Stack" subTitle="Technologies I use">
+          <IconWrapper
+            skill="VS Code"
+            iconName="VsCodeIcon"
+            isInLove="true"
+            trainingLevel={9}
+          />
+          <IconWrapper
+            skill="Git"
+            iconName="GitColoredIcon"
+            isInLove="true"
+            trainingLevel={8}
+          />
+          <IconWrapper
+            skill="NPM"
+            iconName="NpmIcon"
+            isInLove="true"
+            trainingLevel={7}
+          />
+          <IconWrapper
+            skill="Docker"
+            iconName="DockerIcon"
+            isInLove="true"
+            trainingLevel={5}
+          />
           <IconWrapper
             skill="VirtualBox"
             iconName="VirtualBoxIcon"
-            loveLevel={6}
+            isInLove="true"
+            trainingLevel={6}
           />
-          <IconWrapper skill="Linux" iconName="LinuxIcon" loveLevel={8} />
-          <IconWrapper skill="Figma" iconName="FigmaIcon" loveLevel={6} />
+          <IconWrapper
+            skill="Linux"
+            iconName="LinuxIcon"
+            isInLove="true"
+            trainingLevel={4}
+          />
+          <IconWrapper
+            skill="Figma"
+            iconName="FigmaIcon"
+            isInLove="false"
+            trainingLevel={5}
+          />
         </SkillCard>
-
-        <SkillCard title="Touching">
-          <IconWrapper skill="Next.js" iconName="NextJsIcon" loveLevel={9} />
-          <IconWrapper skill="Angular" iconName="AngularIcon" loveLevel={3} />
-          <IconWrapper skill="Vue.js" iconName="VueJsIcon" loveLevel={5} />
-          <IconWrapper skill="Astro" iconName="AstroIcon" loveLevel={9} />
-          <IconWrapper skill="Symfony" iconName="SymfonyIcon" loveLevel={3} />
-          <IconWrapper skill="PHP" iconName="PhpIcon" loveLevel={6} />
-          <IconWrapper skill="Apache" iconName="ApacheIcon" loveLevel={6} />
-          <IconWrapper skill="Prisma" iconName="PrismaIcon" loveLevel={5} />
-          <IconWrapper skill="Firebase" iconName="FireBaseIcon" loveLevel={4} />
-          <IconWrapper skill="Python" iconName="PythonIcon" loveLevel={7} />
-          <IconWrapper skill="Java" iconName="JavaIcon" loveLevel={3} />
-          <IconWrapper skill="Arduino" iconName="ArduinoIcon" loveLevel={6} />
+        <SkillCard
+          title="Touching"
+          subTitle="Technologies I'm learn and/or testing"
+        >
+          <IconWrapper
+            skill="Next.js"
+            iconName="NextJsIcon"
+            isInLove="true"
+            trainingLevel={7}
+          />
+          <IconWrapper
+            skill="Angular"
+            iconName="AngularIcon"
+            isInLove="false"
+            trainingLevel={5}
+          />
+          <IconWrapper
+            skill="Vue.js"
+            iconName="VueJsIcon"
+            isInLove="false"
+            trainingLevel={3}
+          />
+          <IconWrapper
+            skill="Astro"
+            iconName="AstroIcon"
+            isInLove="true"
+            trainingLevel={4}
+          />
+          <IconWrapper
+            skill="Symfony"
+            iconName="SymfonyIcon"
+            isInLove="false"
+            trainingLevel={5}
+          />
+          <IconWrapper
+            skill="PHP"
+            iconName="PhpIcon"
+            isInLove="false"
+            trainingLevel={6}
+          />
+          <IconWrapper
+            skill="Apache"
+            iconName="ApacheIcon"
+            isInLove="false"
+            trainingLevel={6}
+          />
+          <IconWrapper
+            skill="Prisma"
+            iconName="PrismaIcon"
+            isInLove="false"
+            trainingLevel={5}
+          />
+          <IconWrapper
+            skill="Firebase"
+            iconName="FireBaseIcon"
+            isInLove="false"
+            trainingLevel={3}
+          />
+          <IconWrapper
+            skill="Python"
+            iconName="PythonIcon"
+            isInLove="true"
+            trainingLevel={4}
+          />
+          <IconWrapper
+            skill="Java"
+            iconName="JavaIcon"
+            isInLove="false"
+            trainingLevel={2}
+          />
+          <IconWrapper
+            skill="Arduino"
+            iconName="ArduinoIcon"
+            isInLove="true"
+            trainingLevel={4}
+          />
         </SkillCard>
       </div>
     </section>
