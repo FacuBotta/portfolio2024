@@ -1,5 +1,11 @@
+---
+import LinkedInIcon from "./icons/LinkedInIcon.astro";
+import GitHubMiniIcon from "./icons/GitHubMiniIcon.astro";
+import GmailIcon from "./icons/GmailIcon.astro";
+---
+
 <div class="presentation-container">
-  <div class="absolute top-20">
+  <div class="absolute top-20 text-[2rem]">
     <p class="message-1"></p>
     <p class="message-2"></p>
     <p class="message-3"></p>
@@ -7,9 +13,57 @@
   </div>
   <h1 class="message-5 hidden">FacuDev</h1>
   <p
-    class="message-description hidden text-gradient w-[80%] text-center ml-10 mt-5"
+    class="message-description hidden text-gradient w-[80%] text-center ml-10 mt-5 text-[1.4rem]"
   >
   </p>
+  <div
+    class="relative buttons-container flex justify-center gap-3 h-10 w-full mt-5"
+  >
+    <!-- LinkedIn -->
+    <a
+      class="hidden peer/linkedIn rounded-full"
+      href="https://www.linkedin.com/in/facundo-botta/"
+      target="_blank"
+    >
+      <LinkedInIcon class="h-full w-full" />
+    </a>
+    <div
+      class="font-semibold text-sm opacity-0 absolute top-[130%] peer-hover/linkedIn:opacity-100 flex-col transition-opacity duration-300 ease-in-out cursor-default"
+    >
+      <p>Visit my LinkedIn</p>
+      <p class="text-xs font-extralight">Ctrl+click to copy link</p>
+    </div>
+
+    <!-- GitHub -->
+    <a
+      class="hidden peer/gitHub rounded-full"
+      href="https://github.com/FacuBotta"
+      target="_blank"
+    >
+      <GitHubMiniIcon class="h-full w-full" />
+    </a>
+    <div
+      class="font-semibold text-sm opacity-0 absolute top-[130%] peer-hover/gitHub:opacity-100 flex-col transition-opacity duration-300 ease-in-out cursor-default"
+    >
+      <p>Check my GitHub!</p>
+      <p class="text-xs font-extralight">Ctrl+click to copy link</p>
+    </div>
+
+    <!-- Gmail -->
+    <a
+      class="hidden peer/gmail rounded-full"
+      href="mailto:facundo.botta.dev@gmail.com"
+      target="_blank"
+    >
+      <GmailIcon class="h-full w-full" />
+    </a>
+    <div
+      class="font-semibold text-sm opacity-0 absolute top-[130%] peer-hover/gmail:opacity-100 flex-col transition-opacity duration-300 ease-in-out cursor-default"
+    >
+      <p>Email me via Gmail</p>
+      <p class="text-xs font-extralight">Ctrl+click to copy address</p>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -19,6 +73,8 @@
   const message4 = document.querySelector(".message-4");
   const message5 = document.querySelector(".message-5");
   const messageDescription = document.querySelector(".message-description");
+  const buttonsContainer = document.querySelector(".buttons-container");
+  const iconsLinks = buttonsContainer?.querySelectorAll("a");
 
   const myDescription =
     "I'm a fullstack developer student, passionate about building and learning new things every day. I always put my best effort into taking my applications to the next level.\n Let's work together!";
@@ -45,51 +101,121 @@
       }, typingSpeed * i);
     }
   };
+  function copyLink(event: any) {
+    if (event.ctrlKey) {
+      let link = event.currentTarget.getAttribute("href");
+
+      const mailtoRegex = /mailto:(.*)/;
+      if (mailtoRegex.test(link)) {
+        link = link.replace(mailtoRegex, "$1");
+      }
+      console.log(link);
+
+      const copyMessageContainer = event.currentTarget.nextElementSibling;
+      const messages = copyMessageContainer.querySelectorAll("p");
+
+      navigator.clipboard
+        .writeText(link)
+        .then(() => {
+          if (copyMessageContainer) {
+            const prevContent1 = messages[0].textContent;
+            const prevContent2 = messages[1].textContent;
+
+            messages[0].textContent = "Copied!";
+            messages[1].textContent = link;
+
+            setTimeout(() => {
+              messages[0].textContent = prevContent1;
+              messages[1].textContent = prevContent2;
+            }, 2000);
+          }
+        })
+        .catch((err) => {
+          console.error("Error coping link:", err);
+        });
+
+      event.preventDefault();
+    }
+  }
+
+  const links = document.querySelectorAll(".buttons-container a");
+
+  links.forEach((link) => {
+    link.addEventListener("click", copyLink);
+  });
 
   window.addEventListener("load", () => {
-    // message1?.classList.toggle("animate-message");
-    writeTextAnimation(welcomeMessages[0], message1);
+    setTimeout(() => {
+      writeTextAnimation(welcomeMessages[0], message1);
+    }, 1000);
     setTimeout(() => {
       message1?.classList.toggle("animate-message");
-      writeTextAnimation(welcomeMessages[1], message2);
-      // message2?.classList.toggle("animate-message");
-    }, 1500);
+      writeTextAnimation(welcomeMessages[1], message2, 40);
+    }, 2000);
     setTimeout(() => {
       message2?.classList.toggle("animate-message");
-      writeTextAnimation(welcomeMessages[2], message3);
-      // message3?.classList.toggle("animate-message");
-    }, 3000);
+      writeTextAnimation(welcomeMessages[2], message3, 35);
+    }, 3500);
     setTimeout(() => {
       message3?.classList.toggle("animate-message");
-      writeTextAnimation(welcomeMessages[3], message4);
-      // message4?.classList.toggle("animate-message");
-    }, 4500);
+      writeTextAnimation(welcomeMessages[3], message4, 30);
+    }, 5000);
     setTimeout(() => {
       message4?.classList.toggle("animate-message");
       message5?.classList.toggle("animate-facuDev");
     }, 6500);
     setTimeout(() => {
       messageDescription?.classList.toggle("hidden");
-      writeTextAnimation(myDescription, messageDescription, 30);
+      writeTextAnimation(myDescription, messageDescription, 12);
     }, 7500);
+    setTimeout(() => {
+      iconsLinks?.forEach((iconLink, index) => {
+        setTimeout(() => {
+          iconLink?.classList.replace("hidden", "animate-icons");
+        }, index * 200); // El delay entre íconos (200ms de diferencia)
+      });
+    }, 10500);
   });
 </script>
 <style>
   .presentation-container {
     height: 100%;
     width: 100%;
-    /* padding-top: 100px; */
+    padding-top: 50px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     text-align: center;
+    gap: 2rem;
   }
-  .presentation-container p {
-    font-size: 2rem;
+  .animate-icons {
+    display: inline-block;
+    height: 100%;
+    opacity: 0;
+    animation: fadeInAndBounce 0.8s forwards ease-out; /* Duración ajustada */
   }
-  .presentation-container .message-description {
-    font-size: 1.4rem;
+  .buttons-container a:hover {
+    scale: 1.1;
+    box-shadow: rgba(197, 197, 197, 0.625) 0px 5px 15px;
+    transition: all 0.4s ease-in-out;
+  }
+  @keyframes fadeInAndBounce {
+    0% {
+      opacity: 0;
+      transform: scale(0.6);
+    }
+    60% {
+      opacity: 1;
+      transform: scale(1.1);
+    }
+    80% {
+      transform: scale(0.95);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
   }
   .animate-message {
     animation: fadeOut 1s forwards;
@@ -113,11 +239,9 @@
   @keyframes fadeOut {
     0% {
       opacity: 1;
-      /* transform: translateY(-20px); */
     }
     100% {
       opacity: 0;
-      /* transform: translateY(-120px); */
     }
   }
   @keyframes fadeInFacuDev {
