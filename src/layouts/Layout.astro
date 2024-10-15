@@ -1,4 +1,6 @@
 ---
+import Header from "../components/Header.astro";
+
 interface Props {
   title: string;
 }
@@ -15,39 +17,40 @@ const { title } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Tilt+Neon&display=swap"
-      rel="stylesheet"
-    />
   </head>
+  <Header />
   <body>
     <slot />
   </body>
-</html>
-<style is:global>
-  @font-face {
-    font-family: "Royal Fight";
-    src: url("/fonts/Royal%20Fighter.otf") format("opentype");
-    font-style: normal;
-    font-weight: normal;
-  }
-  :root {
-    --grey-dark: 50, 50, 50; /* Gris oscuro */
-    --grey-light: 220, 220, 220; /* Gris claro */
 
-    --description-gradient: linear-gradient(
-      45deg,
-      rgb(var(--grey-dark)) 0%,
-      /* Gris oscuro */ rgb(var(--grey-light)) 100% /* Gris claro */
-    );
-  }
-  html {
-    font-family: system-ui, sans-serif;
-    background: #13151a;
-  }
-  code {
+  <style is:global>
+    @font-face {
+      font-family: "Royal Fight";
+      src: url("/fonts/Royal%20Fighter.otf") format("opentype");
+      font-style: normal;
+      font-weight: normal;
+    }
+    @font-face {
+      font-family: "Helvetica";
+      src: url("/fonts/Helvetica.ttf") format("truetype");
+      font-style: normal;
+      font-weight: normal;
+    }
+    :root {
+      --grey-dark: 50, 50, 50; /* Gris oscuro */
+      --grey-light: 220, 220, 220; /* Gris claro */
+      --description-gradient: linear-gradient(
+        45deg,
+        rgb(var(--grey-dark)) 0%,
+        /* Gris oscuro */ rgb(var(--grey-light)) 100% /* Gris claro */
+      );
+    }
+    html {
+      font-family: "Helvetica", sans-serif;
+      background: #000000;
+      /* scroll-behavior: smooth; */
+    }
+    /* code {
     font-family:
       Menlo,
       Monaco,
@@ -57,5 +60,8 @@ const { title } = Astro.props;
       Bitstream Vera Sans Mono,
       Courier New,
       monospace;
-  }
-</style>
+  } */
+  </style>
+
+
+</html>

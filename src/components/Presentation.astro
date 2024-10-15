@@ -12,14 +12,15 @@ import ResumeIcon from "./icons/ResumeIcon.astro";
     >Skip animation
   </button>
   <div id="messages-container" class="absolute top-20 text-[2rem]">
-    <p class="message-1"></p>
-    <p class="message-2"></p>
-    <p class="message-3"></p>
-    <p class="message-4"></p>
+    <p class="text-gradient message-1"></p>
+    <p class="text-gradient message-2"></p>
+    <p class="text-gradient message-3"></p>
+    <p class="text-gradient message-4"></p>
   </div>
   <h1 class="message-5 hidden">FacuDev</h1>
+  <!-- Presentation, My description -->
   <p
-    class="message-description hidden text-gradient w-[80%] text-center ml-10 mt-5 text-[1.4rem]"
+    class="message-description hidden text-gradient w-[80%] text-center mt-5 text-[1.4rem]"
   >
   </p>
   <!-- Icons links -->
@@ -28,7 +29,7 @@ import ResumeIcon from "./icons/ResumeIcon.astro";
   >
     <!-- LinkedIn -->
     <a
-      class="icon hidden peer/linkedIn rounded-full"
+      class="icon copyable hidden peer/linkedIn rounded-full"
       href="https://www.linkedin.com/in/facundo-botta/"
       target="_blank"
     >
@@ -43,7 +44,7 @@ import ResumeIcon from "./icons/ResumeIcon.astro";
 
     <!-- GitHub -->
     <a
-      class="icon hidden peer/gitHub rounded-full"
+      class="icon copyable hidden peer/gitHub rounded-full"
       href="https://github.com/FacuBotta"
       target="_blank"
     >
@@ -58,7 +59,7 @@ import ResumeIcon from "./icons/ResumeIcon.astro";
 
     <!-- Gmail -->
     <a
-      class="icon hidden peer/gmail rounded-full"
+      class="icon copyable hidden peer/gmail rounded-full"
       href="mailto:facundo.botta.dev@gmail.com"
       target="_blank"
     >
@@ -234,10 +235,8 @@ import ResumeIcon from "./icons/ResumeIcon.astro";
     });
   }
   skipButton.addEventListener("click", () => {
-    // actualizo el valor de skipAnimation
     skipAnimation = localStorage.getItem("skipAnimation");
     if (skipAnimation === "true") {
-      console.log("activando la animación");
       localStorage.setItem("skipAnimation", "false");
       window.location.reload();
       return;
@@ -247,6 +246,8 @@ import ResumeIcon from "./icons/ResumeIcon.astro";
     skipButton.textContent = "See animation";
     // const passedTimeVideo = video.currentTime;
     video.currentTime = 11.5;
+    // esto seria para acelerar el video pero da problemas para pagarla bien con el time...
+    // es mas facil setear el currentTime y listo
     // video.playbackRate = 12 - passedTimeVideo;
     clearAllTimeouts();
     showPresentationWithOutAnimation();
@@ -259,7 +260,9 @@ import ResumeIcon from "./icons/ResumeIcon.astro";
     animatePresentation();
   }
 
-  const links = document.querySelectorAll(".buttons-container a");
+  const links = document.querySelectorAll(
+    ".icons-buttons-container a.copyable"
+  );
   function copyLinks(event: any) {
     if (event.ctrlKey) {
       let link = event.currentTarget.getAttribute("href");
@@ -268,7 +271,6 @@ import ResumeIcon from "./icons/ResumeIcon.astro";
       if (mailtoRegex.test(link)) {
         link = link.replace(mailtoRegex, "$1");
       }
-      console.log(link);
 
       const copyMessageContainer = event.currentTarget.nextElementSibling;
       const messages = copyMessageContainer.querySelectorAll("p");
@@ -313,6 +315,7 @@ import ResumeIcon from "./icons/ResumeIcon.astro";
 </script>
 <style>
   .presentation-container {
+    user-select: none;
     height: 100%;
     width: 100%;
     padding-top: 50px;
@@ -338,6 +341,7 @@ import ResumeIcon from "./icons/ResumeIcon.astro";
     color: #f9ff56;
     background: linear-gradient(to right, #f9ff5622, #f9ff5600);
   }
+
   @keyframes fadeInAndBounce {
     0% {
       opacity: 0;

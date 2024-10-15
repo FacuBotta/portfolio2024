@@ -8,6 +8,7 @@ import IconWrapper from "../components/IconWrapper.astro";
 
 <Layout title="Welcome to Astro.">
   <main>
+    <div id="home-section"></div>
     <section
       id="video-container"
       class="fixed top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 pr-20 w-screen max-w-[1400px] flex items-center justify-end bg-black z-10"
@@ -24,8 +25,9 @@ import IconWrapper from "../components/IconWrapper.astro";
     <!-- Esta sección sirve para hacer espacio para el video -->
     <section class="relative min-h-screen flex justify-center bg-black z-0">
     </section>
-
+    <!-- Esta seccion muestra los skills, pasa por encima de la primera seccion -->
     <section
+      id="skills-section"
       class="relative min-h-screen flex justify-center bg-black z-30 pt-[100px] shadow-custom"
     >
       <div id="skills-container" class="text-center pb-[200px]">
@@ -196,15 +198,42 @@ import IconWrapper from "../components/IconWrapper.astro";
         </SkillCard>
       </div>
     </section>
+    <!-- Esta seccion muestra los proyectos, quisiera que se descubra despues de la seccion skills, como un efecto parallax...  -->
     <section
-      class="h-screen flex justify-center bg-slate-900 z-30 pt-[50px] shadow-custom"
+      id="projects-section"
+      class="h-screen w-full flex justify-center bg-slate-900 pt-[50px] shadow-custom"
     >
-      <div class="text-center">
-        <h2 class="sub-title text-white text-4xl">Projects</h2>
+      <div
+        class="projects-container -translate-y-[100vh] flex w-full h-full bg-red-400 m-20 flex-col justify-center items-center transition-transform duration-700 ease-in-out"
+      >
+        <div class="text-center">
+          <h2 class="sub-title text-white text-4xl">Projects</h2>
+        </div>
       </div>
+    </section>
+    <!-- About section -->
+    <section
+      class="min-h-screen flex justify-center bg-red-600 z-30 pt-[100px] shadow-custom"
+    >
     </section>
   </main>
 </Layout>
+
+<script>
+  window.addEventListener("scroll", function () {
+    const areTwoSectionsPassed = window.scrollY >= window.innerHeight * 1.7;
+    console.log(areTwoSectionsPassed);
+
+    const projectsContainer = document.querySelector(
+      "div.projects-container"
+    ) as HTMLElement;
+    const scrollPosition = window.scrollY;
+
+    if (projectsContainer && areTwoSectionsPassed) {
+      projectsContainer.style.transform = `translateY(${0}px)`;
+    }
+  });
+</script>
 
 <style>
   main {

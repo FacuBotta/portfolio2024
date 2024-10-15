@@ -16,8 +16,8 @@ export function setupVideoScroll() {
         window.scrollTo(0, 0);
       };
       video.currentTime = 0;
+      video.play();
     }
-    video.play();
 
     // Reproducir automáticamente los primeros 11 segundos, cuando dejo de tipear
     const interval = setInterval(() => {

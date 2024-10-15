@@ -43,7 +43,6 @@ const { title, subTitle } = Astro.props;
   const allIcons = skillsContainer?.querySelectorAll("svg");
 
   const heartsContainers = document.querySelectorAll("span#hearts");
-  // if (!heartsContainers) return;
 
   const loveLevels = Array.from(heartsContainers)?.map(
     (currentHeartsContainer: any) => {
@@ -51,14 +50,12 @@ const { title, subTitle } = Astro.props;
       return isInLove === "true" ? true : false;
     }
   );
-  console.log(loveLevels);
   allIcons?.forEach((icon) => {
     icon.style.filter = "grayscale(100%)";
     icon.style.height = "50px";
   });
   function addHeartsOfLove(heartsContainer: any) {
     if (heartsContainer) {
-      console.log("Animando corazón");
       heartsContainer.classList.remove("heart");
       void heartsContainer.offsetWidth; // Trigger reflow para reiniciar la animación. Obliga al navegador a recalcular el tamaño del elemento, void es para que no tome en cuenta el valor de offsetWidth, solo obliga al navegador a no pasar por alto el cambio de la clase por optimizar automaticamente la cosa...
       heartsContainer.classList.add("heart");
@@ -94,7 +91,6 @@ const { title, subTitle } = Astro.props;
         }
       });
       // Animation hearts
-      console.log("Animando corazones");
       heartsContainers?.forEach((currentHeartsContainer: any, i: number) => {
         if (loveLevels[i]) {
           setTimeout(

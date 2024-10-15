@@ -6,6 +6,11 @@ export default {
       fontFamily: {
         sans: ['"Tilt Neon"'],
       },
+      colors: {
+        "primary-yellow": "#fff100",
+        "primary-cyan": "#07bccc",
+        "primary-magenta": "#e601c0",
+      },
     },
   },
   plugins: [],

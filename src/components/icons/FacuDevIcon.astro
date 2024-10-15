@@ -1,0 +1,47 @@
+---
+interface Props {
+  borderColor?: string;
+  backgroundColor?: string;
+  fChartColor?: string;
+  dChartColor?: string;
+  strokeWidth?: string;
+}
+
+const { borderColor, backgroundColor, fChartColor, dChartColor, strokeWidth } =
+  Astro.props;
+---
+
+<svg
+  height="100%"
+  viewBox="0 0 967 967"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <g id="facudev-icon">
+    <rect
+      id="background"
+      x="-16.4291"
+      y="483.5"
+      width="707.006"
+      height="707.006"
+      rx="54"
+      transform="rotate(-45 -16.4291 483.5)"
+      stroke={borderColor || "black"}
+      stroke-width={strokeWidth || "10"}
+      fill={backgroundColor || "none"}></rect>
+    <path
+      id="d-chart"
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+      d="M515 859V103L871.59 465.956C881.53 476.074 881.461 492.319 871.434 502.351L515 859ZM633.39 596.662V365.769L729.265 463.988C739.128 474.091 739.059 490.245 729.11 500.264L633.39 596.662Z"
+      fill={dChartColor || "none"}
+      stroke={borderColor || "black"}
+      stroke-width={strokeWidth || "10"}></path>
+    <path
+      id="f-chart"
+      d="M96.9638 459.565L454 103V288.59L262.991 478.486L308.695 524.13L454 379.017V556.425L397.948 613.265L454 670.104V860L96.9637 503.435C84.8382 491.325 84.8382 471.675 96.9638 459.565Z"
+      fill={fChartColor || "none"}
+      stroke={borderColor || "black"}
+      stroke-width={strokeWidth || "10"}></path>
+  </g>
+</svg>

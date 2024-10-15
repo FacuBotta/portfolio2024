@@ -1,0 +1,71 @@
+---
+import FacuDevIcon from "./icons/FacuDevIcon.astro";
+---
+
+<header
+  class="text-white fixed z-50 top-0 left-0 w-full h-14 bg-black/70 backdrop-blur-sm border-b border-primary-yellow transition-all duration-300 ease-in-out hover:bg-black/90"
+>
+  <div class="flex justify-between items-end h-full max-w-[1000px] m-auto">
+    <div id="icon-container" class="h-full top-0 p-2">
+      <FacuDevIcon
+        borderColor="#757575"
+        fChartColor="#757575"
+        dChartColor="#D7D7D7"
+      />
+    </div>
+    <nav>
+      <ul class="flex items-center gap-4 text-xl font-semibold">
+        <li>
+          <a class="hover:text-primary-cyan" href="#home-section">Home</a>
+        </li>
+        <li>
+          <a class="hover:text-primary-cyan" href="#skills-section">Skills</a>
+        </li>
+        <li>
+          <a class="hover:text-primary-cyan" href="#projects-section"
+            >Projects</a
+          >
+        </li>
+        <li>
+          <a class="hover:text-primary-cyan" href="#contact-section">About</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<script>
+  const header = document.querySelector("header");
+  const nav = header?.querySelector("nav");
+  const video = document.getElementById("miVideo") as HTMLVideoElement;
+  let lastScrollTop = 0;
+  window.addEventListener("scroll", () => {
+    const skipAnimation = localStorage.getItem("skipAnimation");
+    const animationIsEnd = video.currentTime >= 11.5;
+    if (skipAnimation !== "true" && !animationIsEnd) {
+      return;
+    }
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+    if (scrollTop > lastScrollTop) {
+      if (!header?.classList.contains("header-hided")) {
+        header?.classList.add("header-hided");
+        nav?.classList.add("hidden");
+      }
+    } else {
+      if (header?.classList.contains("header-hided")) {
+        header?.classList.remove("header-hided");
+        nav?.classList.remove("hidden");
+      }
+    }
+    lastScrollTop = scrollTop;
+  });
+</script>
+<style>
+  .header-hided {
+    margin: 10px;
+    width: 70px;
+    height: 70px;
+    border-radius: 100%;
+    border: solid 0 0 2px 0 #f9ff56;
+  }
+</style>
