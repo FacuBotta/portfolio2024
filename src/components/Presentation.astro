@@ -5,27 +5,24 @@ import GmailIcon from "./icons/GmailIcon.astro";
 import ResumeIcon from "./icons/ResumeIcon.astro";
 ---
 
-<div class="presentation-container">
-  <button
-    id="skip-button"
-    class="flex absolute top-20 right-[-90%] rounded-lg border-2 border-white p-1 cursor-pointer opacity-50 hover:opacity-100 transition-opacity duration-300 ease-in-out font-extralight"
-    >Skip animation
-  </button>
-  <div id="messages-container" class="absolute top-20 text-[2rem]">
-    <p class="text-gradient message-1"></p>
-    <p class="text-gradient message-2"></p>
-    <p class="text-gradient message-3"></p>
-    <p class="text-gradient message-4"></p>
+<div
+  class="h-full w-[80vw] lg:w-[40vw] select-none flex flex-col items-start justify-center gap-5"
+>
+  <!-- <h1 class="facudev-title hidden">FacuDev</h1> -->
+  <div>
+    <h1 class="facudev-title hidden mb-[-40px]">Facundo Botta</h1>
+    <p class="text-primary-magenta text-3xl">
+      <span class="text-primary-cyan/70">as</span> FacuDev
+    </p>
   </div>
-  <h1 class="message-5 hidden">FacuDev</h1>
   <!-- Presentation, My description -->
   <p
-    class="message-description hidden text-gradient w-[80%] text-center mt-5 text-[1.4rem]"
+    class="message-description w-full hidden opacity-70 text-center text-balance text-[1.4rem]"
   >
   </p>
   <!-- Icons links -->
   <div
-    class="relative icons-buttons-container flex justify-center gap-3 h-10 w-full mt-5"
+    class="relative icons-buttons-container flex justify-start gap-3 h-10 w-full mt-5"
   >
     <!-- LinkedIn -->
     <a
@@ -33,7 +30,7 @@ import ResumeIcon from "./icons/ResumeIcon.astro";
       href="https://www.linkedin.com/in/facundo-botta/"
       target="_blank"
     >
-      <LinkedInIcon class="h-full w-full" />
+      <LinkedInIcon />
     </a>
     <div
       class="font-semibold text-sm opacity-0 absolute top-[130%] peer-hover/linkedIn:opacity-100 flex-col transition-opacity duration-300 ease-in-out cursor-default"
@@ -48,7 +45,7 @@ import ResumeIcon from "./icons/ResumeIcon.astro";
       href="https://github.com/FacuBotta"
       target="_blank"
     >
-      <GitHubMiniIcon class="h-full w-full" />
+      <GitHubMiniIcon />
     </a>
     <div
       class="font-semibold text-sm opacity-0 absolute top-[130%] peer-hover/gitHub:opacity-100 flex-col transition-opacity duration-300 ease-in-out cursor-default"
@@ -63,7 +60,7 @@ import ResumeIcon from "./icons/ResumeIcon.astro";
       href="mailto:facundo.botta.dev@gmail.com"
       target="_blank"
     >
-      <GmailIcon class="h-full w-full" />
+      <GmailIcon />
     </a>
     <div
       class="font-semibold text-sm opacity-0 absolute top-[130%] peer-hover/gmail:opacity-100 flex-col transition-opacity duration-300 ease-in-out cursor-default"
@@ -76,7 +73,7 @@ import ResumeIcon from "./icons/ResumeIcon.astro";
       id="cv-icon-button"
       class="icon hidden peer/resume rounded-full cursor-pointer"
     >
-      <ResumeIcon class="h-full w-full" />
+      <ResumeIcon />
     </div>
     <div
       class="font-semibold text-sm absolute top-[130%] peer-hover/resume:flex flex-col hidden transition-opacity duration-300 ease-in-out cursor-default"
@@ -121,16 +118,7 @@ import ResumeIcon from "./icons/ResumeIcon.astro";
 </div>
 
 <script>
-  let skipAnimation = localStorage.getItem("skipAnimation");
-
-  const video = document.getElementById("miVideo") as HTMLVideoElement;
-
-  const messagesContainer = document.getElementById("messages-container");
-  const message1 = messagesContainer?.querySelector(".message-1");
-  const message2 = messagesContainer?.querySelector(".message-2");
-  const message3 = messagesContainer?.querySelector(".message-3");
-  const message4 = messagesContainer?.querySelector(".message-4");
-  const message5 = document.querySelector(".message-5");
+  const facudevTitle = document.querySelector(".facudev-title");
   const messageDescription = document.querySelector(".message-description");
 
   const iconsButtonsContainer = document.querySelector(
@@ -138,27 +126,9 @@ import ResumeIcon from "./icons/ResumeIcon.astro";
   );
   const iconsLinks = iconsButtonsContainer?.querySelectorAll(".icon");
 
-  const skipButton = document.getElementById(
-    "skip-button"
-  ) as HTMLButtonElement;
-
-  // cambiar el texto del boton de la animacion en funcion del localStorage
-  if (skipAnimation === "true") {
-    skipButton.textContent = "See animation";
-  } else {
-    skipButton.textContent = "Skip animation";
-  }
-  const myDescription2 =
-    "I'm a fullstack developer student, passionate about building and learning new things every day. I always put my best effort into taking my applications to the next level.\n Let's work together!";
-
   const myDescription =
     "2 years as a fullstack web developer student, passionate by JavaScript and its ecosystem. Living in Montpellier, France.";
-  const welcomeMessages = [
-    "Hi there!",
-    "Welcome to my portfolio...",
-    "My name is Facundo Botta...",
-    "But everybody call me...",
-  ];
+
   const writeTextAnimation = (
     textToInsert: string,
     elementTarget: any,
@@ -175,59 +145,8 @@ import ResumeIcon from "./icons/ResumeIcon.astro";
       }, typingSpeed * i);
     }
   };
-
-  let timesOutsAnimationPresentation: number[] = [];
-
-  function animatePresentation() {
-    window.addEventListener("load", () => {
-      const presentationTimeOut1 = setTimeout(() => {
-        writeTextAnimation(welcomeMessages[0], message1);
-      }, 1000);
-      timesOutsAnimationPresentation.push(presentationTimeOut1);
-      const presentationTimeOut2 = setTimeout(() => {
-        message1?.classList.toggle("animate-message");
-        writeTextAnimation(welcomeMessages[1], message2, 40);
-      }, 2000);
-      timesOutsAnimationPresentation.push(presentationTimeOut2);
-      const presentationTimeOut3 = setTimeout(() => {
-        message2?.classList.toggle("animate-message");
-        writeTextAnimation(welcomeMessages[2], message3, 35);
-      }, 3500);
-      timesOutsAnimationPresentation.push(presentationTimeOut3);
-      const presentationTimeOut4 = setTimeout(() => {
-        message3?.classList.toggle("animate-message");
-        writeTextAnimation(welcomeMessages[3], message4, 30);
-      }, 5000);
-      timesOutsAnimationPresentation.push(presentationTimeOut4);
-      const presentationTimeOut5 = setTimeout(() => {
-        message4?.classList.toggle("animate-message");
-        message5?.classList.toggle("animate-facuDev");
-      }, 6500);
-      timesOutsAnimationPresentation.push(presentationTimeOut5);
-      const presentationTimeOut6 = setTimeout(() => {
-        messageDescription?.classList.toggle("hidden");
-        writeTextAnimation(myDescription, messageDescription, 12);
-      }, 7500);
-      timesOutsAnimationPresentation.push(presentationTimeOut6);
-      const presentationTimeOut7 = setTimeout(() => {
-        iconsLinks?.forEach((iconLink, index) => {
-          setTimeout(() => {
-            iconLink?.classList.replace("hidden", "animate-icons");
-          }, index * 200);
-        });
-      }, 10500);
-      timesOutsAnimationPresentation.push(presentationTimeOut7);
-    });
-  }
-  function clearAllTimeouts() {
-    timesOutsAnimationPresentation.forEach((timeout) => {
-      clearTimeout(timeout);
-    });
-    timesOutsAnimationPresentation = [];
-  }
   function showPresentationWithOutAnimation() {
-    messagesContainer?.classList.add("hidden");
-    message5?.classList.add("animate-facuDev");
+    facudevTitle?.classList.add("animate-facuDev");
     messageDescription?.classList.remove("hidden");
     writeTextAnimation(myDescription, messageDescription, 1);
     iconsLinks?.forEach((iconLink, index) => {
@@ -235,31 +154,6 @@ import ResumeIcon from "./icons/ResumeIcon.astro";
         iconLink?.classList.replace("hidden", "animate-icons");
       }, index * 200);
     });
-  }
-  skipButton.addEventListener("click", () => {
-    skipAnimation = localStorage.getItem("skipAnimation");
-    if (skipAnimation === "true") {
-      localStorage.setItem("skipAnimation", "false");
-      window.location.reload();
-      return;
-    }
-    // acelero el video hasta donde el scroll se libera y ademas libero el scroll aca también
-    localStorage.setItem("skipAnimation", "true");
-    skipButton.textContent = "See animation";
-    // const passedTimeVideo = video.currentTime;
-    video.currentTime = 11.5;
-    // esto seria para acelerar el video pero da problemas para pagarla bien con el time...
-    // es mas facil setear el currentTime y listo
-    // video.playbackRate = 12 - passedTimeVideo;
-    clearAllTimeouts();
-    showPresentationWithOutAnimation();
-    window.onscroll = null;
-  });
-
-  if (skipAnimation === "true") {
-    showPresentationWithOutAnimation();
-  } else {
-    animatePresentation();
   }
 
   const links = document.querySelectorAll(
@@ -314,20 +208,11 @@ import ResumeIcon from "./icons/ResumeIcon.astro";
       }, 5000);
     });
   }
+  window.addEventListener("load", () => {
+    showPresentationWithOutAnimation();
+  });
 </script>
 <style>
-  .presentation-container {
-    user-select: none;
-    height: 100%;
-    width: 100%;
-    padding-top: 50px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    text-align: center;
-    gap: 2rem;
-  }
   .animate-icons {
     display: inline-block;
     height: 100%;
@@ -368,16 +253,17 @@ import ResumeIcon from "./icons/ResumeIcon.astro";
     display: inline-block;
     animation: fadeInFacuDev 1s forwards;
   }
-  .presentation-container h1 {
-    font-family: "Royal Fight", serif;
+  h1.facudev-title {
+    font-family: "Fifties Condensed", serif;
     font-size: 7rem;
-    color: transparent;
+    font-weight: bold;
+    /* color: transparent;
     -webkit-text-stroke: 3px #d6f4f4;
     text-shadow:
       8px 8px 0px #07bccc,
       13px 13px 0px #e601c0,
       18px 18px 0px #e9019a,
-      23px 23px 0px #f40468;
+      23px 23px 0px #f40468; */
     /* 45px 45px 10px #e9e4a444; */
   }
   @keyframes fadeOut {
@@ -399,7 +285,9 @@ import ResumeIcon from "./icons/ResumeIcon.astro";
     }
   }
   .text-gradient {
-    font-weight: 600;
+    /* font-weight: 600; */
+    text-align: left;
+    /* padding-left: 4rem; */
     background-image: var(--description-gradient);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;

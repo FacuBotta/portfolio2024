@@ -7,20 +7,22 @@ interface Props {
 const { title, subTitle } = Astro.props;
 ---
 
-<div>
-  <div class="flex flex-col items-center mt-6 mb-6">
+<div class="">
+  <div class="animate-view flex items-end gap-5 mt-6 mb-6">
     <h2 class="sub-title text-white text-4xl">{title}</h2>
     <h3 class="text-slate-400">{subTitle}</h3>
   </div>
-  <div class="icons-container flex flex-wrap gap-5 w-full justify-center px-10">
+  <div class="icons-container flex flex-wrap gap-5 w-full justify-start px-10">
     <slot />
   </div>
 </div>
 
 <style>
   h2.sub-title {
-    font-family: "Royal Fight", serif;
-    animation-timeline: view(50% 10%);
+    font-family: "Fifties", serif;
+  }
+  .animate-view {
+    animation-timeline: view(50% 8%);
     animation-name: animate-sub-title;
     animation-fill-mode: both;
     animation-duration: 1ms;
@@ -60,7 +62,6 @@ const { title, subTitle } = Astro.props;
       void heartsContainer.offsetWidth; // Trigger reflow para reiniciar la animación. Obliga al navegador a recalcular el tamaño del elemento, void es para que no tome en cuenta el valor de offsetWidth, solo obliga al navegador a no pasar por alto el cambio de la clase por optimizar automaticamente la cosa...
       heartsContainer.classList.add("heart");
 
-      // Asignar el contenido solo si no existe o si necesitas actualizar el contenido dinámico
       if (!heartsContainer.textContent) {
         heartsContainer.textContent = "❤️";
       }
@@ -71,6 +72,7 @@ const { title, subTitle } = Astro.props;
     }
   }
   const onVisibilityChange = (result: any) => {
+    console.log(result.visibilityPercentage);
     if (result.isVisible) {
       iconsContainers?.forEach((iconsContainer, i) => {
         const thisIcons = iconsContainer.querySelectorAll("svg");
@@ -111,6 +113,6 @@ const { title, subTitle } = Astro.props;
   observeElementInViewport(
     skillsContainer as HTMLElement,
     onVisibilityChange,
-    0.5
+    0.65
   );
 </script>

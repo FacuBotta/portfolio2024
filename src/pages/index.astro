@@ -1,37 +1,66 @@
 ---
 import Presentation from "../components/Presentation.astro";
-import VideoScroll from "../components/VideoScroll.astro";
 import Layout from "../layouts/Layout.astro";
 import SkillCard from "../components/SkillCard.astro";
 import IconWrapper from "../components/IconWrapper.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import type { ProjectType } from "../types";
+import { projects } from "../data/projects";
 ---
 
 <Layout title="Welcome to Astro.">
   <main>
-    <div id="home-section"></div>
+    <!-- Home section =============================== -->
     <section
-      id="video-container"
-      class="fixed top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 pr-20 w-screen max-w-[1400px] flex items-center justify-end bg-black z-10"
+      id="home-section"
+      class="w-[90vw] max-w-[1100px] m-auto min-h-screen flex items-center justify-center"
     >
-      <div
-        class="absolute left-2 w-1/2 flex flex-col justify-center items-center p-5 h-full z-20"
-      >
-        <Presentation />
+      <Presentation />
+      <img
+        class="w-[500px] rounded-full"
+        src="./facuImage.png"
+        alt="my photo"
+      />
+    </section>
+    <!-- Projects section =============================== -->
+    <section
+      id="projects-section"
+      class="w-[90vw] max-w-[1100px] m-auto min-h-screen flex flex-col items-start justify-start mb-40"
+    >
+      <h2 class="sub-title text-white">Projects</h2>
+      <div class="flex flex-col gap-10 w-full pt-5">
+        {
+          projects.map((project: ProjectType, index: number) => (
+            <ProjectCard {...project} index={index} />
+          ))
+        }
       </div>
-      <div class="video-gradient"></div>
-      <VideoScroll />
     </section>
-
-    <!-- Esta sección sirve para hacer espacio para el video -->
-    <section class="relative min-h-screen flex justify-center bg-black z-0">
-    </section>
-    <!-- Esta seccion muestra los skills, pasa por encima de la primera seccion -->
+    <!-- About me & Skills section =============================== -->
     <section
       id="skills-section"
-      class="relative min-h-screen flex justify-center bg-black z-30 pt-[100px] shadow-custom"
+      class="w-[90vw] max-w-[1100px] mx-auto mb-20 flex divide-x divide-white/50"
     >
-      <div id="skills-container" class="text-center pb-[200px]">
-        <SkillCard title="Skills" subTitle="Skills I use everyday">
+      <div class="w-[70%] pr-5">
+        <h2 class="sub-title text-white text-4xl mb-5">About me</h2>
+        <p class="mb-5 text-white/80">
+          With over 6 years of freelance experience in Argentina, I've developed
+          a strong sense of responsibility and quality work. Leading my teams
+          has deepened my appreciation for teamwork and communication.
+        </p>
+        <p class="mb-5 text-white/80">
+          After moving to France in 2019, I worked for 3 years as a manager in a
+          restaurant, enhancing my skills in teamwork and task management as
+          lead of the team.
+        </p>
+        <p class="text-white/80">
+          Since 2022, I've been pursuing my goal of becoming a web developer and
+          am now in my final year of studies as Fullstack developer. I'm excited
+          to apply my knowledge in real projects and work with a dev team.
+        </p>
+      </div>
+      <div id="skills-container" class="text-start flex flex-col gap-10 pl-5">
+        <SkillCard title="Skills" subTitle="I use everyday">
           <IconWrapper
             skill="HTML"
             iconName="HtmlIcon"
@@ -57,6 +86,12 @@ import IconWrapper from "../components/IconWrapper.astro";
             trainingLevel={10}
           />
           <IconWrapper
+            skill="TypesCript"
+            iconName="TypesCriptIcon"
+            isInLove="true"
+            trainingLevel={10}
+          />
+          <IconWrapper
             skill="React"
             iconName="ReactIcon"
             isInLove="true"
@@ -75,7 +110,7 @@ import IconWrapper from "../components/IconWrapper.astro";
             trainingLevel={7}
           />
         </SkillCard>
-        <SkillCard title="Stack" subTitle="Technologies I use">
+        <SkillCard title="Stack" subTitle="Technologies I use at work">
           <IconWrapper
             skill="VS Code"
             iconName="VsCodeIcon"
@@ -119,10 +154,7 @@ import IconWrapper from "../components/IconWrapper.astro";
             trainingLevel={5}
           />
         </SkillCard>
-        <SkillCard
-          title="Touching"
-          subTitle="Technologies I'm learn and/or testing"
-        >
+        <SkillCard title="Touching" subTitle="I'm learn and/or testing">
           <IconWrapper
             skill="Next.js"
             iconName="NextJsIcon"
@@ -198,69 +230,61 @@ import IconWrapper from "../components/IconWrapper.astro";
         </SkillCard>
       </div>
     </section>
-    <!-- Esta seccion muestra los proyectos, quisiera que se descubra despues de la seccion skills, como un efecto parallax...  -->
+    <!-- Contact section =============================== -->
     <section
-      id="projects-section"
-      class="h-screen w-full flex justify-center bg-slate-900 pt-[50px] shadow-custom"
+      class="w-[90vw] max-w-[1100px] m-auto min-h-screen flex items-start justify-start"
     >
-      <div
-        class="projects-container -translate-y-[100vh] flex w-full h-full bg-red-400 m-20 flex-col justify-center items-center transition-transform duration-700 ease-in-out"
-      >
-        <div class="text-center">
-          <h2 class="sub-title text-white text-4xl">Projects</h2>
-        </div>
-      </div>
+      <h2 class="sub-title text-white text-4xl">Contact me</h2>
     </section>
-    <!-- About section -->
-    <section
-      class="min-h-screen flex justify-center bg-red-600 z-30 pt-[100px] shadow-custom"
-    >
-    </section>
-  </main>
-</Layout>
 
-<script>
-  window.addEventListener("scroll", function () {
-    const areTwoSectionsPassed = window.scrollY >= window.innerHeight * 1.7;
-    console.log(areTwoSectionsPassed);
+    <script></script>
 
-    const projectsContainer = document.querySelector(
-      "div.projects-container"
-    ) as HTMLElement;
-    const scrollPosition = window.scrollY;
+    <style>
+      main {
+        margin: auto;
+        color: white;
+        font-size: 20px;
+        line-height: 1.6;
+      }
+      h2.sub-title {
+        font-family: "Fifties", serif;
+        font-size: 3rem;
+        animation-timeline: view(50% 8%);
+        animation-name: animate-sub-title;
+        animation-fill-mode: both;
+        animation-duration: 1ms;
+      }
+      @keyframes animate-sub-title {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
 
-    if (projectsContainer && areTwoSectionsPassed) {
-      projectsContainer.style.transform = `translateY(${0}px)`;
-    }
-  });
-</script>
-
-<style>
-  main {
-    margin: auto;
-    color: white;
-    font-size: 20px;
-    line-height: 1.6;
-  }
-  h2.sub-title {
-    font-family: "Royal Fight", serif;
-  }
-  .shadow-custom {
-    box-shadow: rgb(0, 0, 0) 0px -50px 30px;
-  }
-  .video-gradient {
-    position: absolute;
-    background: linear-gradient(to top, black, transparent);
-    bottom: -100px;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
-  .h1-welcome span {
+      #home-section img {
+        /* border-radius: 0 0 15% 15%; */
+        mask-image: linear-gradient(to bottom, black 80%, transparent);
+      }
+      .shadow-custom {
+        box-shadow: rgb(0, 0, 0) 0px -50px 30px;
+      }
+      .video-gradient {
+        position: absolute;
+        background: linear-gradient(to top, black, transparent);
+        bottom: -100px;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+      /* .h1-welcome span {
     text-shadow:
       2px 2px 1px rgb(195, 99, 255),
       2px -1px 1px rgb(195, 99, 255),
       -1px 1px 1px rgb(195, 99, 255),
       -1px -1px 1px rgb(195, 99, 255);
-  }
-</style>
+  } */
+    </style>
+  </main>
+</Layout>

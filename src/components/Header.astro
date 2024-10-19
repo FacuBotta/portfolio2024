@@ -33,33 +33,7 @@ import FacuDevIcon from "./icons/FacuDevIcon.astro";
     </nav>
   </div>
 </header>
-<script>
-  const header = document.querySelector("header");
-  const nav = header?.querySelector("nav");
-  const video = document.getElementById("miVideo") as HTMLVideoElement;
-  let lastScrollTop = 0;
-  window.addEventListener("scroll", () => {
-    const skipAnimation = localStorage.getItem("skipAnimation");
-    const animationIsEnd = video.currentTime >= 11.5;
-    if (skipAnimation !== "true" && !animationIsEnd) {
-      return;
-    }
-    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
-    if (scrollTop > lastScrollTop) {
-      if (!header?.classList.contains("header-hided")) {
-        header?.classList.add("header-hided");
-        nav?.classList.add("hidden");
-      }
-    } else {
-      if (header?.classList.contains("header-hided")) {
-        header?.classList.remove("header-hided");
-        nav?.classList.remove("hidden");
-      }
-    }
-    lastScrollTop = scrollTop;
-  });
-</script>
 <style>
   .header-hided {
     margin: 10px;
