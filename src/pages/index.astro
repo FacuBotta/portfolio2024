@@ -36,14 +36,30 @@ import { projects } from "../data/projects";
         }
       </div>
     </section>
-    <!-- Skills section =============================== -->
+    <!-- About me & Skills section =============================== -->
     <section
       id="skills-section"
-      class="min-h-screen w-[90vw] max-w-[1100px] m-auto flex flex-col"
+      class="w-[90vw] max-w-[1100px] mx-auto mb-20 flex divide-x divide-white/50"
     >
-      <h2 class="sub-title text-white text-4xl mb-20">About me</h2>
-
-      <div id="skills-container" class="text-start flex flex-col gap-10">
+      <div class="w-[70%] pr-5">
+        <h2 class="sub-title text-white text-4xl mb-5">About me</h2>
+        <p class="mb-5 text-white/80">
+          With over 6 years of freelance experience in Argentina, I've developed
+          a strong sense of responsibility and quality work. Leading my teams
+          has deepened my appreciation for teamwork and communication.
+        </p>
+        <p class="mb-5 text-white/80">
+          After moving to France in 2019, I worked for 3 years as a manager in a
+          restaurant, enhancing my skills in teamwork and task management as
+          lead of the team.
+        </p>
+        <p class="text-white/80">
+          Since 2022, I've been pursuing my goal of becoming a web developer and
+          am now in my final year of studies as Fullstack developer. I'm excited
+          to apply my knowledge in real projects and work with a dev team.
+        </p>
+      </div>
+      <div id="skills-container" class="text-start flex flex-col gap-10 pl-5">
         <SkillCard title="Skills" subTitle="I use everyday">
           <IconWrapper
             skill="HTML"
@@ -214,62 +230,61 @@ import { projects } from "../data/projects";
         </SkillCard>
       </div>
     </section>
-
-    <!-- About section =============================== -->
+    <!-- Contact section =============================== -->
     <section
       class="w-[90vw] max-w-[1100px] m-auto min-h-screen flex items-start justify-start"
     >
       <h2 class="sub-title text-white text-4xl">Contact me</h2>
     </section>
-  </main>
-</Layout>
 
-<script></script>
+    <script></script>
 
-<style>
-  main {
-    margin: auto;
-    color: white;
-    font-size: 20px;
-    line-height: 1.6;
-  }
-  h2.sub-title {
-    font-family: "Fifties", serif;
-    font-size: 3rem;
-    animation-timeline: view(50% 8%);
-    animation-name: animate-sub-title;
-    animation-fill-mode: both;
-    animation-duration: 1ms;
-  }
-  @keyframes animate-sub-title {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
+    <style>
+      main {
+        margin: auto;
+        color: white;
+        font-size: 20px;
+        line-height: 1.6;
+      }
+      h2.sub-title {
+        font-family: "Fifties", serif;
+        font-size: 3rem;
+        animation-timeline: view(50% 8%);
+        animation-name: animate-sub-title;
+        animation-fill-mode: both;
+        animation-duration: 1ms;
+      }
+      @keyframes animate-sub-title {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
 
-  #home-section img {
-    /* border-radius: 0 0 15% 15%; */
-    mask-image: linear-gradient(to bottom, black 80%, transparent);
-  }
-  .shadow-custom {
-    box-shadow: rgb(0, 0, 0) 0px -50px 30px;
-  }
-  .video-gradient {
-    position: absolute;
-    background: linear-gradient(to top, black, transparent);
-    bottom: -100px;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
-  /* .h1-welcome span {
+      #home-section img {
+        /* border-radius: 0 0 15% 15%; */
+        mask-image: linear-gradient(to bottom, black 80%, transparent);
+      }
+      .shadow-custom {
+        box-shadow: rgb(0, 0, 0) 0px -50px 30px;
+      }
+      .video-gradient {
+        position: absolute;
+        background: linear-gradient(to top, black, transparent);
+        bottom: -100px;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+      /* .h1-welcome span {
     text-shadow:
       2px 2px 1px rgb(195, 99, 255),
       2px -1px 1px rgb(195, 99, 255),
       -1px 1px 1px rgb(195, 99, 255),
       -1px -1px 1px rgb(195, 99, 255);
   } */
-</style>
+    </style>
+  </main>
+</Layout>

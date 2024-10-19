@@ -12,7 +12,9 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
+    "@astrojs/markdown-remark": "^5.3.0",
     "@astrojs/tailwind": "^5.1.2",
+    "@tailwindcss/typography": "^0.5.15",
     "astro": "^4.16.3",
     "tailwindcss": "^3.4.13",
     "typescript": "^5.6.2"

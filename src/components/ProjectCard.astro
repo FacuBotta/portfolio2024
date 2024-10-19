@@ -2,6 +2,7 @@
 import type { ProjectType } from "../types";
 import type { IconName } from "./icons/icon-names";
 import IconWrapper from "./IconWrapper.astro";
+import Readme from "./Readme.astro";
 
 const { title, description, link, image, readme, stack, index } =
   Astro.props as ProjectType & { index: number };
@@ -9,27 +10,35 @@ const { title, description, link, image, readme, stack, index } =
 
 <div
   class={index % 2 === 0
-    ? "flex flex-row-reverse justify-center gap-5 w-full mt-10"
-    : "flex justify-center gap-5 w-full mt-10"}
+    ? "project-card flex flex-row-reverse justify-center gap-5 w-full mt-10"
+    : "project-card flex justify-center gap-5 w-full mt-10"}
 >
-  <!-- img section -->
-  <div class="flex w-1/2 aspect-video">
-    <img src={image} alt="image of the project" />
+  <div
+    style=`background-image: url('${image}'); background-position: center; background-size: cover;`
+    class="w-1/2 rounded-md border border-white/50"
+  >
   </div>
   <!-- description section -->
   <div
-    class="flex flex-col justify-between gap-5 w-1/2 bg-green-50/20 p-5 rounded-lg shadow-md shadow-white/50"
+    class="flex flex-col justify-between gap-5 w-1/2 border-2 p-5 rounded-lg"
   >
     <div class="flex justify-between">
       <h3 class="font-bold text-2xl">{title}</h3>
-      <a
-        class="border px-2 rounded-lg hover:bg-gray-600 transition-colors ease-in-out duration-300"
-        href={link}
-        target="_blank"
-        aria-label="Link to the project repository">See repo</a
-      >
+      <div>
+        <!-- <button
+          id="readme-button"
+          class="border px-2 rounded-lg hover:border-primary-magenta hover:text-primary-magenta transition-colors ease-in-out duration-300"
+          >Readme.md</button
+        > -->
+        <a
+          class="border px-2 rounded-lg hover:border-primary-cyan hover:text-primary-cyan transition-colors ease-in-out duration-300"
+          href={link}
+          target="_blank"
+          aria-label="Link to the project repository">See repo</a
+        >
+      </div>
     </div>
-    <p>{description}</p>
+    <p class="text-white/70">{description}</p>
     <div class="flex flex-col gap-5">
       <h4 class="text-xl font-semibold">Technologies</h4>
       <div class="flex gap-5 h-10">
@@ -38,3 +47,30 @@ const { title, description, link, image, readme, stack, index } =
     </div>
   </div>
 </div>
+
+<!-- <Readme /> -->
+<script>
+  /* const readmeButton = document.getElementById("readme-button");
+  const readme = document.getElementById("readme");
+
+  readmeButton?.addEventListener("click", () => {
+    readme?.classList.toggle("hidden");
+  }); */
+</script>
+<style>
+  .project-card {
+    animation-timeline: view();
+    animation-name: animate-project-card;
+    /* animation-fill-mode: initial; */
+    animation-duration: 1ms;
+  }
+
+  @keyframes animate-project-card {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+</style>

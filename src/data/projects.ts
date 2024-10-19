@@ -7,10 +7,11 @@ export const projects: ProjectType[] = [
       "A full API made in Node.js and Express.js that provides all endpoints needed to a task manager system.\
       It's type safe and includes JWT authentication. This project brinds me to a deeper understanding of APIs and how to build them from scratch.",
     image:
-      "https://s3.us-east-2.amazonaws.com/mgpanel/71-20221024-635708381cc8e.jpg",
+      "https://github.com/FacuBotta/Task-Management-API/raw/main/files/consoleCapure.png",
     link: "https://github.com/FacuBotta/Task-Management-API",
     // TODO: add express icon and jwt icon
     stack: ["NodeIcon", "TypesCriptIcon", "MysqlIcon"],
+    readme: "taskManagerAPI",
   },
   {
     title: "Background Topics generator",
@@ -22,6 +23,7 @@ export const projects: ProjectType[] = [
     link: "https://github.com/FacuBotta/background_generator/tree/main",
     // TODO: add ollama icon
     stack: ["PythonIcon"],
+    readme: "backgroundGenerator",
   },
   {
     title: "Full Website with Admin page",
@@ -39,5 +41,6 @@ export const projects: ProjectType[] = [
       "HtmlIcon",
       "CssIcon",
     ],
+    readme: "filRouge",
   },
 ];
