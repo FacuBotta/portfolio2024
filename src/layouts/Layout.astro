@@ -20,7 +20,7 @@ const { title } = Astro.props;
   </head>
   <body class="relative h-full w-full bg-black">
     <div
-      class="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"
+      class="absolute -z-10 bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"
     >
     </div>
     <Header />
@@ -39,6 +39,18 @@ const { title } = Astro.props;
       src: url("/fonts/Helvetica.ttf") format("truetype");
       font-style: normal;
       font-weight: normal;
+    }
+    @font-face {
+      font-family: "Fifties";
+      src: url("/fonts/VVDS-Fifties-Med-Reg.otf") format("opentype");
+      font-style: normal;
+      font-weight: normal;
+    }
+    @font-face {
+      font-family: "Fifties Condensed";
+      src: url("/fonts/VVDS-Fifties-Cond-Bold.otf") format("opentype");
+      font-style: normal;
+      font-weight: bold;
     }
     :root {
       --grey-dark: 50, 50, 50; /* Gris oscuro */

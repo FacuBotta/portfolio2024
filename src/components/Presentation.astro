@@ -8,10 +8,16 @@ import ResumeIcon from "./icons/ResumeIcon.astro";
 <div
   class="h-full w-[80vw] lg:w-[40vw] select-none flex flex-col items-start justify-center gap-5"
 >
-  <h1 class="facudev-title hidden">FacuDev</h1>
+  <!-- <h1 class="facudev-title hidden">FacuDev</h1> -->
+  <div>
+    <h1 class="facudev-title hidden mb-[-40px]">Facundo Botta</h1>
+    <p class="text-primary-magenta text-3xl">
+      <span class="text-primary-cyan/70">as</span> FacuDev
+    </p>
+  </div>
   <!-- Presentation, My description -->
   <p
-    class="message-description w-full hidden text-gradient text-center text-balance text-[1.4rem]"
+    class="message-description w-full hidden opacity-70 text-center text-balance text-[1.4rem]"
   >
   </p>
   <!-- Icons links -->
@@ -24,7 +30,7 @@ import ResumeIcon from "./icons/ResumeIcon.astro";
       href="https://www.linkedin.com/in/facundo-botta/"
       target="_blank"
     >
-      <LinkedInIcon class="h-full w-full" />
+      <LinkedInIcon />
     </a>
     <div
       class="font-semibold text-sm opacity-0 absolute top-[130%] peer-hover/linkedIn:opacity-100 flex-col transition-opacity duration-300 ease-in-out cursor-default"
@@ -39,7 +45,7 @@ import ResumeIcon from "./icons/ResumeIcon.astro";
       href="https://github.com/FacuBotta"
       target="_blank"
     >
-      <GitHubMiniIcon class="h-full w-full" />
+      <GitHubMiniIcon />
     </a>
     <div
       class="font-semibold text-sm opacity-0 absolute top-[130%] peer-hover/gitHub:opacity-100 flex-col transition-opacity duration-300 ease-in-out cursor-default"
@@ -54,7 +60,7 @@ import ResumeIcon from "./icons/ResumeIcon.astro";
       href="mailto:facundo.botta.dev@gmail.com"
       target="_blank"
     >
-      <GmailIcon class="h-full w-full" />
+      <GmailIcon />
     </a>
     <div
       class="font-semibold text-sm opacity-0 absolute top-[130%] peer-hover/gmail:opacity-100 flex-col transition-opacity duration-300 ease-in-out cursor-default"
@@ -67,7 +73,7 @@ import ResumeIcon from "./icons/ResumeIcon.astro";
       id="cv-icon-button"
       class="icon hidden peer/resume rounded-full cursor-pointer"
     >
-      <ResumeIcon class="h-full w-full" />
+      <ResumeIcon />
     </div>
     <div
       class="font-semibold text-sm absolute top-[130%] peer-hover/resume:flex flex-col hidden transition-opacity duration-300 ease-in-out cursor-default"
@@ -248,15 +254,16 @@ import ResumeIcon from "./icons/ResumeIcon.astro";
     animation: fadeInFacuDev 1s forwards;
   }
   h1.facudev-title {
-    font-family: "Royal Fight", serif;
+    font-family: "Fifties Condensed", serif;
     font-size: 7rem;
-    color: transparent;
+    font-weight: bold;
+    /* color: transparent;
     -webkit-text-stroke: 3px #d6f4f4;
     text-shadow:
       8px 8px 0px #07bccc,
       13px 13px 0px #e601c0,
       18px 18px 0px #e9019a,
-      23px 23px 0px #f40468;
+      23px 23px 0px #f40468; */
     /* 45px 45px 10px #e9e4a444; */
   }
   @keyframes fadeOut {

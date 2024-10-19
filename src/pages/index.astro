@@ -3,21 +3,48 @@ import Presentation from "../components/Presentation.astro";
 import Layout from "../layouts/Layout.astro";
 import SkillCard from "../components/SkillCard.astro";
 import IconWrapper from "../components/IconWrapper.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import type { ProjectType } from "../types";
+import { projects } from "../data/projects";
 ---
 
 <Layout title="Welcome to Astro.">
   <main>
+    <!-- Home section =============================== -->
     <section
       id="home-section"
-      class="w-[90vw] max-w-[1200px] m-auto min-h-screen flex items-center justify-center flex-wrap-reverse pt-40 lg:pt-0"
+      class="w-[90vw] max-w-[1100px] m-auto min-h-screen flex items-center justify-center"
     >
       <Presentation />
-      <img class="w-[500px]" src="./facuImage.png" alt="my photo" />
+      <img
+        class="w-[500px] rounded-full"
+        src="./facuImage.png"
+        alt="my photo"
+      />
     </section>
+    <!-- Projects section =============================== -->
+    <section
+      id="projects-section"
+      class="w-[90vw] max-w-[1100px] m-auto min-h-screen flex flex-col items-start justify-start mb-40"
+    >
+      <h2 class="sub-title text-white">Projects</h2>
+      <div class="flex flex-col gap-10 w-full pt-5">
+        {
+          projects.map((project: ProjectType, index: number) => (
+            <ProjectCard {...project} index={index} />
+          ))
+        }
+      </div>
+    </section>
+    <!-- Skills section =============================== -->
+    <section
+      id="skills-section"
+      class="min-h-screen w-[90vw] max-w-[1100px] m-auto flex flex-col"
+    >
+      <h2 class="sub-title text-white text-4xl mb-20">About me</h2>
 
-    <section id="skills-section" class="min-h-screen flex justify-center">
-      <div id="skills-container" class="text-center pb-[200px]">
-        <SkillCard title="Skills" subTitle="Skills I use everyday">
+      <div id="skills-container" class="text-start flex flex-col gap-10">
+        <SkillCard title="Skills" subTitle="I use everyday">
           <IconWrapper
             skill="HTML"
             iconName="HtmlIcon"
@@ -43,6 +70,12 @@ import IconWrapper from "../components/IconWrapper.astro";
             trainingLevel={10}
           />
           <IconWrapper
+            skill="TypesCript"
+            iconName="TypesCriptIcon"
+            isInLove="true"
+            trainingLevel={10}
+          />
+          <IconWrapper
             skill="React"
             iconName="ReactIcon"
             isInLove="true"
@@ -61,7 +94,7 @@ import IconWrapper from "../components/IconWrapper.astro";
             trainingLevel={7}
           />
         </SkillCard>
-        <SkillCard title="Stack" subTitle="Technologies I use">
+        <SkillCard title="Stack" subTitle="Technologies I use at work">
           <IconWrapper
             skill="VS Code"
             iconName="VsCodeIcon"
@@ -105,10 +138,7 @@ import IconWrapper from "../components/IconWrapper.astro";
             trainingLevel={5}
           />
         </SkillCard>
-        <SkillCard
-          title="Touching"
-          subTitle="Technologies I'm learn and/or testing"
-        >
+        <SkillCard title="Touching" subTitle="I'm learn and/or testing">
           <IconWrapper
             skill="Next.js"
             iconName="NextJsIcon"
@@ -184,12 +214,12 @@ import IconWrapper from "../components/IconWrapper.astro";
         </SkillCard>
       </div>
     </section>
-    <section id="projects-section" class="h-screen w-full flex justify-center">
-      <h2 class="sub-title text-white text-4xl">Projects</h2>
-    </section>
-    <!-- About section -->
-    <section class="min-h-screen flex justify-center">
-      <h2 class="sub-title text-white text-4xl">About</h2>
+
+    <!-- About section =============================== -->
+    <section
+      class="w-[90vw] max-w-[1100px] m-auto min-h-screen flex items-start justify-start"
+    >
+      <h2 class="sub-title text-white text-4xl">Contact me</h2>
     </section>
   </main>
 </Layout>
@@ -204,8 +234,22 @@ import IconWrapper from "../components/IconWrapper.astro";
     line-height: 1.6;
   }
   h2.sub-title {
-    font-family: "Royal Fight", serif;
+    font-family: "Fifties", serif;
+    font-size: 3rem;
+    animation-timeline: view(50% 8%);
+    animation-name: animate-sub-title;
+    animation-fill-mode: both;
+    animation-duration: 1ms;
   }
+  @keyframes animate-sub-title {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
   #home-section img {
     /* border-radius: 0 0 15% 15%; */
     mask-image: linear-gradient(to bottom, black 80%, transparent);
@@ -221,11 +265,11 @@ import IconWrapper from "../components/IconWrapper.astro";
     width: 100%;
     height: 100%;
   }
-  .h1-welcome span {
+  /* .h1-welcome span {
     text-shadow:
       2px 2px 1px rgb(195, 99, 255),
       2px -1px 1px rgb(195, 99, 255),
       -1px 1px 1px rgb(195, 99, 255),
       -1px -1px 1px rgb(195, 99, 255);
-  }
+  } */
 </style>
