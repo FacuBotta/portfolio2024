@@ -6,6 +6,7 @@ import IconWrapper from "../components/IconWrapper.astro";
 import ProjectCard from "../components/ProjectCard.astro";
 import type { ProjectType } from "../types";
 import { projects } from "../data/projects";
+import { skills, stack, touching } from "../data/skills";
 ---
 
 <Layout title="Welcome to Astro.">
@@ -27,7 +28,7 @@ import { projects } from "../data/projects";
       id="projects-section"
       class="w-[90vw] max-w-[1100px] m-auto min-h-screen flex flex-col items-start justify-start mb-40"
     >
-      <h2 class="sub-title text-white">Projects</h2>
+      <h2 class="animate-in-view text-white">Projects</h2>
       <div class="flex flex-col gap-10 w-full pt-5">
         {
           projects.map((project: ProjectType, index: number) => (
@@ -41,19 +42,19 @@ import { projects } from "../data/projects";
       id="skills-section"
       class="w-[90vw] max-w-[1100px] mx-auto mb-20 flex divide-x divide-white/50"
     >
-      <div class="w-[70%] pr-5">
-        <h2 class="sub-title text-white text-4xl mb-5">About me</h2>
-        <p class="mb-5 text-white/80">
+      <div class="w-[80%] pr-5">
+        <h2 class="animate-in-view text-white text-4xl mb-14">About me</h2>
+        <p class="animate-in-view mb-5 text-white/80">
           With over 6 years of freelance experience in Argentina, I've developed
           a strong sense of responsibility and quality work. Leading my teams
           has deepened my appreciation for teamwork and communication.
         </p>
-        <p class="mb-5 text-white/80">
+        <p class="animate-in-view mb-5 text-white/80">
           After moving to France in 2019, I worked for 3 years as a manager in a
           restaurant, enhancing my skills in teamwork and task management as
           lead of the team.
         </p>
-        <p class="text-white/80">
+        <p class="animate-in-view text-white/80">
           Since 2022, I've been pursuing my goal of becoming a web developer and
           am now in my final year of studies as Fullstack developer. I'm excited
           to apply my knowledge in real projects and work with a dev team.
@@ -61,172 +62,40 @@ import { projects } from "../data/projects";
       </div>
       <div id="skills-container" class="text-start flex flex-col gap-10 pl-5">
         <SkillCard title="Skills" subTitle="I use everyday">
-          <IconWrapper
-            skill="HTML"
-            iconName="HtmlIcon"
-            isInLove="true"
-            trainingLevel={8}
-          />
-          <IconWrapper
-            skill="CSS"
-            iconName="CssIcon"
-            isInLove="true"
-            trainingLevel={7}
-          />
-          <IconWrapper
-            skill="Tailwind"
-            iconName="TailwindIcon"
-            isInLove="true"
-            trainingLevel={7}
-          />
-          <IconWrapper
-            skill="JavaScript"
-            iconName="JavaScriptIcon"
-            isInLove="true"
-            trainingLevel={10}
-          />
-          <IconWrapper
-            skill="TypesCript"
-            iconName="TypesCriptIcon"
-            isInLove="true"
-            trainingLevel={10}
-          />
-          <IconWrapper
-            skill="React"
-            iconName="ReactIcon"
-            isInLove="true"
-            trainingLevel={9}
-          />
-          <IconWrapper
-            skill="Node"
-            iconName="NodeIcon"
-            isInLove="true"
-            trainingLevel={7}
-          />
-          <IconWrapper
-            skill="MySQL"
-            iconName="MysqlIcon"
-            isInLove="true"
-            trainingLevel={7}
-          />
+          {
+            skills.map((skill) => (
+              <IconWrapper
+                skill={skill.skill}
+                iconName={skill.iconName}
+                isInLove={skill.isInLove}
+                trainingLevel={skill.trainingLevel}
+              />
+            ))
+          }
         </SkillCard>
         <SkillCard title="Stack" subTitle="Technologies I use at work">
-          <IconWrapper
-            skill="VS Code"
-            iconName="VsCodeIcon"
-            isInLove="true"
-            trainingLevel={9}
-          />
-          <IconWrapper
-            skill="Git"
-            iconName="GitColoredIcon"
-            isInLove="true"
-            trainingLevel={8}
-          />
-          <IconWrapper
-            skill="NPM"
-            iconName="NpmIcon"
-            isInLove="true"
-            trainingLevel={7}
-          />
-          <IconWrapper
-            skill="Docker"
-            iconName="DockerIcon"
-            isInLove="true"
-            trainingLevel={5}
-          />
-          <IconWrapper
-            skill="VirtualBox"
-            iconName="VirtualBoxIcon"
-            isInLove="true"
-            trainingLevel={6}
-          />
-          <IconWrapper
-            skill="Linux"
-            iconName="LinuxIcon"
-            isInLove="true"
-            trainingLevel={4}
-          />
-          <IconWrapper
-            skill="Figma"
-            iconName="FigmaIcon"
-            isInLove="false"
-            trainingLevel={5}
-          />
+          {
+            stack.map((skill) => (
+              <IconWrapper
+                skill={skill.skill}
+                iconName={skill.iconName}
+                isInLove={skill.isInLove}
+                trainingLevel={skill.trainingLevel}
+              />
+            ))
+          }
         </SkillCard>
         <SkillCard title="Touching" subTitle="I'm learn and/or testing">
-          <IconWrapper
-            skill="Next.js"
-            iconName="NextJsIcon"
-            isInLove="true"
-            trainingLevel={7}
-          />
-          <IconWrapper
-            skill="Angular"
-            iconName="AngularIcon"
-            isInLove="false"
-            trainingLevel={5}
-          />
-          <IconWrapper
-            skill="Vue.js"
-            iconName="VueJsIcon"
-            isInLove="false"
-            trainingLevel={3}
-          />
-          <IconWrapper
-            skill="Astro"
-            iconName="AstroIcon"
-            isInLove="true"
-            trainingLevel={4}
-          />
-          <IconWrapper
-            skill="Symfony"
-            iconName="SymfonyIcon"
-            isInLove="false"
-            trainingLevel={5}
-          />
-          <IconWrapper
-            skill="PHP"
-            iconName="PhpIcon"
-            isInLove="false"
-            trainingLevel={6}
-          />
-          <IconWrapper
-            skill="Apache"
-            iconName="ApacheIcon"
-            isInLove="false"
-            trainingLevel={6}
-          />
-          <IconWrapper
-            skill="Prisma"
-            iconName="PrismaIcon"
-            isInLove="false"
-            trainingLevel={5}
-          />
-          <IconWrapper
-            skill="Firebase"
-            iconName="FireBaseIcon"
-            isInLove="false"
-            trainingLevel={3}
-          />
-          <IconWrapper
-            skill="Python"
-            iconName="PythonIcon"
-            isInLove="true"
-            trainingLevel={4}
-          />
-          <IconWrapper
-            skill="Java"
-            iconName="JavaIcon"
-            isInLove="false"
-            trainingLevel={2}
-          />
-          <IconWrapper
-            skill="Arduino"
-            iconName="ArduinoIcon"
-            isInLove="true"
-            trainingLevel={4}
-          />
+          {
+            touching.map((skill) => (
+              <IconWrapper
+                skill={skill.skill}
+                iconName={skill.iconName}
+                isInLove={skill.isInLove}
+                trainingLevel={skill.trainingLevel}
+              />
+            ))
+          }
         </SkillCard>
       </div>
     </section>
@@ -234,7 +103,7 @@ import { projects } from "../data/projects";
     <section
       class="w-[90vw] max-w-[1100px] m-auto min-h-screen flex items-start justify-start"
     >
-      <h2 class="sub-title text-white text-4xl">Contact me</h2>
+      <h2 class="animate-in-view text-white text-4xl">Contact me</h2>
     </section>
 
     <script></script>
@@ -246,15 +115,17 @@ import { projects } from "../data/projects";
         font-size: 20px;
         line-height: 1.6;
       }
-      h2.sub-title {
-        font-family: "Fifties", serif;
-        font-size: 3rem;
-        animation-timeline: view(50% 8%);
-        animation-name: animate-sub-title;
-        animation-fill-mode: both;
+      .animate-in-view {
+        animation-timeline: view();
+        animation-name: animate-in-view;
+        animation-fill-mode: initial;
         animation-duration: 1ms;
       }
-      @keyframes animate-sub-title {
+      h2 {
+        font-family: "Fifties", serif;
+        font-size: 3rem;
+      }
+      @keyframes animate-in-view {
         from {
           opacity: 0;
         }

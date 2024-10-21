@@ -7,18 +7,18 @@ interface Props {
 const { title, subTitle } = Astro.props;
 ---
 
-<div class="">
-  <div class="animate-view flex items-end gap-5 mt-6 mb-6">
-    <h2 class="sub-title text-white text-4xl">{title}</h2>
-    <h3 class="text-slate-400">{subTitle}</h3>
+<div class="animate-view">
+  <div class="flex items-end gap-5 mb-6">
+    <h3 class="sub-title text-white text-4xl">{title}</h3>
+    <span class="text-slate-400">{subTitle}</span>
   </div>
-  <div class="icons-container flex flex-wrap gap-5 w-full justify-start px-10">
+  <div class="icons-container flex flex-wrap gap-4 w-full justify-start px-10">
     <slot />
   </div>
 </div>
 
 <style>
-  h2.sub-title {
+  h3.sub-title {
     font-family: "Fifties", serif;
   }
   .animate-view {
@@ -52,6 +52,7 @@ const { title, subTitle } = Astro.props;
       return isInLove === "true" ? true : false;
     }
   );
+  console.log(loveLevels);
   allIcons?.forEach((icon) => {
     icon.style.filter = "grayscale(100%)";
     icon.style.height = "50px";
@@ -99,7 +100,7 @@ const { title, subTitle } = Astro.props;
             () => {
               addHeartsOfLove(currentHeartsContainer);
             },
-            2000 * Math.random() * 6
+            4000 * Math.random() * 6
           );
         }
       });
