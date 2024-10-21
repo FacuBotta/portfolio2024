@@ -1,8 +1,8 @@
 import type { IconName } from "./components/icons/icon-names";
 
 export interface ProjectType {
-  title: string;
-  description: string;
+  title: { en: string; es: string; fr: string };
+  description: { en: string; es: string; fr: string };
   link: string;
   image: string;
   readme?: string;

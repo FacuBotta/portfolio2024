@@ -3,6 +3,12 @@ import LinkedInIcon from "./icons/LinkedInIcon.astro";
 import GitHubMiniIcon from "./icons/GitHubMiniIcon.astro";
 import GmailIcon from "./icons/GmailIcon.astro";
 import ResumeIcon from "./icons/ResumeIcon.astro";
+import { myDescription } from "../data/myDescription";
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+
+// const { lang } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <div
@@ -17,8 +23,9 @@ import ResumeIcon from "./icons/ResumeIcon.astro";
   </div>
   <!-- Presentation, My description -->
   <p
-    class="message-description w-full hidden opacity-70 text-center text-balance text-[1.4rem]"
+    class="message-description w-full hidden opacity-70 text-left text-balance text-[1.4rem]"
   >
+    {myDescription[lang]}
   </p>
   <!-- Icons links -->
   <div
@@ -35,8 +42,8 @@ import ResumeIcon from "./icons/ResumeIcon.astro";
     <div
       class="font-semibold text-sm opacity-0 absolute top-[130%] peer-hover/linkedIn:opacity-100 flex-col transition-opacity duration-300 ease-in-out cursor-default"
     >
-      <p>Visit my LinkedIn</p>
-      <p class="text-xs font-extralight">Ctrl+click to copy link</p>
+      <p>{t("presentation.icon.link")[0]}</p>
+      <p class="text-xs font-extralight">{t("presentation.icon.link")[1]}</p>
     </div>
 
     <!-- GitHub -->
@@ -50,8 +57,8 @@ import ResumeIcon from "./icons/ResumeIcon.astro";
     <div
       class="font-semibold text-sm opacity-0 absolute top-[130%] peer-hover/gitHub:opacity-100 flex-col transition-opacity duration-300 ease-in-out cursor-default"
     >
-      <p>Check my GitHub!</p>
-      <p class="text-xs font-extralight">Ctrl+click to copy link</p>
+      <p>{t("presentation.icon.github")[0]}</p>
+      <p class="text-xs font-extralight">{t("presentation.icon.github")[1]}</p>
     </div>
 
     <!-- Gmail -->
@@ -65,8 +72,8 @@ import ResumeIcon from "./icons/ResumeIcon.astro";
     <div
       class="font-semibold text-sm opacity-0 absolute top-[130%] peer-hover/gmail:opacity-100 flex-col transition-opacity duration-300 ease-in-out cursor-default"
     >
-      <p>Email me via Gmail</p>
-      <p class="text-xs font-extralight">Ctrl+click to copy address</p>
+      <p>{t("presentation.icon.gmail")[0]}</p>
+      <p class="text-xs font-extralight">{t("presentation.icon.gmail")[1]}</p>
     </div>
     <!-- CV -->
     <div
@@ -78,7 +85,7 @@ import ResumeIcon from "./icons/ResumeIcon.astro";
     <div
       class="font-semibold text-sm absolute top-[130%] peer-hover/resume:flex flex-col hidden transition-opacity duration-300 ease-in-out cursor-default"
     >
-      <p>Download my CV</p>
+      <p>{t("presentation.icon.resume")}</p>
     </div>
     <div class="cv-links-container relative">
       <ul
@@ -126,10 +133,10 @@ import ResumeIcon from "./icons/ResumeIcon.astro";
   );
   const iconsLinks = iconsButtonsContainer?.querySelectorAll(".icon");
 
-  const myDescription =
+  /* const myDescription =
     "2 years as a fullstack web developer student, passionate by JavaScript and its ecosystem. Living in Montpellier, France.";
-
-  const writeTextAnimation = (
+ */
+  /* const writeTextAnimation = (
     textToInsert: string,
     elementTarget: any,
     typingSpeed: number = 50
@@ -144,11 +151,11 @@ import ResumeIcon from "./icons/ResumeIcon.astro";
         }
       }, typingSpeed * i);
     }
-  };
+  }; */
   function showPresentationWithOutAnimation() {
     facudevTitle?.classList.add("animate-facuDev");
     messageDescription?.classList.remove("hidden");
-    writeTextAnimation(myDescription, messageDescription, 1);
+    // writeTextAnimation(myDescription, messageDescription, 1);
     iconsLinks?.forEach((iconLink, index) => {
       setTimeout(() => {
         iconLink?.classList.replace("hidden", "animate-icons");

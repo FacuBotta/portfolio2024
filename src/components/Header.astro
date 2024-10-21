@@ -1,12 +1,17 @@
 ---
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
 import FacuDevIcon from "./icons/FacuDevIcon.astro";
+import LanguageSwitch from "./LanguageSwitch.astro";
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <header
   class="text-white fixed z-50 top-0 left-0 w-full h-14 bg-black/70 backdrop-blur-sm border-b border-primary-yellow transition-all duration-300 ease-in-out hover:bg-black/90"
 >
   <div class="flex justify-between items-end h-full max-w-[1100px] m-auto">
-    <div id="icon-container" class="h-full top-0 p-2">
+    <div class="h-full flex items-end gap-4 p-2">
+      <LanguageSwitch />
       <FacuDevIcon
         borderColor="#757575"
         fChartColor="#757575"
@@ -16,30 +21,26 @@ import FacuDevIcon from "./icons/FacuDevIcon.astro";
     <nav>
       <ul class="flex items-center gap-4 text-xl font-semibold">
         <li>
-          <a class="hover:text-primary-cyan" href="#home-section">Home</a>
-        </li>
-        <li>
-          <a class="hover:text-primary-cyan" href="#skills-section">Skills</a>
-        </li>
-        <li>
-          <a class="hover:text-primary-cyan" href="#projects-section"
-            >Projects</a
+          <a class="hover:text-primary-cyan" href="#home-section"
+            >{t("nav.home")}</a
           >
         </li>
         <li>
-          <a class="hover:text-primary-cyan" href="#contact-section">About</a>
+          <a class="hover:text-primary-cyan" href="#projects-section"
+            >{t("nav.projects")}</a
+          >
+        </li>
+        <li>
+          <a class="hover:text-primary-cyan" href="#skills-section"
+            >{t("nav.about")}</a
+          >
+        </li>
+        <li>
+          <a class="hover:text-primary-cyan" href="#contact-section"
+            >{t("nav.contact")}</a
+          >
         </li>
       </ul>
     </nav>
   </div>
 </header>
-
-<style>
-  .header-hided {
-    margin: 10px;
-    width: 70px;
-    height: 70px;
-    border-radius: 100%;
-    border: solid 0 0 2px 0 #f9ff56;
-  }
-</style>

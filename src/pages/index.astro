@@ -7,6 +7,8 @@ import ProjectCard from "../components/ProjectCard.astro";
 import type { ProjectType } from "../types";
 import { projects } from "../data/projects";
 import { skills, stack, touching } from "../data/skills";
+import { aboutMe } from "../data/myDescription";
+const currentLang = "en";
 ---
 
 <Layout title="Welcome to Astro.">
@@ -16,7 +18,7 @@ import { skills, stack, touching } from "../data/skills";
       id="home-section"
       class="w-[90vw] max-w-[1100px] m-auto min-h-screen flex items-center justify-center"
     >
-      <Presentation />
+      <Presentation lang={currentLang} />
       <img
         class="w-[500px] rounded-full"
         src="./facuImage.png"
@@ -32,7 +34,7 @@ import { skills, stack, touching } from "../data/skills";
       <div class="flex flex-col gap-10 w-full pt-5">
         {
           projects.map((project: ProjectType, index: number) => (
-            <ProjectCard {...project} index={index} />
+            <ProjectCard {...project} index={index} lang={currentLang} />
           ))
         }
       </div>
@@ -45,19 +47,13 @@ import { skills, stack, touching } from "../data/skills";
       <div class="w-[80%] pr-5">
         <h2 class="animate-in-view text-white text-4xl mb-14">About me</h2>
         <p class="animate-in-view mb-5 text-white/80">
-          With over 6 years of freelance experience in Argentina, I've developed
-          a strong sense of responsibility and quality work. Leading my teams
-          has deepened my appreciation for teamwork and communication.
+          {aboutMe[currentLang][0]}
         </p>
         <p class="animate-in-view mb-5 text-white/80">
-          After moving to France in 2019, I worked for 3 years as a manager in a
-          restaurant, enhancing my skills in teamwork and task management as
-          lead of the team.
+          {aboutMe[currentLang][1]}
         </p>
         <p class="animate-in-view text-white/80">
-          Since 2022, I've been pursuing my goal of becoming a web developer and
-          am now in my final year of studies as Fullstack developer. I'm excited
-          to apply my knowledge in real projects and work with a dev team.
+          {aboutMe[currentLang][2]}
         </p>
       </div>
       <div id="skills-container" class="text-start flex flex-col gap-10 pl-5">
@@ -101,6 +97,7 @@ import { skills, stack, touching } from "../data/skills";
     </section>
     <!-- Contact section =============================== -->
     <section
+      id="contact-section"
       class="w-[90vw] max-w-[1100px] m-auto min-h-screen flex items-start justify-start"
     >
       <h2 class="animate-in-view text-white text-4xl">Contact me</h2>
