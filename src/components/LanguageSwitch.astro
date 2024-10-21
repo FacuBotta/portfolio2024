@@ -1,0 +1,48 @@
+---
+import { languages, defaultLang } from "../i18n/ui";
+---
+
+<style>
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    border: solid 1px #ccc;
+    top: 100%;
+    background-color: rgb(0, 0, 0);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+  }
+
+  .dropdown-content a {
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+</style>
+
+<div class="dropdown">
+  <!-- Aquí puedes usar un ícono, por ejemplo, un globo terráqueo -->
+  <button> 🌐 </button>
+  <div class="dropdown-content">
+    {
+      Object.entries(languages).map(([lang, label]) => (
+        <a
+          class="hover:bg-slate-700"
+          href={lang === defaultLang ? `/` : `/${lang}/`}
+        >
+          {label}
+        </a>
+      ))
+    }
+  </div>
+</div>
