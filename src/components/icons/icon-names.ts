@@ -28,6 +28,8 @@ export const availableIcons = [
   "ViteIcon",
   "VsCodeIcon",
   "VueJsIcon",
+  "JwtIcon",
+  "OllamaIcon",
 ] as const;
 
 export type IconName = (typeof availableIcons)[number];

@@ -8,6 +8,7 @@ import type { ProjectType } from "../types";
 import { projects } from "../data/projects";
 import { skills, stack, touching } from "../data/skills";
 import { aboutMe } from "../data/myDescription";
+import ContactIcons from "../components/ContactIcons.astro";
 const currentLang = "en";
 ---
 
@@ -101,6 +102,7 @@ const currentLang = "en";
       class="w-[90vw] max-w-[1100px] m-auto min-h-screen flex items-start justify-start"
     >
       <h2 class="animate-in-view text-white text-4xl">Contact me</h2>
+      <ContactIcons />
     </section>
 
     <script></script>

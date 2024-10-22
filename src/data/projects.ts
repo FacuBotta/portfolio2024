@@ -18,8 +18,7 @@ export const projects: ProjectType[] = [
     image:
       "https://github.com/FacuBotta/Task-Management-API/raw/main/files/consoleCapure.png",
     link: "https://github.com/FacuBotta/Task-Management-API",
-    // TODO: add express icon and jwt icon
-    stack: ["NodeIcon", "TypesCriptIcon", "MysqlIcon"],
+    stack: ["NodeIcon", "TypesCriptIcon", "MysqlIcon", "JwtIcon"],
     readme: "taskManagerAPI",
   },
   {
@@ -39,8 +38,7 @@ export const projects: ProjectType[] = [
     image:
       "https://github.com/FacuBotta/background_generator/blob/main/assets/newBackgroung.jpg?raw=true",
     link: "https://github.com/FacuBotta/background_generator/tree/main",
-    // TODO: add ollama icon
-    stack: ["PythonIcon"],
+    stack: ["PythonIcon", "OllamaIcon"],
     readme: "backgroundGenerator",
   },
   {

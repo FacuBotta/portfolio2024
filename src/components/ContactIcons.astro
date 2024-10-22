@@ -1,0 +1,105 @@
+---
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import GitHubMiniIcon from "./icons/GitHubMiniIcon.astro";
+import GmailIcon from "./icons/GmailIcon.astro";
+import LinkedInIcon from "./icons/LinkedInIcon.astro";
+import ResumeIcon from "./icons/ResumeIcon.astro";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<div
+  class="relative icons-buttons-container flex justify-start gap-3 h-10 w-full mt-5"
+>
+  <!-- LinkedIn -->
+  <a
+    class="icon copyable hidden peer/linkedIn rounded-full"
+    href="https://www.linkedin.com/in/facundo-botta/"
+    target="_blank"
+  >
+    <LinkedInIcon />
+  </a>
+  <div
+    class="font-semibold text-sm opacity-0 absolute top-[130%] peer-hover/linkedIn:opacity-100 flex-col transition-opacity duration-300 ease-in-out cursor-default"
+  >
+    <p>{t("presentation.icon.link")[0]}</p>
+    <p class="text-xs font-extralight">{t("presentation.icon.link")[1]}</p>
+  </div>
+
+  <!-- GitHub -->
+  <a
+    class="icon copyable hidden peer/gitHub rounded-full"
+    href="https://github.com/FacuBotta"
+    target="_blank"
+  >
+    <GitHubMiniIcon />
+  </a>
+  <div
+    class="font-semibold text-sm opacity-0 absolute top-[130%] peer-hover/gitHub:opacity-100 flex-col transition-opacity duration-300 ease-in-out cursor-default"
+  >
+    <p>{t("presentation.icon.github")[0]}</p>
+    <p class="text-xs font-extralight">{t("presentation.icon.github")[1]}</p>
+  </div>
+
+  <!-- Gmail -->
+  <a
+    class="icon copyable hidden peer/gmail rounded-full"
+    href="mailto:facundo.botta.dev@gmail.com"
+    target="_blank"
+  >
+    <GmailIcon />
+  </a>
+  <div
+    class="font-semibold text-sm opacity-0 absolute top-[130%] peer-hover/gmail:opacity-100 flex-col transition-opacity duration-300 ease-in-out cursor-default"
+  >
+    <p>{t("presentation.icon.gmail")[0]}</p>
+    <p class="text-xs font-extralight">{t("presentation.icon.gmail")[1]}</p>
+  </div>
+  <!-- CV -->
+  <div
+    id="cv-icon-button"
+    class="icon hidden peer/resume rounded-full cursor-pointer"
+  >
+    <ResumeIcon />
+  </div>
+  <div
+    class="font-semibold text-sm absolute top-[130%] peer-hover/resume:flex flex-col hidden transition-opacity duration-300 ease-in-out cursor-default"
+  >
+    <p>{t("presentation.icon.resume")}</p>
+  </div>
+  <div class="cv-links-container relative">
+    <ul
+      id="cv-download-links"
+      class="hidden mt-2 absolute -top-1/2 left-2 text-left font-extralight"
+    >
+      <li>
+        <a
+          href="cv_files/cv-en-Facundo-Botta-2024.pdf"
+          download
+          class="hover:underline border-l pl-1"
+        >
+          Español
+        </a>
+      </li>
+      <li>
+        <a
+          href="cv_files/cv-en-Facundo-Botta-2024.pdf"
+          download
+          class="hover:underline border-l pl-1"
+        >
+          English
+        </a>
+      </li>
+      <li>
+        <a
+          href="cv_files/cv-fr-Facundo-Botta-2024.pdf"
+          download
+          class="hover:underline border-l pl-1"
+        >
+          Français
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

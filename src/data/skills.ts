@@ -38,7 +38,7 @@ export const skills: skillsType[] = [
     trainingLevel: 9,
   },
   {
-    skill: "Node",
+    skill: "Node.js",
     iconName: "NodeIcon",
     isInLove: "true",
     trainingLevel: 7,

@@ -1,12 +1,8 @@
 ---
-import LinkedInIcon from "./icons/LinkedInIcon.astro";
-import GitHubMiniIcon from "./icons/GitHubMiniIcon.astro";
-import GmailIcon from "./icons/GmailIcon.astro";
-import ResumeIcon from "./icons/ResumeIcon.astro";
 import { myDescription } from "../data/myDescription";
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import ContactIcons from "./ContactIcons.astro";
 
-// const { lang } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
@@ -15,117 +11,21 @@ const t = useTranslations(lang);
   class="h-full w-[80vw] lg:w-[40vw] select-none flex flex-col items-start justify-center gap-5"
 >
   <!-- <h1 class="facudev-title hidden">FacuDev</h1> -->
-  <div>
-    <h1 class="facudev-title hidden mb-[-40px]">Facundo Botta</h1>
+  <div class="message-description">
+    <h1 class="facudev-title">Facundo Botta</h1>
     <p class="text-primary-magenta text-3xl">
       <span class="text-primary-cyan/70">as</span> FacuDev
     </p>
+    <!-- Presentation, My description -->
+    <p class="w-full opacity-70 text-left text-balance text-[1.4rem] mt-7">
+      {myDescription[lang]}
+    </p>
   </div>
-  <!-- Presentation, My description -->
-  <p
-    class="message-description w-full hidden opacity-70 text-left text-balance text-[1.4rem]"
-  >
-    {myDescription[lang]}
-  </p>
   <!-- Icons links -->
-  <div
-    class="relative icons-buttons-container flex justify-start gap-3 h-10 w-full mt-5"
-  >
-    <!-- LinkedIn -->
-    <a
-      class="icon copyable hidden peer/linkedIn rounded-full"
-      href="https://www.linkedin.com/in/facundo-botta/"
-      target="_blank"
-    >
-      <LinkedInIcon />
-    </a>
-    <div
-      class="font-semibold text-sm opacity-0 absolute top-[130%] peer-hover/linkedIn:opacity-100 flex-col transition-opacity duration-300 ease-in-out cursor-default"
-    >
-      <p>{t("presentation.icon.link")[0]}</p>
-      <p class="text-xs font-extralight">{t("presentation.icon.link")[1]}</p>
-    </div>
-
-    <!-- GitHub -->
-    <a
-      class="icon copyable hidden peer/gitHub rounded-full"
-      href="https://github.com/FacuBotta"
-      target="_blank"
-    >
-      <GitHubMiniIcon />
-    </a>
-    <div
-      class="font-semibold text-sm opacity-0 absolute top-[130%] peer-hover/gitHub:opacity-100 flex-col transition-opacity duration-300 ease-in-out cursor-default"
-    >
-      <p>{t("presentation.icon.github")[0]}</p>
-      <p class="text-xs font-extralight">{t("presentation.icon.github")[1]}</p>
-    </div>
-
-    <!-- Gmail -->
-    <a
-      class="icon copyable hidden peer/gmail rounded-full"
-      href="mailto:facundo.botta.dev@gmail.com"
-      target="_blank"
-    >
-      <GmailIcon />
-    </a>
-    <div
-      class="font-semibold text-sm opacity-0 absolute top-[130%] peer-hover/gmail:opacity-100 flex-col transition-opacity duration-300 ease-in-out cursor-default"
-    >
-      <p>{t("presentation.icon.gmail")[0]}</p>
-      <p class="text-xs font-extralight">{t("presentation.icon.gmail")[1]}</p>
-    </div>
-    <!-- CV -->
-    <div
-      id="cv-icon-button"
-      class="icon hidden peer/resume rounded-full cursor-pointer"
-    >
-      <ResumeIcon />
-    </div>
-    <div
-      class="font-semibold text-sm absolute top-[130%] peer-hover/resume:flex flex-col hidden transition-opacity duration-300 ease-in-out cursor-default"
-    >
-      <p>{t("presentation.icon.resume")}</p>
-    </div>
-    <div class="cv-links-container relative">
-      <ul
-        id="cv-download-links"
-        class="hidden mt-2 absolute -top-1/2 left-2 text-left font-extralight"
-      >
-        <li>
-          <a
-            href="cv-en-Facundo-Botta-2024.pdf"
-            download
-            class="hover:underline border-l pl-1"
-          >
-            Español
-          </a>
-        </li>
-        <li>
-          <a
-            href="cv-en-Facundo-Botta-2024.pdf"
-            download
-            class="hover:underline border-l pl-1"
-          >
-            English
-          </a>
-        </li>
-        <li>
-          <a
-            href="./cv-fr-Facundo-Botta-2024.pdf"
-            download
-            class="hover:underline border-l pl-1"
-          >
-            Français
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div>
+  <ContactIcons />
 </div>
 
 <script>
-  const facudevTitle = document.querySelector(".facudev-title");
   const messageDescription = document.querySelector(".message-description");
 
   const iconsButtonsContainer = document.querySelector(
@@ -133,29 +33,8 @@ const t = useTranslations(lang);
   );
   const iconsLinks = iconsButtonsContainer?.querySelectorAll(".icon");
 
-  /* const myDescription =
-    "2 years as a fullstack web developer student, passionate by JavaScript and its ecosystem. Living in Montpellier, France.";
- */
-  /* const writeTextAnimation = (
-    textToInsert: string,
-    elementTarget: any,
-    typingSpeed: number = 50
-  ) => {
-    let tempMessage = "";
-
-    for (let i = 0; i < textToInsert.length; i++) {
-      setTimeout(() => {
-        if (elementTarget) {
-          tempMessage += textToInsert[i];
-          elementTarget.textContent = tempMessage;
-        }
-      }, typingSpeed * i);
-    }
-  }; */
   function showPresentationWithOutAnimation() {
-    facudevTitle?.classList.add("animate-facuDev");
-    messageDescription?.classList.remove("hidden");
-    // writeTextAnimation(myDescription, messageDescription, 1);
+    messageDescription?.classList.add("animate-facuDev");
     iconsLinks?.forEach((iconLink, index) => {
       setTimeout(() => {
         iconLink?.classList.replace("hidden", "animate-icons");
@@ -264,6 +143,7 @@ const t = useTranslations(lang);
     font-family: "Fifties Condensed", serif;
     font-size: 7rem;
     font-weight: bold;
+    line-height: 1;
     /* color: transparent;
     -webkit-text-stroke: 3px #d6f4f4;
     text-shadow:
@@ -304,9 +184,6 @@ const t = useTranslations(lang);
 </style>
 <!-- 
 TODO:
-CV en tres idiomas !
-respetar nombres de skills (buscar en sitio oficial pa ver como lo escriben)
 "GO TO ACTION" 
 open to work
-proyectos antes que los skills...
 -->
