@@ -15,8 +15,7 @@ export const projects: ProjectType[] = [
       fr: "Une full rest API faite en Node.js et Express.js qui fournit tous les endpoints nécessaires à un système de gestion des tâches.\
         Elle est type safe et inclut l'authentification avec JWT. Ce projet m'a conduit à une compréhension plus profonde des APIs et comment les construire à partir de zéro.",
     },
-    image:
-      "https://github.com/FacuBotta/Task-Management-API/raw/main/files/consoleCapure.png",
+    image: "./projectsImages/taskApi.webp",
     link: "https://github.com/FacuBotta/Task-Management-API",
     stack: ["NodeIcon", "TypesCriptIcon", "MysqlIcon", "JwtIcon"],
     readme: "taskManagerAPI",
@@ -35,8 +34,7 @@ export const projects: ProjectType[] = [
       fr: "Un petit projet python qui génère des backgrounds pour Windows sur les sujets de votre choix. Il utilise Ollama installé localement avec llama LLM pour générer le nouveau contenu.\
       Je l'utilise sur mon ordinateur pour avoir un background différent pour chaque jour avec des conseils et astuces sur les sujets que je m'apprends.",
     },
-    image:
-      "https://github.com/FacuBotta/background_generator/blob/main/assets/newBackgroung.jpg?raw=true",
+    image: "./projectsImages/backgroundGenerator.webp",
     link: "https://github.com/FacuBotta/background_generator/tree/main",
     stack: ["PythonIcon", "OllamaIcon"],
     readme: "backgroundGenerator",
@@ -55,8 +53,7 @@ export const projects: ProjectType[] = [
       fr: "Un site complet pour une compagnie de théâtre. C'est une application CRUD complète avec panneau d'administration et authentification google. C'était mon dernier projet pour mon premier an de développement web\
       et maintenant c'est la base pour le site web réel de la compagnie de théâtre mais je suis migreant le projet en react et node.js.",
     },
-    image:
-      "https://github.com/FacuBotta/filrouge2023/raw/master/readmeFiles/image3.png",
+    image: "./projectsImages/fullWebSite.webp",
     link: "https://github.com/FacuBotta/filrouge2023",
     stack: [
       "PhpIcon",
