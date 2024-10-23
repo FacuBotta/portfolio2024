@@ -9,7 +9,7 @@ import { projects } from "../data/projects";
 import { skills, stack, touching } from "../data/skills";
 import { aboutMe } from "../data/myDescription";
 import ContactIcons from "../components/ContactIcons.astro";
-import facudevImage from "../../public/facuImage.png";
+import facudevImage from "../../public/facuImage.webp";
 import { Image } from "astro:assets";
 
 const currentLang = "en";
@@ -59,7 +59,10 @@ const currentLang = "en";
           ))
         }
       </div>
-      <div id="skills-container" class="text-start flex flex-col gap-10 pl-5">
+      <div
+        id="skills-container"
+        class="text-start flex flex-col justify-between gap-10 pl-5 pb-5"
+      >
         <SkillCard title="Skills">
           {
             skills.map((skill) => (
@@ -134,7 +137,9 @@ const currentLang = "en";
 
       #home-section img {
         /* border-radius: 0 0 15% 15%; */
-        mask-image: linear-gradient(to bottom, black 80%, transparent);
+        /* mask-image: linear-gradient(to bottom, black 80%, transparent);
+        */
+        border: solid 3px white;
       }
       .shadow-custom {
         box-shadow: rgb(0, 0, 0) 0px -50px 30px;
