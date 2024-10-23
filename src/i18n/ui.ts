@@ -20,6 +20,9 @@ export const ui = {
     "presentation.icon.resume": "Download my CV",
     "projects.repoBtn": "See repo",
     "projects.stack": "Technologies used",
+    "footer.made": "[ Made with ⌨️🔥by ",
+    "footer.text":
+      "I make this portfolio with Astro and Tailwind CSS, check de repo to see the code and if you like it, give it a ⭐️!",
   },
   es: {
     "nav.home": "Inicio",
@@ -41,6 +44,9 @@ export const ui = {
     "presentation.icon.resume": "Descarga mi CV",
     "projects.repoBtn": "Ver repo",
     "projects.stack": "Tecnologías usadas",
+    "footer.made": "[ Hecho con ⌨️🔥 por ",
+    "footer.text":
+      "He hecho este portfolio con Astro y Tailwind CSS, revisa el repo para ver el código y si te gusta, ¡dale una ⭐️!",
   },
   fr: {
     "nav.home": "Accueil",
@@ -62,6 +68,9 @@ export const ui = {
     "presentation.icon.resume": "Téléchargez mon CV",
     "projects.repoBtn": "Voir repo",
     "projects.stack": "Technologies utilisées",
+    "footer.made": "[ Fait avec ⌨️🔥 par ",
+    "footer.text":
+      "J'ai fait ce portfolio avec Astro et Tailwind CSS, vérifiez le repo pour voir le code et si vous l'aimez, donnez-lui un ⭐️!",
   },
 } as const;
 export const showDefaultLang = false;

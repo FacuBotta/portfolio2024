@@ -9,6 +9,9 @@ import Layout from "../../layouts/Layout.astro";
 import type { ProjectType } from "../../types";
 import { aboutMe } from "../../data/myDescription";
 import ContactIcons from "../../components/ContactIcons.astro";
+import facudevImage from "../../../public/facuImage.png";
+import { Image } from "astro:assets";
+
 const currentLang = "es";
 ---
 
@@ -20,16 +23,19 @@ const currentLang = "es";
       class="w-[90vw] max-w-[1100px] m-auto min-h-screen flex items-center justify-center"
     >
       <Presentation lang={currentLang} />
-      <img
-        class="w-[500px] rounded-full"
-        src="../facuImage.png"
-        alt="my photo"
+      <Image
+        src={facudevImage}
+        alt="Facudev face"
+        width={500}
+        height={500}
+        class={"rounded-full"}
+        loading="eager"
       />
     </section>
     <!-- Projects section =============================== -->
     <section
       id="projects-section"
-      class="w-[90vw] max-w-[1100px] m-auto min-h-screen flex flex-col items-start justify-start mb-40"
+      class="w-[90vw] max-w-[1100px] m-auto min-h-screen flex flex-col items-start justify-start mb-40 scroll-mt-20"
     >
       <h2 class="animate-in-view text-white">Proyectos</h2>
       <div class="flex flex-col gap-10 w-full pt-5">
@@ -43,7 +49,7 @@ const currentLang = "es";
     <!-- About me & Skills section =============================== -->
     <section
       id="skills-section"
-      class="w-[90vw] max-w-[1100px] mx-auto mb-20 flex divide-x divide-white/50"
+      class="w-[90vw] max-w-[1100px] mx-auto mb-20 flex divide-x divide-white/50 scroll-mt-40"
     >
       <div class="w-[80%] pr-5">
         <h2 class="animate-in-view text-white text-4xl mb-14">Sobre mi</h2>
@@ -99,10 +105,16 @@ const currentLang = "es";
     <!-- Contact section =============================== -->
     <section
       id="contact-section"
-      class="w-[90vw] max-w-[1100px] m-auto min-h-screen flex items-start justify-start"
+      class="w-[90vw] max-w-[1100px] m-auto min-h-[50vh] flex items-start justify-start"
     >
-      <h2 class="animate-in-view text-white text-4xl">Contácteme</h2>
-      <ContactIcons />
+      <div class="animate-in-view">
+        <h2 class="text-white text-4xl mb-10">Ponte en contacto!</h2>
+        <p class="text-white/80">
+          Siéntete libre de revisar mi perfil y contactarme en cualquier
+          momento!
+        </p>
+        <ContactIcons />
+      </div>
     </section>
 
     <script></script>

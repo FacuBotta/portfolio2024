@@ -1,137 +1,33 @@
 ---
 import { myDescription } from "../data/myDescription";
-import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import { getLangFromUrl } from "../i18n/utils";
 import ContactIcons from "./ContactIcons.astro";
 
 const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
 ---
 
 <div
   class="h-full w-[80vw] lg:w-[40vw] select-none flex flex-col items-start justify-center gap-5"
 >
-  <!-- <h1 class="facudev-title hidden">FacuDev</h1> -->
-  <div class="message-description">
+  <div class="message-description hidden">
     <h1 class="facudev-title">Facundo Botta</h1>
     <p class="text-primary-magenta text-3xl">
       <span class="text-primary-cyan/70">as</span> FacuDev
     </p>
-    <!-- Presentation, My description -->
     <p class="w-full opacity-70 text-left text-balance text-[1.4rem] mt-7">
       {myDescription[lang]}
     </p>
+    <ContactIcons />
   </div>
-  <!-- Icons links -->
-  <ContactIcons />
 </div>
 
 <script>
   const messageDescription = document.querySelector(".message-description");
-
-  const iconsButtonsContainer = document.querySelector(
-    ".icons-buttons-container"
-  );
-  const iconsLinks = iconsButtonsContainer?.querySelectorAll(".icon");
-
-  function showPresentationWithOutAnimation() {
-    messageDescription?.classList.add("animate-facuDev");
-    iconsLinks?.forEach((iconLink, index) => {
-      setTimeout(() => {
-        iconLink?.classList.replace("hidden", "animate-icons");
-      }, index * 200);
-    });
-  }
-
-  const links = document.querySelectorAll(
-    ".icons-buttons-container a.copyable"
-  );
-  function copyLinks(event: any) {
-    if (event.ctrlKey) {
-      let link = event.currentTarget.getAttribute("href");
-
-      const mailtoRegex = /mailto:(.*)/;
-      if (mailtoRegex.test(link)) {
-        link = link.replace(mailtoRegex, "$1");
-      }
-
-      const copyMessageContainer = event.currentTarget.nextElementSibling;
-      const messages = copyMessageContainer.querySelectorAll("p");
-
-      navigator.clipboard
-        .writeText(link)
-        .then(() => {
-          if (copyMessageContainer) {
-            const prevContent1 = messages[0].textContent;
-            const prevContent2 = messages[1].textContent;
-
-            messages[0].textContent = "Copied!";
-            messages[1].textContent = link;
-
-            setTimeout(() => {
-              messages[0].textContent = prevContent1;
-              messages[1].textContent = prevContent2;
-            }, 2000);
-          }
-        })
-        .catch((err) => {
-          console.error("Error coping link:", err);
-        });
-
-      event.preventDefault();
-    }
-  }
-  links.forEach((link) => {
-    link.addEventListener("click", copyLinks);
-  });
-
-  const cvIconButton = document.getElementById("cv-icon-button");
-  const cvDownloadLinks = document.getElementById("cv-download-links");
-  if (cvIconButton) {
-    cvIconButton.addEventListener("click", () => {
-      cvDownloadLinks?.classList.toggle("hidden");
-      setTimeout(() => {
-        cvDownloadLinks?.classList.add("hidden");
-      }, 5000);
-    });
-  }
   window.addEventListener("load", () => {
-    showPresentationWithOutAnimation();
+    messageDescription?.classList.add("animate-facuDev");
   });
 </script>
 <style>
-  .animate-icons {
-    display: inline-block;
-    height: 100%;
-    opacity: 0;
-    animation: fadeInAndBounce 0.8s forwards ease-out; /* Duración ajustada */
-  }
-  .icons-buttons-container .icon:hover {
-    scale: 1.1;
-    box-shadow: rgba(197, 197, 197, 0.625) 0px 5px 15px;
-    transition: all 0.4s ease-in-out;
-  }
-  .cv-links-container ul li:hover {
-    color: #f9ff56;
-    background: linear-gradient(to right, #f9ff5622, #f9ff5600);
-  }
-
-  @keyframes fadeInAndBounce {
-    0% {
-      opacity: 0;
-      transform: scale(0.6);
-    }
-    60% {
-      opacity: 1;
-      transform: scale(1.1);
-    }
-    80% {
-      transform: scale(0.95);
-    }
-    100% {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
   .animate-message {
     animation: fadeOut 1s forwards;
   }
@@ -144,14 +40,6 @@ const t = useTranslations(lang);
     font-size: 7rem;
     font-weight: bold;
     line-height: 1;
-    /* color: transparent;
-    -webkit-text-stroke: 3px #d6f4f4;
-    text-shadow:
-      8px 8px 0px #07bccc,
-      13px 13px 0px #e601c0,
-      18px 18px 0px #e9019a,
-      23px 23px 0px #f40468; */
-    /* 45px 45px 10px #e9e4a444; */
   }
   @keyframes fadeOut {
     0% {
@@ -172,9 +60,7 @@ const t = useTranslations(lang);
     }
   }
   .text-gradient {
-    /* font-weight: 600; */
     text-align: left;
-    /* padding-left: 4rem; */
     background-image: var(--description-gradient);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;

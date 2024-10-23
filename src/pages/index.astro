@@ -9,10 +9,12 @@ import { projects } from "../data/projects";
 import { skills, stack, touching } from "../data/skills";
 import { aboutMe } from "../data/myDescription";
 import ContactIcons from "../components/ContactIcons.astro";
+import facudevImage from "../../public/facuImage.png";
+import { Image } from "astro:assets";
+
 const currentLang = "en";
 ---
 
-<!-- TODO add padding to scroll -->
 <Layout title="Welcome to Astro.">
   <main>
     <!-- Home section =============================== -->
@@ -21,16 +23,19 @@ const currentLang = "en";
       class="w-[90vw] max-w-[1100px] m-auto min-h-screen flex items-center justify-center"
     >
       <Presentation lang={currentLang} />
-      <img
-        class="w-[500px] rounded-full"
-        src="./facuImage.png"
-        alt="my photo"
+      <Image
+        src={facudevImage}
+        alt="Facudev face"
+        width={500}
+        height={500}
+        class={"rounded-full"}
+        loading="eager"
       />
     </section>
     <!-- Projects section =============================== -->
     <section
       id="projects-section"
-      class="w-[90vw] max-w-[1100px] m-auto min-h-screen flex flex-col items-start justify-start mb-40"
+      class="w-[90vw] max-w-[1100px] m-auto min-h-screen flex flex-col items-start justify-start mb-40 scroll-mt-20"
     >
       <h2 class="animate-in-view text-white">Projects</h2>
       <div class="flex flex-col gap-10 w-full pt-5">
@@ -44,7 +49,7 @@ const currentLang = "en";
     <!-- About me & Skills section =============================== -->
     <section
       id="skills-section"
-      class="w-[90vw] max-w-[1100px] mx-auto mb-20 flex divide-x divide-white/50"
+      class="w-[90vw] max-w-[1100px] mx-auto mb-20 flex divide-x divide-white/50 scroll-mt-40"
     >
       <div class="w-[80%] pr-5">
         <h2 class="animate-in-view text-white text-4xl mb-14">About me</h2>
@@ -100,10 +105,15 @@ const currentLang = "en";
     <!-- Contact section =============================== -->
     <section
       id="contact-section"
-      class="w-[90vw] max-w-[1100px] m-auto min-h-screen flex items-start justify-start"
+      class="w-[90vw] max-w-[1100px] m-auto min-h-[50vh] flex items-start justify-start"
     >
-      <h2 class="animate-in-view text-white text-4xl">Contact me</h2>
-      <ContactIcons />
+      <div class="animate-in-view">
+        <h2 class="text-white text-4xl mb-10">Let's connect!</h2>
+        <p class="text-white/80">
+          Feel free to check out my profiles and contact me anytime!
+        </p>
+        <ContactIcons />
+      </div>
     </section>
 
     <script></script>

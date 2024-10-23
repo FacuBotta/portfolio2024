@@ -52,7 +52,6 @@ const { title, subTitle } = Astro.props;
       return isInLove === "true" ? true : false;
     }
   );
-  console.log(loveLevels);
   allIcons?.forEach((icon) => {
     icon.style.filter = "grayscale(100%)";
     icon.style.height = "50px";
@@ -73,7 +72,6 @@ const { title, subTitle } = Astro.props;
     }
   }
   const onVisibilityChange = (result: any) => {
-    console.log(result.visibilityPercentage);
     if (result.isVisible) {
       iconsContainers?.forEach((iconsContainer, i) => {
         const thisIcons = iconsContainer.querySelectorAll("svg");

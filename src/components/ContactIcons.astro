@@ -10,11 +10,12 @@ const t = useTranslations(lang);
 ---
 
 <div
-  class="relative icons-buttons-container flex justify-start gap-3 h-10 w-full mt-5"
+  class="icons-buttons-container relative flex justify-start gap-3 h-10 w-full mt-5"
 >
   <!-- LinkedIn -->
   <a
-    class="icon copyable hidden peer/linkedIn rounded-full"
+    aria-label="Link to my linkedIn profile"
+    class="icon hidden copyable peer/linkedIn rounded-full"
     href="https://www.linkedin.com/in/facundo-botta/"
     target="_blank"
   >
@@ -29,7 +30,8 @@ const t = useTranslations(lang);
 
   <!-- GitHub -->
   <a
-    class="icon copyable hidden peer/gitHub rounded-full"
+    aria-label="Link to my GitHub account"
+    class="icon hidden copyable peer/gitHub rounded-full"
     href="https://github.com/FacuBotta"
     target="_blank"
   >
@@ -44,7 +46,8 @@ const t = useTranslations(lang);
 
   <!-- Gmail -->
   <a
-    class="icon copyable hidden peer/gmail rounded-full"
+    aria-label="Link to Gmail message"
+    class="icon hidden copyable peer/gmail rounded-full"
     href="mailto:facundo.botta.dev@gmail.com"
     target="_blank"
   >
@@ -59,7 +62,7 @@ const t = useTranslations(lang);
   <!-- CV -->
   <div
     id="cv-icon-button"
-    class="icon hidden peer/resume rounded-full cursor-pointer"
+    class="cv-icon-button icon hidden peer/resume rounded-full cursor-pointer"
   >
     <ResumeIcon />
   </div>
@@ -71,10 +74,11 @@ const t = useTranslations(lang);
   <div class="cv-links-container relative">
     <ul
       id="cv-download-links"
-      class="hidden mt-2 absolute -top-1/2 left-2 text-left font-extralight"
+      class="cv-download-links hidden mt-2 absolute -top-1/2 left-2 text-left font-extralight"
     >
       <li>
         <a
+          aria-label="Download my CV in Spanish"
           href="cv_files/cv-en-Facundo-Botta-2024.pdf"
           download
           class="hover:underline border-l pl-1"
@@ -84,6 +88,7 @@ const t = useTranslations(lang);
       </li>
       <li>
         <a
+          aria-label="Download my CV in English"
           href="cv_files/cv-en-Facundo-Botta-2024.pdf"
           download
           class="hover:underline border-l pl-1"
@@ -93,6 +98,7 @@ const t = useTranslations(lang);
       </li>
       <li>
         <a
+          aria-label="Download my CV in French"
           href="cv_files/cv-fr-Facundo-Botta-2024.pdf"
           download
           class="hover:underline border-l pl-1"
@@ -103,3 +109,109 @@ const t = useTranslations(lang);
     </ul>
   </div>
 </div>
+<script>
+  const iconsButtonsContainer = document.querySelectorAll(
+    ".icons-buttons-container"
+  );
+  iconsButtonsContainer?.forEach((iconsButtonsContainer) => {
+    const iconsLinks = iconsButtonsContainer?.querySelectorAll(".icon");
+
+    iconsLinks?.forEach((iconLink, index) => {
+      setTimeout(() => {
+        iconLink?.classList.replace("hidden", "animate-icons");
+      }, index * 200);
+    });
+
+    const links = iconsButtonsContainer.querySelectorAll(
+      ".icons-buttons-container a.copyable"
+    );
+    function copyLinks(event: any) {
+      if (event.ctrlKey) {
+        let link = event.currentTarget.getAttribute("href");
+
+        const mailtoRegex = /mailto:(.*)/;
+        if (mailtoRegex.test(link)) {
+          link = link.replace(mailtoRegex, "$1");
+        }
+
+        const copyMessageContainer = event.currentTarget.nextElementSibling;
+        const messages = copyMessageContainer.querySelectorAll("p");
+
+        navigator.clipboard
+          .writeText(link)
+          .then(() => {
+            if (copyMessageContainer) {
+              const prevContent1 = messages[0].textContent;
+              const prevContent2 = messages[1].textContent;
+
+              messages[0].textContent = "Copied!";
+              messages[1].textContent = link;
+
+              setTimeout(() => {
+                messages[0].textContent = prevContent1;
+                messages[1].textContent = prevContent2;
+              }, 2000);
+            }
+          })
+          .catch((err) => {
+            console.error("Error coping link:", err);
+          });
+
+        event.preventDefault();
+      }
+    }
+    links.forEach((link) => {
+      link.addEventListener("click", copyLinks);
+    });
+
+    const cvIconButtons =
+      iconsButtonsContainer.querySelector(".cv-icon-button");
+
+    const cvDownloadLinks =
+      iconsButtonsContainer.querySelector(".cv-download-links");
+
+    if (cvIconButtons) {
+      cvIconButtons.addEventListener("click", () => {
+        cvDownloadLinks?.classList.toggle("hidden");
+        setTimeout(() => {
+          cvDownloadLinks?.classList.add("hidden");
+        }, 5000);
+      });
+    }
+  });
+</script>
+<style>
+  .animate-icons {
+    display: inline-block;
+    height: 100%;
+    opacity: 0;
+    animation: fadeInAndBounce 0.8s forwards ease-out;
+  }
+  .icons-buttons-container .icon:hover {
+    scale: 1.1;
+    box-shadow: rgba(197, 197, 197, 0.625) 0px 5px 15px;
+    transition: all 0.4s ease-in-out;
+  }
+  .cv-links-container ul li:hover {
+    color: #f9ff56;
+    background: linear-gradient(to right, #f9ff5622, #f9ff5600);
+  }
+
+  @keyframes fadeInAndBounce {
+    0% {
+      opacity: 0;
+      transform: scale(0.6);
+    }
+    60% {
+      opacity: 1;
+      transform: scale(1.1);
+    }
+    80% {
+      transform: scale(0.95);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+</style>
