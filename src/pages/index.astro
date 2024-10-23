@@ -20,24 +20,22 @@ const currentLang = "en";
     <!-- Home section =============================== -->
     <section
       id="home-section"
-      class="w-[90vw] max-w-[1100px] m-auto min-h-screen flex items-center justify-center"
+      class="w-[90vw] max-w-[1100px] m-auto min-h-screen flex flex-wrap-reverse lg:flex-nowrap items-center justify-center"
     >
       <Presentation lang={currentLang} />
       <Image
         src={facudevImage}
         alt="Facudev face"
-        width={500}
-        height={500}
-        class={"rounded-full"}
+        class={"rounded-full mt-20 lg:mt-0 w-full max-w-[500px]"}
         loading="eager"
       />
     </section>
     <!-- Projects section =============================== -->
     <section
       id="projects-section"
-      class="w-[90vw] max-w-[1100px] m-auto min-h-screen flex flex-col items-start justify-start mb-40 scroll-mt-20"
+      class="w-[90vw] max-w-[1100px] m-auto min-h-screen flex flex-col items-start justify-start mb-40 pt-20 lg:pt-0 scroll-mt-20"
     >
-      <h2 class="animate-in-view text-white">Projects</h2>
+      <h2 class="animate-in-view text-white mx-auto lg:mx-0">Projects</h2>
       <div class="flex flex-col gap-10 w-full pt-5">
         {
           projects.map((project: ProjectType, index: number) => (
@@ -49,53 +47,48 @@ const currentLang = "en";
     <!-- About me & Skills section =============================== -->
     <section
       id="skills-section"
-      class="w-[90vw] max-w-[1100px] mx-auto mb-20 flex divide-x divide-white/50 scroll-mt-40"
+      class="w-[90vw] max-w-[1100px] mx-auto mb-20 flex flex-col-reverse gap-20 lg:gap-0 lg:flex-row lg:divide-x divide-white/50 scroll-mt-40"
     >
-      <div class="w-[80%] pr-5">
-        <h2 class="animate-in-view text-white text-4xl mb-14">About me</h2>
-        <p class="animate-in-view mb-5 text-white/80">
-          {aboutMe[currentLang][0]}
-        </p>
-        <p class="animate-in-view mb-5 text-white/80">
-          {aboutMe[currentLang][1]}
-        </p>
-        <p class="animate-in-view text-white/80">
-          {aboutMe[currentLang][2]}
-        </p>
+      <div class="lg:w-[80%] pr-5">
+        <h2 class="animate-in-view text-white text-4xl mb-14 mx-auto lg:mx-0">
+          About me
+        </h2>
+        {
+          aboutMe[currentLang].map((paragraph) => (
+            <p class="animate-in-view mb-5 text-white/80">{paragraph}</p>
+          ))
+        }
       </div>
       <div id="skills-container" class="text-start flex flex-col gap-10 pl-5">
-        <SkillCard title="Skills" subTitle="I use everyday">
+        <SkillCard title="Skills">
           {
             skills.map((skill) => (
               <IconWrapper
                 skill={skill.skill}
                 iconName={skill.iconName}
                 isInLove={skill.isInLove}
-                trainingLevel={skill.trainingLevel}
               />
             ))
           }
         </SkillCard>
-        <SkillCard title="Stack" subTitle="Technologies I use at work">
+        <SkillCard title="Stack">
           {
             stack.map((skill) => (
               <IconWrapper
                 skill={skill.skill}
                 iconName={skill.iconName}
                 isInLove={skill.isInLove}
-                trainingLevel={skill.trainingLevel}
               />
             ))
           }
         </SkillCard>
-        <SkillCard title="Touching" subTitle="I'm learn and/or testing">
+        <SkillCard title="Touching">
           {
             touching.map((skill) => (
               <IconWrapper
                 skill={skill.skill}
                 iconName={skill.iconName}
                 isInLove={skill.isInLove}
-                trainingLevel={skill.trainingLevel}
               />
             ))
           }
@@ -105,19 +98,14 @@ const currentLang = "en";
     <!-- Contact section =============================== -->
     <section
       id="contact-section"
-      class="w-[90vw] max-w-[1100px] m-auto min-h-[50vh] flex items-start justify-start"
+      class="animate-in-view w-[90vw] max-w-[1100px] m-auto min-h-[50vh] flex flex-col items-start justify-start"
     >
-      <div class="animate-in-view">
-        <h2 class="text-white text-4xl mb-10">Let's connect!</h2>
-        <p class="text-white/80">
-          Feel free to check out my profiles and contact me anytime!
-        </p>
-        <ContactIcons />
-      </div>
+      <h2 class="text-white text-4xl mb-10 mx-auto lg:mx-0">Let's connect!</h2>
+      <p class="text-white/80 text-center lg:text-left mx-auto lg:mx-0">
+        Feel free to check out my profiles and contact me anytime!
+      </p>
+      <ContactIcons />
     </section>
-
-    <script></script>
-
     <style>
       main {
         margin: auto;
@@ -159,13 +147,6 @@ const currentLang = "en";
         width: 100%;
         height: 100%;
       }
-      /* .h1-welcome span {
-    text-shadow:
-      2px 2px 1px rgb(195, 99, 255),
-      2px -1px 1px rgb(195, 99, 255),
-      -1px 1px 1px rgb(195, 99, 255),
-      -1px -1px 1px rgb(195, 99, 255);
-  } */
     </style>
   </main>
 </Layout>

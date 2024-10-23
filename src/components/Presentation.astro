@@ -9,12 +9,14 @@ const lang = getLangFromUrl(Astro.url);
 <div
   class="h-full w-[80vw] lg:w-[40vw] select-none flex flex-col items-start justify-center gap-5"
 >
-  <div class="message-description hidden">
-    <h1 class="facudev-title">Facundo Botta</h1>
+  <div class="message-description hidden text-center lg:text-left">
+    <h1 class="facudev-title text-[5rem] sm:text-[7rem]">Facundo Botta</h1>
     <p class="text-primary-magenta text-3xl">
       <span class="text-primary-cyan/70">as</span> FacuDev
     </p>
-    <p class="w-full opacity-70 text-left text-balance text-[1.4rem] mt-7">
+    <p
+      class="w-full opacity-70 text-center lg:text-left lg:text-balance text-[1.4rem] mt-7"
+    >
       {myDescription[lang]}
     </p>
     <ContactIcons />
@@ -37,7 +39,6 @@ const lang = getLangFromUrl(Astro.url);
   }
   h1.facudev-title {
     font-family: "Fifties Condensed", serif;
-    font-size: 7rem;
     font-weight: bold;
     line-height: 1;
   }

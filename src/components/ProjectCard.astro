@@ -11,47 +11,45 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<div
-  class={index % 2 === 0
-    ? "project-card flex flex-row-reverse justify-center gap-5 w-full mt-10"
-    : "project-card flex justify-center gap-5 w-full mt-10"}
+<article
+  class={`project-card flex ${index % 2 === 0 ? "flex-row-reverse" : "flex"} justify-center gap-5 w-full mt-10 flex-wrap-reverse lg:flex-nowrap`}
 >
-  <div
-    style=`background-image: url('${image}'); background-position: center; background-size: cover;`
-    class="w-1/2 rounded-md border border-white/50"
+  <aside
+    style={`background-image: url('/projectsImages/${image}');`}
+    class="w-full h-[80vw] lg:h-auto lg:w-1/2 rounded-md border border-white/50 bg-center bg-cover"
+    aria-label={`Imagen del proyecto: ${title[lang]}`}
   >
-  </div>
-  <!-- description section -->
+  </aside>
   <div
-    class="flex flex-col justify-between gap-5 w-1/2 border-2 p-5 rounded-lg"
+    class="flex flex-col justify-between gap-5 lg:mx-0 w-full lg:w-1/2 border-2 p-5 rounded-lg"
   >
-    <div class="flex justify-between">
+    <div class="flex justify-between flex-wrap">
       <h3 class="font-bold text-2xl text-balance">{title[lang]}</h3>
       <a
-        class="border h-fit px-2 rounded-lg text-nowrap hover:border-primary-cyan hover:text-primary-cyan transition-colors ease-in-out duration-300"
+        class="border mt-2 lg:mt-0 h-fit px-2 rounded-lg text-nowrap hover:border-primary-cyan hover:text-primary-cyan transition-colors ease-in-out duration-300"
         href={link}
         target="_blank"
-        aria-label="Link to the project repository">{t("projects.repoBtn")}</a
-      >
+        rel="noopener noreferrer"
+        aria-label={`Enlace al repositorio del proyecto: ${title[lang]}`}
+        >{t("projects.repoBtn")}
+      </a>
     </div>
     <p class="text-white/70">{description[lang]}</p>
     <div class="flex flex-col gap-5">
       <h4 class="text-xl font-semibold">{t("projects.stack")}</h4>
-      <div class="flex gap-5 h-10">
+      <div class="flex gap-5 flex-wrap w-full">
         {stack.map((icon: IconName) => <IconWrapper iconName={icon} />)}
       </div>
     </div>
   </div>
-</div>
+</article>
 
 <style>
   .project-card {
     animation-timeline: view();
     animation-name: animate-project-card;
-    /* animation-fill-mode: initial; */
     animation-duration: 1ms;
   }
-
   @keyframes animate-project-card {
     from {
       opacity: 0;

@@ -1,8 +1,7 @@
 ---
 import type { skillsType } from "../types";
 
-
-const { skill, iconName, trainingLevel, isInLove } = Astro.props as skillsType;
+const { skill, iconName, isInLove } = Astro.props as skillsType;
 let SvgIcon;
 try {
   SvgIcon = (await import(`../components/icons/${iconName}.astro`)).default;
@@ -11,22 +10,15 @@ try {
 }
 ---
 
-<div class="group flex flex-col items-center relative">
-  <span
-    data-is-in-love={isInLove}
-    data-training-level={trainingLevel}
-    id="hearts"
-    class="hearts flex flex-col"></span>
-
+<div class="group flex flex-col items-center relative h-10">
+  <span data-is-in-love={isInLove} id="hearts" class="hearts flex flex-col"
+  ></span>
   {SvgIcon && <SvgIcon />}
   {
     skill && (
-    <div
-      class="font-semibold text-nowrap text-sm hidden group-hover:block transition-all duration-300 ease-in-out absolute top-[100%] z-20 bg-black p-1 rounded-lg"
-    >
-      <p>{skill}</p>
-      <!-- <span class="font-light">Exp: {trainingLevel}</span> -->
-    </div>
+      <div class="font-semibold text-nowrap text-sm hidden group-hover:block transition-all duration-300 ease-in-out absolute top-[100%] z-20 bg-black p-1 rounded-lg">
+        <p>{skill}</p>
+      </div>
     )
   }
 </div>

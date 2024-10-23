@@ -17,7 +17,6 @@ export const availableIcons = [
   "NodeIcon",
   "NpmIcon",
   "PhpIcon",
-  "PrettierIcon",
   "PrismaIcon",
   "PythonIcon",
   "ReactIcon",

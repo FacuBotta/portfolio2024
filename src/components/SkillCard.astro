@@ -1,18 +1,16 @@
 ---
 interface Props {
   title: string;
-  subTitle?: string;
 }
 
-const { title, subTitle } = Astro.props;
+const { title } = Astro.props;
 ---
 
 <div class="animate-view">
-  <div class="flex items-end gap-5 mb-6">
-    <h3 class="sub-title text-white text-4xl">{title}</h3>
-    <span class="text-slate-400">{subTitle}</span>
-  </div>
-  <div class="icons-container flex flex-wrap gap-4 w-full justify-start px-10">
+  <h3 class="sub-title text-white text-4xl mb-5">{title}</h3>
+  <div
+    class="icons-container flex flex-wrap gap-4 w-full justify-start lg:px-5"
+  >
     <slot />
   </div>
 </div>
