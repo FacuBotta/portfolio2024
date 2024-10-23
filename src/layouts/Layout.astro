@@ -7,12 +7,10 @@ interface Props {
   title: string;
 }
 
-const { title } = Astro.props;
-
 const lang = getLangFromUrl(Astro.url);
 ---
 
-<!doctype html>
+<!-- TODO pasar las imagenes a webpp --><!doctype html>
 <html lang={lang}>
   <head>
     <meta charset="UTF-8" />

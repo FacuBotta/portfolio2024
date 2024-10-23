@@ -4,7 +4,7 @@ import type { ProjectType } from "../types";
 import type { IconName } from "./icons/icon-names";
 import IconWrapper from "./IconWrapper.astro";
 
-const { title, description, link, image, readme, stack, index } =
+const { title, description, link, image, stack, index } =
   Astro.props as ProjectType & { index: number };
 
 const lang = getLangFromUrl(Astro.url);
