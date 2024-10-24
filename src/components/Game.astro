@@ -1,14 +1,22 @@
----
-
----
-
-<div class="absolute bottom-full h-32 w-full bg-fuchsia-200/10">
+<div
+  id="game-container"
+  class="absolute flex bottom-full h-32 w-full overflow-x-hidden bg-fuchsia-200/10"
+>
   <img
     id="dino"
     src="/game/dino_stop.svg"
     alt="Dino chapter"
-    class="h-[65px] absolute bottom-0 left-48 dino-jump"
+    class="h-[65px] absolute bottom-0 left-48"
   />
+  <!-- <img
+    id="obstacle"
+    src="/game/cactus.svg"
+    alt="Cactus"
+    class="obstacle right-0"
+  /> -->
+</div>
+<div class="absolute left-40">
+  <button id="trigger" class="border-2 text-white p-2">click</button>
 </div>
 
 <style>
@@ -23,37 +31,175 @@
       bottom: 0;
     }
   }
-
   .dino-jump {
     animation: jump 0.7s ease;
+  }
+  .obstacle-slide {
+    animation: slide-left 2s ease;
+  }
+  @keyframes slide-left {
+    0% {
+      transform: translateX(20vw);
+    }
+    100% {
+      transform: translateX(-100vw);
+    }
   }
 </style>
 
 <script>
   const dino = document.getElementById("dino") as HTMLImageElement;
-  let interval: any;
-  document.addEventListener("keydown", function (event) {
-    console.log(event.code);
-    if (event.code === "Space") {
-      event.preventDefault();
-      dino?.classList.add("dino-jump");
+  const trigger = document.getElementById("trigger") as HTMLButtonElement;
+  const obstacles = document.querySelectorAll(".obstacle");
+  const gameContainer = document.getElementById("game-container");
 
-      // Retire la classe après l'animation pour permettre de sauter à nouveau
-      interval = setTimeout(() => {
-        dino?.classList.remove("dino-jump");
-      }, 1000);
-      dino.onanimationend = () => {
-        clearInterval(interval);
-      };
-    }
-    if (event.code === "ArrowDown") {
-      dino.src = "/game/dino_down_1.svg";
+  let dinoInterval: number;
+  let obstaclesIntervals: number[] = [];
+  let difficultyInterval: number;
+  let isJumping = false;
+  let isDown = false;
+  let isRunning = false;
+  let runFrame = 0;
+  let difficulty = 1;
 
-      document.addEventListener("keyup", function (event) {
-        if (event.code === "ArrowDown") {
-          dino.src = "/game/dino_stop.svg";
-        }
-      });
+  trigger.addEventListener("click", () => {
+    if (isRunning) {
+      gameStop();
+    } else {
+      gamePlay();
     }
   });
+
+  function gameStop() {
+    clearInterval(dinoInterval);
+    clearInterval(difficultyInterval);
+    difficulty = 1;
+    obstaclesIntervals.forEach((interval) => {
+      clearInterval(interval);
+    });
+    obstaclesIntervals = [];
+    isRunning = false;
+  }
+
+  function gamePlay() {
+    dinoRun();
+    handleObstacles();
+    difficultyInterval = setInterval(() => {
+      if (isRunning) {
+        difficulty += 0.1;
+      }
+    }, 2000);
+  }
+  function addObstacle() {
+    const obstacle = document.createElement("img");
+    obstacle.src = "/game/cactus.svg";
+    obstacle.style.position = "absolute";
+    obstacle.style.bottom = "0";
+    obstacle.style.left = "100%";
+    obstacle.style.height = "50px";
+    gameContainer?.appendChild(obstacle);
+
+    let animationId: number;
+
+    const moveObstacle = () => {
+      const containerRect = gameContainer?.getBoundingClientRect();
+      const obstacleRect = obstacle.getBoundingClientRect();
+
+      if (
+        containerRect &&
+        obstacleRect.right > containerRect.left &&
+        isRunning
+      ) {
+        obstacle.style.left = `${obstacleRect.left - 5 * difficulty}px`;
+        animationId = requestAnimationFrame(moveObstacle);
+      } else {
+        obstacle.remove();
+        cancelAnimationFrame(animationId);
+      }
+    };
+
+    animationId = requestAnimationFrame(moveObstacle);
+
+    return () => {
+      cancelAnimationFrame(animationId);
+      obstacle.remove();
+    };
+  }
+
+  function handleObstacles() {
+    if (isRunning) {
+      // Agregar nuevos obstáculos
+      const addObstacleInterval = setInterval(
+        () => {
+          if (isRunning) {
+            addObstacle();
+          } else {
+            clearInterval(addObstacleInterval);
+          }
+        },
+        1000 + Math.random() * 1000
+      );
+
+      obstaclesIntervals.push(addObstacleInterval);
+    }
+  }
+  function dinoRun() {
+    if (isRunning) return;
+    isRunning = true;
+
+    dinoInterval = setInterval(() => {
+      if (isDown) return; // No correr si está saltando o agachado
+
+      // Alternar entre las dos imágenes de correr
+      if (runFrame === 0) {
+        dino.src = "/game/dino_run_1.svg";
+        runFrame = 1;
+      } else {
+        dino.src = "/game/dino_run_2.svg";
+        runFrame = 0;
+      }
+    }, 100); // Ajuste del intervalo para un cambio más fluido
+  }
+
+  document.addEventListener("keydown", function (event) {
+    if (
+      (event.code === "KeyW" || event.code === "Space") &&
+      !isJumping &&
+      isRunning
+    ) {
+      event.preventDefault();
+      isJumping = true;
+      dino?.classList.add("dino-jump");
+
+      dino.onanimationend = () => {
+        dino?.classList.remove("dino-jump");
+        isJumping = false;
+      };
+    }
+
+    if (event.code === "KeyS" && !isDown && !isJumping && isRunning) {
+      isDown = true;
+      runFrame = 0;
+    }
+  });
+
+  document.addEventListener("keyup", function (event) {
+    if (event.code === "KeyS" && isRunning) {
+      isDown = false;
+      dino.src = "/game/dino_stop.svg";
+    }
+  });
+
+  // Alternar las imágenes al agacharse
+  setInterval(() => {
+    if (isDown && isRunning) {
+      if (runFrame === 0) {
+        dino.src = "/game/dino_down_1.svg";
+        runFrame = 1;
+      } else {
+        dino.src = "/game/dino_down_2.svg";
+        runFrame = 0;
+      }
+    }
+  }, 100); // Tiempo de cambio entre imágenes mientras está agachado
 </script>
