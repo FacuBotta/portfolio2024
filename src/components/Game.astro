@@ -1,0 +1,59 @@
+---
+
+---
+
+<div class="absolute bottom-full h-32 w-full bg-fuchsia-200/10">
+  <img
+    id="dino"
+    src="/game/dino_stop.svg"
+    alt="Dino chapter"
+    class="h-[65px] absolute bottom-0 left-48 dino-jump"
+  />
+</div>
+
+<style>
+  @keyframes jump {
+    0% {
+      bottom: 0;
+    }
+    50% {
+      bottom: 80px;
+    }
+    100% {
+      bottom: 0;
+    }
+  }
+
+  .dino-jump {
+    animation: jump 0.7s ease;
+  }
+</style>
+
+<script>
+  const dino = document.getElementById("dino") as HTMLImageElement;
+  let interval: any;
+  document.addEventListener("keydown", function (event) {
+    console.log(event.code);
+    if (event.code === "Space") {
+      event.preventDefault();
+      dino?.classList.add("dino-jump");
+
+      // Retire la classe après l'animation pour permettre de sauter à nouveau
+      interval = setTimeout(() => {
+        dino?.classList.remove("dino-jump");
+      }, 1000);
+      dino.onanimationend = () => {
+        clearInterval(interval);
+      };
+    }
+    if (event.code === "ArrowDown") {
+      dino.src = "/game/dino_down_1.svg";
+
+      document.addEventListener("keyup", function (event) {
+        if (event.code === "ArrowDown") {
+          dino.src = "/game/dino_stop.svg";
+        }
+      });
+    }
+  });
+</script>

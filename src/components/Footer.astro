@@ -1,12 +1,13 @@
 ---
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import Game from "./Game.astro";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
 <footer
-  class="w-full max-w-[1500px] m-auto h-[30vh] border-t border-primary-yellow/50 flex flex-col gap-10 pt-10 justify-start items-center"
+  class="relative w-full max-w-[1500px] m-auto h-[30vh] border-t border-primary-yellow/50 flex flex-col gap-10 pt-10 justify-start items-center"
 >
   <p class="text-center text-white/80 text-xl">
     {t("footer.made")}
@@ -21,4 +22,5 @@ const t = useTranslations(lang);
       aria-label="Link to the project repository">{t("projects.repoBtn")}</a
     >
   </div>
+  <Game />
 </footer>
