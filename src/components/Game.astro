@@ -175,7 +175,7 @@ const t = useTranslations(lang);
       const currentRight = parseFloat(obstacle.style.right);
 
       if (currentRight < containerWidth && isRunning) {
-        obstacle.style.right = `${currentRight + 5 + difficulty}px`;
+        obstacle.style.right = `${currentRight + 5 + difficulty * 2}px`;
 
         const dinoRect = dino.getBoundingClientRect();
         const obstacleRect = obstacle.getBoundingClientRect();

@@ -1,6 +1,6 @@
 export const myDescription = {
   en: "2 years as a fullstack web developer student, passionate by JavaScript and its ecosystem. Living in Montpellier, France.",
-  es: "2 años como estudiante de desarrollador web fullstack, apasionado por JavaScript y su ecosistema. Viviendo en Montpellier, Francia.",
+  es: "2 años como estudiante en desarrollo web fullstack, apasionado por JavaScript y su ecosistema. Viviendo en Montpellier, Francia.",
   fr: "2 ans en tant que étudiant en développement web fullstack, passionné par JavaScript et son écosystème. Vivant à Montpellier, France.",
 };
 
