@@ -1,14 +1,23 @@
+---
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
 <div
   id="game-container"
   class="absolute flex bottom-full h-40 w-full overflow-x-hidden"
 >
+  <div class="background"></div>
+  <div class="background-clouds"></div>
   <img
     id="dino"
     src="/game/dino_stop.svg"
     alt="Dino chapter"
     class="h-[65px] absolute z-10 bottom-0 left-48"
   />
-  <div class="relative left-[50%] top-0">
+  <div class="relative left-[50%] -translate-x-1/2 top-0">
     <button
       id="trigger"
       class="border px-2 rounded-lg text-2xl text-nowrap text-white hover:border-primary-cyan hover:text-primary-cyan transition-colors ease-in-out duration-300"
@@ -16,18 +25,62 @@
     >
   </div>
 </div>
+<div
+  class="controls-container absolute top-5 left-56 flex flex-col items-center justify-center gap-2"
+>
+  <div
+    class="display-score flex px-2 justify-left items-center absolute top-0 left-[150%] border border-white/50 rounded-lg h-10 min-w-20"
+  >
+    <p class="text-white/50 text-nowrap">Score:</p>
+  </div>
+
+  <img src="/game/s_key.svg" alt="jump key image" class="w-10" />
+  <p class="text-white/50">{t("game.jump")}</p>
+  <img src="/game/x_key.svg" alt="crouch key image" class="w-10" />
+  <p class="text-white/50">{t("game.crouch")}</p>
+</div>
 <style>
-  #game-container {
-    /* background: repeating-linear-gradient(
-        to top,
-        rgba(255, 0, 0, 0.226),
-        transparent 50%
-      ),
-      repeating-linear-gradient(
-        to left,
-        rgba(255, 0, 0, 0.226),
-        transparent 10%
-      ); */
+  @media (max-width: 850px) {
+    #game-container,
+    .controls-container {
+      display: none;
+    }
+  }
+  .background-clouds {
+    width: 100%;
+    height: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: url("game/clouds.svg");
+    background-repeat: repeat;
+    background-position: 0 0;
+    background-size: auto 100%;
+  }
+  .background {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: url("game/background.svg");
+    background-repeat: repeat;
+    background-position: 0 0;
+    background-size: auto 100%;
+  }
+  .animate-clouds {
+    animation: animatedBackground 100s linear infinite;
+  }
+  .animate-background {
+    animation: animatedBackground 50s linear infinite;
+  }
+  @keyframes animatedBackground {
+    from {
+      background-position: 0 0;
+    }
+    to {
+      background-position: -10000px 0;
+    }
   }
 </style>
 
@@ -35,9 +88,15 @@
   const gameContainer = document.getElementById("game-container");
   const dino = document.getElementById("dino") as HTMLImageElement;
   const trigger = document.getElementById("trigger") as HTMLButtonElement;
+  const background = document.querySelector(".background") as HTMLDivElement;
+  const displayScore = document.querySelector(
+    ".display-score p"
+  ) as HTMLParagraphElement;
+  const backgroundClouds = document.querySelector(
+    ".background-clouds"
+  ) as HTMLDivElement;
 
   let dinoUpInterval: number;
-  let dinoDownInterval: number;
   let obstaclesIntervals: number[] = [];
   let difficultyInterval: number;
   let isJumping = false;
@@ -45,28 +104,28 @@
   let isRunning = false;
   let runFrame = 0;
   let difficulty = 1.2;
-  function changeGradientGameContainer(gradientIndex: number) {
-    if (!gameContainer || gradientIndex < 3) return;
-    gameContainer.style.backgroundImage = `liner-gradient(to top, rgba(255, ${(gradientIndex - 3) * 40 < 255 ? 255 - (gradientIndex - 3) * 40 : 0}, 0, 0.226), ${gradientIndex - 3}%, transparent)`;
-  }
+  let score = 0;
 
   function gamePlay() {
     const obstacles = document.querySelectorAll(".obstacle");
     if (obstacles.length > 0 && gameContainer) {
-      gameContainer.style.backgroundImage = "";
+      score = 0;
+      displayScore.textContent = `Score: ${score}`;
+      displayScore.style.color = "#9E9E9E";
+
       obstacles.forEach((obstacle) => {
         obstacle.remove();
       });
     }
+    background?.classList.add("animate-background");
+    backgroundClouds?.classList.add("animate-clouds");
     dinoRun();
     handleObstaclesAddition();
     difficultyInterval = setInterval(() => {
       if (isRunning) {
-        difficulty += 0.2;
-
-        changeGradientGameContainer(Math.floor(5));
+        difficulty += 0.3;
       }
-    }, 2000);
+    }, 1500);
   }
   trigger.addEventListener("click", () => {
     gamePlay();
@@ -75,12 +134,15 @@
 
   function gameFreeze() {
     trigger.classList.remove("hidden");
+    background?.classList.remove("animate-background");
+    backgroundClouds?.classList.remove("animate-clouds");
     obstaclesIntervals.forEach((interval) => {
       clearInterval(interval);
     });
     clearInterval(dinoUpInterval);
     clearInterval(difficultyInterval);
-    difficulty = 1;
+    difficulty = 1.2;
+    displayScore.style.color = "#e601c0";
     isRunning = false;
     dino.src = "/game/dino_dead.svg";
   }
@@ -113,7 +175,7 @@
       const currentRight = parseFloat(obstacle.style.right);
 
       if (currentRight < containerWidth && isRunning) {
-        obstacle.style.right = `${currentRight + 5 * difficulty}px`;
+        obstacle.style.right = `${currentRight + 5 + difficulty}px`;
 
         const dinoRect = dino.getBoundingClientRect();
         const obstacleRect = obstacle.getBoundingClientRect();
@@ -140,6 +202,8 @@
             isJumping &&
             dinoRect.bottom < obstacleRect.top + obstacleRect.height / 2
           ) {
+            score += 1;
+            displayScore.textContent = `Score: ${score}`;
             requestAnimationFrame(moveObstacle);
           } else {
             dino.src = "/game/dino_dead.svg";
@@ -165,19 +229,15 @@
 
   function handleObstaclesAddition() {
     if (isRunning) {
-      const addObstacleInterval = setInterval(
-        () => {
-          if (isRunning) {
-            addObstacle();
-          } else {
-            clearInterval(addObstacleInterval);
-          }
-        },
-        (800 + Math.random() * 500) /
-          difficulty /* TODO aumentar la probabilidad de que se agreguen más obstáculos */
-      );
-
-      obstaclesIntervals.push(addObstacleInterval);
+      function addObstacleWithRandomDelay() {
+        addObstacle();
+        let randomInterval =
+          600 + Math.floor(Math.random() * 800 - difficulty * 10);
+        console.log(randomInterval);
+        let timeoutId = setTimeout(addObstacleWithRandomDelay, randomInterval);
+        obstaclesIntervals.push(timeoutId);
+      }
+      addObstacleWithRandomDelay();
     }
   }
   function dinoRun() {
@@ -201,13 +261,13 @@
     let jumpHeight = 0;
     const jumpInterval = setInterval(() => {
       if (jumpHeight < 80) {
-        jumpHeight += 8; // Sube
+        jumpHeight += 10;
         dino.style.bottom = `${jumpHeight}px`;
       } else {
         clearInterval(jumpInterval);
         const fallInterval = setInterval(() => {
           if (jumpHeight > 0) {
-            jumpHeight -= 8; // Baja
+            jumpHeight -= 10;
             dino.style.bottom = `${jumpHeight}px`;
           } else {
             clearInterval(fallInterval);
@@ -219,24 +279,24 @@
   }
 
   document.addEventListener("keydown", function (event) {
-    if (event.code === "KeyW" && !isJumping && isRunning) {
+    if (event.code === "KeyS" && !isJumping && isRunning) {
       event.preventDefault();
       dinoJump();
     }
 
-    if (event.code === "KeyS" && !isDown && !isJumping && isRunning) {
+    if (event.code === "KeyX" && !isDown && !isJumping && isRunning) {
       isDown = true;
       runFrame = 0;
     }
   });
   document.addEventListener("keyup", function (event) {
-    if (event.code === "KeyS" && isRunning) {
+    if (event.code === "KeyX" && isRunning) {
       isDown = false;
       dino.src = "/game/dino_stop.svg";
     }
   });
-
-  dinoDownInterval = setInterval(() => {
+  // The interval to handle animation when dino is crouching
+  setInterval(() => {
     if (isDown && isRunning) {
       if (runFrame === 0) {
         dino.src = "/game/dino_down_1.svg";
