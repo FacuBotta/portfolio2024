@@ -11,7 +11,7 @@ export const projects: ProjectType[] = [
       en: "A full API made in Node.js and Express.js that provides all endpoints needed to a task manager system.\
         It's type safe and includes JWT authentication. This project brinds me to a deeper understanding of APIs and how to build them from scratch.",
       es: "Una full rest API hecha en Node.js y Express.js que proporciona todos los endpoints necesarios para un sistema de gestión de tareas.\
-        Es type safe y incluye autenticación con JWT. Este proyecto me llevó a una comprensión más profunda de las APIs y cómo construirlas desde cero.",
+        Es type safe e incluye autenticación con JWT. Este proyecto me llevó a una comprensión más profunda de las APIs y cómo construirlas desde cero.",
       fr: "Une full rest API faite en Node.js et Express.js qui fournit tous les endpoints nécessaires à un système de gestion des tâches.\
         Elle est type safe et inclut l'authentification avec JWT. Ce projet m'a conduit à une compréhension plus profonde des APIs et comment les construire à partir de zéro.",
     },

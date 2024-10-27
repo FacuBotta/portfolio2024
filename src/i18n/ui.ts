@@ -11,6 +11,7 @@ export const ui = {
     "nav.projects": "Projects",
     "nav.about": "About",
     "nav.contact": "Contact",
+    "home.skill.touching": "Additional experience",
     "presentation.icon.link": ["Visit my LinkedIn", "Ctrl+Click to copy link"],
     "presentation.icon.github": ["Check my GitHub!", "Ctrl+Click to copy link"],
     "presentation.icon.gmail": [
@@ -31,6 +32,7 @@ export const ui = {
     "nav.projects": "Proyectos",
     "nav.about": "Sobre mi",
     "nav.contact": "Contacto",
+    "home.skill.touching": "Experiencia adicional",
     "presentation.icon.link": [
       "Visita mi LinkedIn",
       "Ctrl+Click para copiar link",
@@ -57,6 +59,7 @@ export const ui = {
     "nav.projects": "Projets",
     "nav.about": "À propos",
     "nav.contact": "Contact",
+    "home.skill.touching": "Expériences avec",
     "presentation.icon.link": [
       "Visite mon LinkedIn",
       "Crl+Click pour copier le lien",

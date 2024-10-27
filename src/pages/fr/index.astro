@@ -11,7 +11,9 @@ import { skills, stack, touching } from "../../data/skills";
 import Layout from "../../layouts/Layout.astro";
 import type { ProjectType } from "../../types";
 import facudevImage from "../../../public/facuImage.webp";
+import { useTranslations } from "../../i18n/utils";
 const currentLang = "fr";
+const t = useTranslations(currentLang);
 ---
 
 <Layout title="FacuDev portfolio">
@@ -85,7 +87,7 @@ const currentLang = "fr";
             ))
           }
         </SkillCard>
-        <SkillCard title="Touching">
+        <SkillCard title={t("home.skill.touching") as string}>
           {
             touching.map((skill) => (
               <IconWrapper

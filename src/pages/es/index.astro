@@ -11,8 +11,10 @@ import { aboutMe } from "../../data/myDescription";
 import ContactIcons from "../../components/ContactIcons.astro";
 import facudevImage from "../../../public/facuImage.webp";
 import { Image } from "astro:assets";
+import { useTranslations } from "../../i18n/utils";
 
 const currentLang = "es";
+const t = useTranslations(currentLang);
 ---
 
 <Layout title="FacuDev portfolio">
@@ -86,7 +88,7 @@ const currentLang = "es";
             ))
           }
         </SkillCard>
-        <SkillCard title="Touching">
+        <SkillCard title={t("home.skill.touching") as string}>
           {
             touching.map((skill) => (
               <IconWrapper
