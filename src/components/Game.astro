@@ -85,6 +85,11 @@ const t = useTranslations(lang);
 </style>
 
 <script>
+  const dinoDownImage_1 = new Image();
+  dinoDownImage_1.src = "/game/dino_down_1.svg";
+  const dinoDownImage_2 = new Image();
+  dinoDownImage_2.src = "/game/dino_down_2.svg";
+
   const gameContainer = document.getElementById("game-container");
   const dino = document.getElementById("dino") as HTMLImageElement;
   const trigger = document.getElementById("trigger") as HTMLButtonElement;
@@ -243,15 +248,23 @@ const t = useTranslations(lang);
   function dinoRun() {
     if (isRunning) return;
     isRunning = true;
-
     dinoUpInterval = setInterval(() => {
-      if (isDown) return;
-      if (runFrame === 0) {
-        dino.src = "/game/dino_run_1.svg";
-        runFrame = 1;
-      } else {
-        dino.src = "/game/dino_run_2.svg";
-        runFrame = 0;
+      if (isDown) {
+        if (runFrame === 0) {
+          dino.src = "/game/dino_down_1.svg";
+          runFrame = 1;
+        } else {
+          dino.src = "/game/dino_down_2.svg";
+          runFrame = 0;
+        }
+      } else if (!isDown) {
+        if (runFrame === 0) {
+          dino.src = "/game/dino_run_1.svg";
+          runFrame = 1;
+        } else {
+          dino.src = "/game/dino_run_2.svg";
+          runFrame = 0;
+        }
       }
     }, 120);
   }
@@ -295,16 +308,4 @@ const t = useTranslations(lang);
       dino.src = "/game/dino_stop.svg";
     }
   });
-  // The interval to handle animation when dino is crouching
-  setInterval(() => {
-    if (isDown && isRunning) {
-      if (runFrame === 0) {
-        dino.src = "/game/dino_down_1.svg";
-        runFrame = 1;
-      } else {
-        dino.src = "/game/dino_down_2.svg";
-        runFrame = 0;
-      }
-    }
-  }, 100);
 </script>
