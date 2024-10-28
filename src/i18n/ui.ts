@@ -25,7 +25,7 @@ export const ui = {
     "game.crouch": "Crouch",
     "footer.made": "[ Made with ⌨️🔥by ",
     "footer.text":
-      "I make this portfolio with Astro and Tailwind CSS, check de repo to see the code and if you like it, give it a ⭐️!",
+      "I make this portfolio with Astro and Tailwind CSS, check the repo to see the code and if you like it, give it a ⭐️!",
   },
   es: {
     "nav.home": "Inicio",
