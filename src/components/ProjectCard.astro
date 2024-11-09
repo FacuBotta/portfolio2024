@@ -1,8 +1,8 @@
 ---
-import { getLangFromUrl, useTranslations } from "../i18n/utils";
-import type { ProjectType } from "../types";
-import type { IconName } from "./icons/icon-names";
-import IconWrapper from "./IconWrapper.astro";
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import type { ProjectType } from '../types';
+import type { IconName } from './icons/icon-names';
+import IconWrapper from './IconWrapper.astro';
 
 const { title, description, link, image, stack, index } =
   Astro.props as ProjectType & { index: number };
@@ -12,7 +12,7 @@ const t = useTranslations(lang);
 ---
 
 <article
-  class={`project-card flex ${index % 2 === 0 ? "flex-row-reverse" : "flex"} justify-center gap-5 w-full mt-10 flex-wrap-reverse lg:flex-nowrap`}
+  class={`project-card flex ${index % 2 === 0 ? 'flex-row-reverse' : 'flex'} justify-center gap-5 w-full mt-10 flex-wrap-reverse lg:flex-nowrap`}
 >
   <aside
     style={`background-image: url('/projectsImages/${image}'); background-position: left top;`}
@@ -31,12 +31,12 @@ const t = useTranslations(lang);
         target="_blank"
         rel="noopener noreferrer"
         aria-label={`Enlace al repositorio del proyecto: ${title[lang]}`}
-        >{t("projects.repoBtn")}
+        >{t('projects.repoBtn')}
       </a>
     </div>
-    <p class="text-white/70">{description[lang]}</p>
+    <p class="text-white/70 text-sm lg:text-lg">{description[lang]}</p>
     <div class="flex flex-col gap-5">
-      <h4 class="text-xl font-semibold">{t("projects.stack")}</h4>
+      <h4 class="text-xl font-semibold">{t('projects.stack')}</h4>
       <div class="flex gap-5 flex-wrap w-full">
         {stack.map((icon: IconName) => <IconWrapper iconName={icon} />)}
       </div>

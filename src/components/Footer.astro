@@ -1,16 +1,16 @@
 ---
-import { getLangFromUrl, useTranslations } from "../i18n/utils";
-import Game from "./Game.astro";
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import Game from './Game.astro';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
 <footer
-  class="relative w-full max-w-[1500px] m-auto h-[30vh] border-t border-primary-yellow/50 flex flex-col gap-10 pt-10 justify-start items-center sm:items-end lg:items-center pr-5"
+  class="relative w-full max-w-[1500px] mt-20 mx-auto h-[30vh] border-t border-primary-yellow/50 flex flex-col gap-10 pt-10 justify-start items-center sm:items-end lg:items-center pr-5"
 >
   <p class="text-center text-white/80 text-xl">
-    {t("footer.made")}
+    {t('footer.made')}
     <span class="text-primary-magenta">FacuDev </span> ]
   </p>
   <div
@@ -19,13 +19,13 @@ const t = useTranslations(lang);
     <p
       class="text-white/70 max-w-[500px] text-center sm:text-right lg:text-center"
     >
-      {t("footer.text")}
+      {t('footer.text')}
     </p>
     <a
       class="border h-fit px-2 rounded-lg text-nowrap text-white hover:border-primary-cyan hover:text-primary-cyan transition-colors ease-in-out duration-300"
       href="https://github.com/FacuBotta/portfolio2024.git"
       target="_blank"
-      aria-label="Link to the project repository">{t("projects.repoBtn")}</a
+      aria-label="Link to the project repository">{t('projects.repoBtn')}</a
     >
   </div>
   <Game />

@@ -1,4 +1,4 @@
-import type { IconName } from "./components/icons/icon-names";
+import type { IconName } from './components/icons/icon-names';
 
 export interface ProjectType {
   title: { en: string; es: string; fr: string };
@@ -12,6 +12,40 @@ export interface ProjectType {
 export interface skillsType {
   skill: string;
   iconName: IconName;
-  isInLove: "true" | "false";
+  isInLove: 'true' | 'false';
   trainingLevel: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+}
+
+export interface DescriptionType {
+  en: string;
+  fr: string;
+  es: string;
+}
+export interface StudiesType {
+  en: {
+    institution: string;
+    where: string;
+    start: string;
+    end: string;
+    title: string;
+  };
+  fr: {
+    institution: string;
+    where: string;
+    start: string;
+    end: string;
+    title: string;
+  };
+  es: {
+    institution: string;
+    where: string;
+    start: string;
+    end: string;
+    title: string;
+  };
+}
+export interface AboutMeType {
+  en: string[];
+  fr: string[];
+  es: string[];
 }

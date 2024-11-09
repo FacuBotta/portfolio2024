@@ -1,7 +1,7 @@
 ---
-import Footer from "../components/Footer.astro";
-import Header from "../components/Header.astro";
-import { getLangFromUrl } from "../i18n/utils";
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { getLangFromUrl } from '../i18n/utils';
 const lang = getLangFromUrl(Astro.url);
 ---
 
@@ -30,29 +30,33 @@ const lang = getLangFromUrl(Astro.url);
 
   <style is:global>
     @font-face {
-      font-family: "Helvetica";
-      src: url("/fonts/Helvetica.ttf") format("truetype");
+      font-family: 'Helvetica';
+      src: url('/fonts/Helvetica.ttf') format('truetype');
       font-style: normal;
       font-weight: normal;
       font-display: swap;
     }
     @font-face {
-      font-family: "Fifties";
-      src: url("/fonts/VVDS-Fifties-Med-Reg.otf") format("opentype");
+      font-family: 'Fifties';
+      src: url('/fonts/VVDS-Fifties-Med-Reg.otf') format('opentype');
       font-style: normal;
       font-weight: normal;
       font-display: swap;
     }
     @font-face {
-      font-family: "Fifties Condensed";
-      src: url("/fonts/VVDS-Fifties-Cond-Bold.otf") format("opentype");
+      font-family: 'Fifties Condensed';
+      src: url('/fonts/VVDS-Fifties-Cond-Bold.otf') format('opentype');
       font-style: normal;
       font-weight: bold;
       font-display: swap;
     }
     html {
-      font-family: "Helvetica", sans-serif;
+      font-family: 'Helvetica', sans-serif;
       scroll-behavior: smooth;
+    }
+    .no-scrollbar {
+      scrollbar-width: none;
+      -ms-overflow-style: none;
     }
   </style>
 </html>

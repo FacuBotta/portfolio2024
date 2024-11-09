@@ -1,9 +1,9 @@
 ---
-import { getLangFromUrl, useTranslations } from "../i18n/utils";
-import GitHubMiniIcon from "./icons/GitHubMiniIcon.astro";
-import GmailIcon from "./icons/GmailIcon.astro";
-import LinkedInIcon from "./icons/LinkedInIcon.astro";
-import ResumeIcon from "./icons/ResumeIcon.astro";
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import GitHubMiniIcon from './icons/GitHubMiniIcon.astro';
+import GmailIcon from './icons/GmailIcon.astro';
+import LinkedInIcon from './icons/LinkedInIcon.astro';
+import ResumeIcon from './icons/ResumeIcon.astro';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -24,8 +24,8 @@ const t = useTranslations(lang);
   <div
     class="font-semibold text-sm opacity-0 absolute top-[130%] peer-hover/linkedIn:opacity-100 flex-col transition-opacity duration-300 ease-in-out cursor-default"
   >
-    <p>{t("presentation.icon.link")[0]}</p>
-    <p class="text-xs font-extralight">{t("presentation.icon.link")[1]}</p>
+    <p>{t('presentation.icon.link')[0]}</p>
+    <p class="text-xs font-extralight">{t('presentation.icon.link')[1]}</p>
   </div>
 
   <!-- GitHub -->
@@ -40,8 +40,8 @@ const t = useTranslations(lang);
   <div
     class="font-semibold text-sm opacity-0 absolute top-[130%] peer-hover/gitHub:opacity-100 flex-col transition-opacity duration-300 ease-in-out cursor-default"
   >
-    <p>{t("presentation.icon.github")[0]}</p>
-    <p class="text-xs font-extralight">{t("presentation.icon.github")[1]}</p>
+    <p>{t('presentation.icon.github')[0]}</p>
+    <p class="text-xs font-extralight">{t('presentation.icon.github')[1]}</p>
   </div>
 
   <!-- Gmail -->
@@ -56,8 +56,8 @@ const t = useTranslations(lang);
   <div
     class="font-semibold text-sm opacity-0 absolute top-[130%] peer-hover/gmail:opacity-100 flex-col transition-opacity duration-300 ease-in-out cursor-default"
   >
-    <p>{t("presentation.icon.gmail")[0]}</p>
-    <p class="text-xs font-extralight">{t("presentation.icon.gmail")[1]}</p>
+    <p>{t('presentation.icon.gmail')[0]}</p>
+    <p class="text-xs font-extralight">{t('presentation.icon.gmail')[1]}</p>
   </div>
   <!-- CV -->
   <div
@@ -69,7 +69,7 @@ const t = useTranslations(lang);
   <div
     class="font-semibold text-sm absolute top-[130%] peer-hover/resume:flex flex-col hidden transition-opacity duration-300 ease-in-out cursor-default"
   >
-    <p>{t("presentation.icon.resume")}</p>
+    <p>{t('presentation.icon.resume')}</p>
   </div>
   <div class="cv-links-container relative">
     <ul
@@ -111,31 +111,31 @@ const t = useTranslations(lang);
 </div>
 <script>
   const iconsButtonsContainer = document.querySelectorAll(
-    ".icons-buttons-container"
+    '.icons-buttons-container'
   );
   iconsButtonsContainer?.forEach((iconsButtonsContainer) => {
-    const iconsLinks = iconsButtonsContainer?.querySelectorAll(".icon");
+    const iconsLinks = iconsButtonsContainer?.querySelectorAll('.icon');
 
     iconsLinks?.forEach((iconLink, index) => {
       setTimeout(() => {
-        iconLink?.classList.replace("hidden", "animate-icons");
+        iconLink?.classList.replace('hidden', 'animate-icons');
       }, index * 200);
     });
 
     const links = iconsButtonsContainer.querySelectorAll(
-      ".icons-buttons-container a.copyable"
+      '.icons-buttons-container a.copyable'
     );
     function copyLinks(event: any) {
       if (event.ctrlKey) {
-        let link = event.currentTarget.getAttribute("href");
+        let link = event.currentTarget.getAttribute('href');
 
         const mailtoRegex = /mailto:(.*)/;
         if (mailtoRegex.test(link)) {
-          link = link.replace(mailtoRegex, "$1");
+          link = link.replace(mailtoRegex, '$1');
         }
 
         const copyMessageContainer = event.currentTarget.nextElementSibling;
-        const messages = copyMessageContainer.querySelectorAll("p");
+        const messages = copyMessageContainer.querySelectorAll('p');
 
         navigator.clipboard
           .writeText(link)
@@ -144,7 +144,7 @@ const t = useTranslations(lang);
               const prevContent1 = messages[0].textContent;
               const prevContent2 = messages[1].textContent;
 
-              messages[0].textContent = "Copied!";
+              messages[0].textContent = 'Copied!';
               messages[1].textContent = link;
 
               setTimeout(() => {
@@ -154,27 +154,27 @@ const t = useTranslations(lang);
             }
           })
           .catch((err) => {
-            console.error("Error coping link:", err);
+            console.error('Error coping link:', err);
           });
 
         event.preventDefault();
       }
     }
     links.forEach((link) => {
-      link.addEventListener("click", copyLinks);
+      link.addEventListener('click', copyLinks);
     });
 
     const cvIconButtons =
-      iconsButtonsContainer.querySelector(".cv-icon-button");
+      iconsButtonsContainer.querySelector('.cv-icon-button');
 
     const cvDownloadLinks =
-      iconsButtonsContainer.querySelector(".cv-download-links");
+      iconsButtonsContainer.querySelector('.cv-download-links');
 
     if (cvIconButtons) {
-      cvIconButtons.addEventListener("click", () => {
-        cvDownloadLinks?.classList.toggle("hidden");
+      cvIconButtons.addEventListener('click', () => {
+        cvDownloadLinks?.classList.toggle('hidden');
         setTimeout(() => {
-          cvDownloadLinks?.classList.add("hidden");
+          cvDownloadLinks?.classList.add('hidden');
         }, 5000);
       });
     }
@@ -190,7 +190,7 @@ const t = useTranslations(lang);
   .icons-buttons-container .icon:hover {
     scale: 1.1;
     box-shadow: rgba(197, 197, 197, 0.625) 0px 5px 15px;
-    transition: all 0.4s ease-in-out;
+    transition: all 0.2s ease-in-out;
   }
   .cv-links-container ul li:hover {
     color: #f9ff56;

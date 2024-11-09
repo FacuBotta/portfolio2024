@@ -1,5 +1,5 @@
 ---
-import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -35,9 +35,9 @@ const t = useTranslations(lang);
   </div>
 
   <img src="/game/s_key.svg" alt="jump key image" class="w-10" />
-  <p class="text-white/50">{t("game.jump")}</p>
+  <p class="text-white/50">{t('game.jump')}</p>
   <img src="/game/x_key.svg" alt="crouch key image" class="w-10" />
-  <p class="text-white/50">{t("game.crouch")}</p>
+  <p class="text-white/50">{t('game.crouch')}</p>
 </div>
 <style>
   @media (max-width: 850px) {
@@ -52,7 +52,7 @@ const t = useTranslations(lang);
     position: absolute;
     top: 0;
     left: 0;
-    background: url("/game/clouds.svg");
+    background: url('/game/clouds.svg');
     background-repeat: repeat;
     background-position: 0 0;
     background-size: auto 100%;
@@ -63,7 +63,7 @@ const t = useTranslations(lang);
     position: absolute;
     top: 0;
     left: 0;
-    background: url("/game/background.svg");
+    background: url('/game/background.svg');
     background-repeat: repeat;
     background-position: 0 0;
     background-size: auto 100%;
@@ -86,19 +86,19 @@ const t = useTranslations(lang);
 
 <script>
   const dinoDownImage_1 = new Image();
-  dinoDownImage_1.src = "/game/dino_down_1.svg";
+  dinoDownImage_1.src = '/game/dino_down_1.svg';
   const dinoDownImage_2 = new Image();
-  dinoDownImage_2.src = "/game/dino_down_2.svg";
+  dinoDownImage_2.src = '/game/dino_down_2.svg';
 
-  const gameContainer = document.getElementById("game-container");
-  const dino = document.getElementById("dino") as HTMLImageElement;
-  const trigger = document.getElementById("trigger") as HTMLButtonElement;
-  const background = document.querySelector(".background") as HTMLDivElement;
+  const gameContainer = document.getElementById('game-container');
+  const dino = document.getElementById('dino') as HTMLImageElement;
+  const trigger = document.getElementById('trigger') as HTMLButtonElement;
+  const background = document.querySelector('.background') as HTMLDivElement;
   const displayScore = document.querySelector(
-    ".display-score p"
+    '.display-score p'
   ) as HTMLParagraphElement;
   const backgroundClouds = document.querySelector(
-    ".background-clouds"
+    '.background-clouds'
   ) as HTMLDivElement;
 
   let dinoUpInterval: number;
@@ -112,18 +112,18 @@ const t = useTranslations(lang);
   let score = 0;
 
   function gamePlay() {
-    const obstacles = document.querySelectorAll(".obstacle");
+    const obstacles = document.querySelectorAll('.obstacle');
     if (obstacles.length > 0 && gameContainer) {
       score = 0;
       displayScore.textContent = `Score: ${score}`;
-      displayScore.style.color = "#9E9E9E";
+      displayScore.style.color = '#9E9E9E';
 
       obstacles.forEach((obstacle) => {
         obstacle.remove();
       });
     }
-    background?.classList.add("animate-background");
-    backgroundClouds?.classList.add("animate-clouds");
+    background?.classList.add('animate-background');
+    backgroundClouds?.classList.add('animate-clouds');
     dinoRun();
     handleObstaclesAddition();
     difficultyInterval = setInterval(() => {
@@ -132,28 +132,28 @@ const t = useTranslations(lang);
       }
     }, 1500);
   }
-  trigger.addEventListener("click", () => {
+  trigger.addEventListener('click', () => {
     gamePlay();
-    trigger.classList.add("hidden");
+    trigger.classList.add('hidden');
   });
 
   function gameFreeze() {
-    trigger.classList.remove("hidden");
-    background?.classList.remove("animate-background");
-    backgroundClouds?.classList.remove("animate-clouds");
+    trigger.classList.remove('hidden');
+    background?.classList.remove('animate-background');
+    backgroundClouds?.classList.remove('animate-clouds');
     obstaclesIntervals.forEach((interval) => {
       clearInterval(interval);
     });
     clearInterval(dinoUpInterval);
     clearInterval(difficultyInterval);
     difficulty = 1.2;
-    displayScore.style.color = "#e601c0";
+    displayScore.style.color = '#e601c0';
     isRunning = false;
-    dino.src = "/game/dino_dead.svg";
+    dino.src = '/game/dino_dead.svg';
   }
 
   function addObstacle() {
-    const obstacle = document.createElement("img");
+    const obstacle = document.createElement('img');
     let randomObstacle: number;
     if (difficulty >= 1.4) {
       randomObstacle = Math.floor(Math.random() * (difficulty > 4 ? 5 : 4)) + 1;
@@ -161,14 +161,14 @@ const t = useTranslations(lang);
       randomObstacle = 4;
     }
     obstacle.src = `/game/obstacle_${randomObstacle}.svg`;
-    obstacle.classList.add("obstacle");
-    obstacle.style.position = "absolute";
+    obstacle.classList.add('obstacle');
+    obstacle.style.position = 'absolute';
     if (randomObstacle === 5) {
-      obstacle.style.bottom = "30%";
+      obstacle.style.bottom = '30%';
     } else {
-      obstacle.style.bottom = "0";
+      obstacle.style.bottom = '0';
     }
-    obstacle.style.right = "-50px";
+    obstacle.style.right = '-50px';
     gameContainer?.appendChild(obstacle);
 
     let animationId: number;
@@ -211,7 +211,7 @@ const t = useTranslations(lang);
             displayScore.textContent = `Score: ${score}`;
             requestAnimationFrame(moveObstacle);
           } else {
-            dino.src = "/game/dino_dead.svg";
+            dino.src = '/game/dino_dead.svg';
             gameFreeze();
           }
         } else {
@@ -250,18 +250,18 @@ const t = useTranslations(lang);
     dinoUpInterval = setInterval(() => {
       if (isDown) {
         if (runFrame === 0) {
-          dino.src = "/game/dino_down_1.svg";
+          dino.src = '/game/dino_down_1.svg';
           runFrame = 1;
         } else {
-          dino.src = "/game/dino_down_2.svg";
+          dino.src = '/game/dino_down_2.svg';
           runFrame = 0;
         }
       } else if (!isDown) {
         if (runFrame === 0) {
-          dino.src = "/game/dino_run_1.svg";
+          dino.src = '/game/dino_run_1.svg';
           runFrame = 1;
         } else {
-          dino.src = "/game/dino_run_2.svg";
+          dino.src = '/game/dino_run_2.svg';
           runFrame = 0;
         }
       }
@@ -290,21 +290,21 @@ const t = useTranslations(lang);
     }, 20);
   }
 
-  document.addEventListener("keydown", function (event) {
-    if (event.code === "KeyS" && !isJumping && isRunning) {
+  document.addEventListener('keydown', function (event) {
+    if (event.code === 'KeyS' && !isJumping && isRunning) {
       event.preventDefault();
       dinoJump();
     }
 
-    if (event.code === "KeyX" && !isDown && !isJumping && isRunning) {
+    if (event.code === 'KeyX' && !isDown && !isJumping && isRunning) {
       isDown = true;
       runFrame = 0;
     }
   });
-  document.addEventListener("keyup", function (event) {
-    if (event.code === "KeyX" && isRunning) {
+  document.addEventListener('keyup', function (event) {
+    if (event.code === 'KeyX' && isRunning) {
       isDown = false;
-      dino.src = "/game/dino_stop.svg";
+      dino.src = '/game/dino_stop.svg';
     }
   });
 </script>

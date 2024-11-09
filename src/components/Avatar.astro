@@ -1,0 +1,87 @@
+---
+import facudevImage from '../../public/facuImage.webp';
+import { Image } from 'astro:assets';
+import JavaScriptIcon from './icons/JavaScriptIcon.astro';
+import TypesCriptIcon from './icons/TypesCriptIcon.astro';
+import HtmlIcon from './icons/HtmlIcon.astro';
+import CssIcon from './icons/CssIcon.astro';
+import ReactIcon from './icons/ReactIcon.astro';
+import MysqlIcon from './icons/MysqlIcon.astro';
+import NodeIcon from './icons/NodeIcon.astro';
+import TailwindIcon from './icons/TailwindIcon.astro';
+---
+
+<div
+  class="relative h-[300] w-[300] lg:h-[450px] lg:w-[450px] mt-20 lg:mt-0 aspect-square flex justify-center items-center"
+>
+  <Image
+    src={facudevImage}
+    alt="Facudev face"
+    class={'rounded-full w-[70%] h-[70%] lg:w-[76%] lg:h-[76%] aspect-square border-2 border-white'}
+    loading="eager"
+  />
+
+  <div style="--inicial-angle: 0deg" class="icons-container h-6 lg:h-8">
+    <div style="--inicial-angle: 0deg" class="icon">
+      <TailwindIcon />
+    </div>
+    <div style="--inicial-angle: 0deg" class="icon">
+      <NodeIcon />
+    </div>
+  </div>
+  <div style="--inicial-angle: 45deg" class="icons-container h-6 lg:h-8">
+    <div style="--inicial-angle: 45deg" class="icon">
+      <MysqlIcon />
+    </div>
+    <div style="--inicial-angle: 45deg" class="icon">
+      <ReactIcon />
+    </div>
+  </div>
+  <div style="--inicial-angle: 90deg" class="icons-container h-6 lg:h-8">
+    <div style="--inicial-angle: 90deg" class="icon">
+      <JavaScriptIcon />
+    </div>
+    <div style="--inicial-angle: 90deg" class="icon">
+      <TypesCriptIcon />
+    </div>
+  </div>
+  <div style="--inicial-angle: 135deg" class="icons-container h-6 lg:h-8">
+    <div style="--inicial-angle: 135deg" class="icon">
+      <HtmlIcon />
+    </div>
+    <div style="--inicial-angle: 135deg" class="icon">
+      <CssIcon />
+    </div>
+  </div>
+</div>
+
+<style>
+  .icons-container {
+    --rotate-delay: 25s;
+    position: absolute;
+    opacity: 0.7;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    animation: rotate-icons var(--rotate-delay) linear infinite;
+  }
+  @keyframes rotate-icons {
+    0% {
+      transform: rotate(var(--inicial-angle));
+    }
+    100% {
+      transform: rotate(calc(var(--inicial-angle) + 360deg));
+    }
+  }
+  .icon {
+    animation: rotate-single-icon var(--rotate-delay) linear infinite;
+  }
+  @keyframes rotate-single-icon {
+    0% {
+      transform: rotate(calc(var(--inicial-angle) * -1));
+    }
+    100% {
+      transform: rotate(calc((var(--inicial-angle) + 360deg) * -1));
+    }
+  }
+</style>

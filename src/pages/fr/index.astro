@@ -1,18 +1,18 @@
 ---
-import { Image } from "astro:assets";
-import ContactIcons from "../../components/ContactIcons.astro";
-import IconWrapper from "../../components/IconWrapper.astro";
-import Presentation from "../../components/Presentation.astro";
-import ProjectCard from "../../components/ProjectCard.astro";
-import SkillCard from "../../components/SkillCard.astro";
-import { aboutMe } from "../../data/myDescription";
-import { projects } from "../../data/projects";
-import { skills, stack, touching } from "../../data/skills";
-import Layout from "../../layouts/Layout.astro";
-import type { ProjectType } from "../../types";
-import facudevImage from "../../../public/facuImage.webp";
-import { useTranslations } from "../../i18n/utils";
-const currentLang = "fr";
+import ContactIcons from '../../components/ContactIcons.astro';
+import IconWrapper from '../../components/IconWrapper.astro';
+import Presentation from '../../components/Presentation.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import SkillCard from '../../components/SkillCard.astro';
+import { aboutMe } from '../../data/myDescription';
+import { projects } from '../../data/projects';
+import { skills, stack, touching } from '../../data/skills';
+import Layout from '../../layouts/Layout.astro';
+import type { ProjectType } from '../../types';
+import { useTranslations } from '../../i18n/utils';
+import StudiesTimeLine from '../../components/StudiesTimeLine.astro';
+import Avatar from '../../components/Avatar.astro';
+const currentLang = 'fr';
 const t = useTranslations(currentLang);
 ---
 
@@ -24,13 +24,7 @@ const t = useTranslations(currentLang);
       class="w-[90vw] max-w-[1100px] m-auto min-h-screen flex flex-wrap-reverse lg:flex-nowrap items-center justify-center"
     >
       <Presentation />
-      <Image
-        src={facudevImage}
-        alt="Facudev face"
-        width={400}
-        class={"rounded-full aspect-square mt-20 lg:mt-0"}
-        loading="eager"
-      />
+      <Avatar />
     </section>
     <!-- Projects section =============================== -->
     <section
@@ -45,6 +39,15 @@ const t = useTranslations(currentLang);
           ))
         }
       </div>
+    </section>
+
+    <!-- Studies section =============================== -->
+    <section
+      id="studies-section"
+      class="animate-in-view w-[90vw] max-w-[1100px] m-auto flex flex-col items-start justify-start"
+    >
+      <h2 class="text-white text-4xl mb-10 mx-auto lg:mx-0">Études</h2>
+      <StudiesTimeLine />
     </section>
     <!-- About me & Skills section =============================== -->
     <section
@@ -87,7 +90,7 @@ const t = useTranslations(currentLang);
             ))
           }
         </SkillCard>
-        <SkillCard title={t("home.skill.touching") as string}>
+        <SkillCard title={t('home.skill.touching') as string}>
           {
             touching.map((skill) => (
               <IconWrapper
@@ -127,7 +130,7 @@ const t = useTranslations(currentLang);
         animation-duration: 1ms;
       }
       h2 {
-        font-family: "Fifties", serif;
+        font-family: 'Fifties', serif;
         font-size: 3rem;
       }
       @keyframes animate-in-view {
@@ -137,12 +140,6 @@ const t = useTranslations(currentLang);
         to {
           opacity: 1;
         }
-      }
-
-      #home-section img {
-        /* border-radius: 0 0 15% 15%; */
-        /* mask-image: linear-gradient(to bottom, black 80%, transparent); */
-        border: solid 3px white;
       }
       .shadow-custom {
         box-shadow: rgb(0, 0, 0) 0px -50px 30px;

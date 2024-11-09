@@ -1,0 +1,28 @@
+---
+import type { StudiesType } from '../types';
+import { getLangFromUrl } from '../i18n/utils';
+
+const { studie } = Astro.props as { studie: StudiesType };
+const lang = getLangFromUrl(Astro.url);
+---
+
+<div
+  class="relative flex flex-col items-center justify-start gap-8 text-sm mx-2 px-2 min-w-[220px]"
+>
+  <div
+    class="absolute top-20 -translate-y-1/2 left-1/2 -translate-x-2 w-4 h-4 rounded-full bg-primary-cyan shadow-lg shadow-black"
+  >
+  </div>
+
+  <p class="text-white/70 absolute top-8 -rotate-45">{studie[lang].start}</p>
+  <p class="text-white/70 absolute top-8 -rotate-45 translate-x-7">
+    {studie[lang].end}
+  </p>
+  <!-- <div class="absolute -rotate-45 -top-5 font-semibold text-white/70">
+  </div> -->
+  <div class="mt-24 border p-2 rounded-lg text-balance">
+    <p class="text-white mb-2 text-[1.1rem]">{studie[lang].title}</p>
+    <p class="text-white/70">{studie[lang].institution}</p>
+    <p class="text-white/70">{studie[lang].where}</p>
+  </div>
+</div>
