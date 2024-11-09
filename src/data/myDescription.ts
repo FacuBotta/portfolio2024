@@ -2,8 +2,8 @@ import type { AboutMeType, DescriptionType, StudiesType } from '../types';
 
 export const myDescription: DescriptionType = {
   en: '2 years as a fullstack web developer student, passionate by JavaScript and its ecosystem. Coding from Montpellier, France.',
-  es: '2 años como estudiante en desarrollo web fullstack, apasionado por JavaScript y su ecosistema. Viviendo en Montpellier, Francia.',
-  fr: "2 ans en tant qu'étudiant en développement web fullstack, passionné par JavaScript et son écosystème. Vivant à Montpellier, France.",
+  es: '2 años como estudiante en desarrollo web fullstack, apasionado por JavaScript y su ecosistema. Código desde Montpellier, Francia.',
+  fr: "2 ans en tant qu'étudiant en développement web fullstack, passionné par JavaScript et son écosystème. Je code depuis Montpellier, France.",
 };
 
 export const studies: StudiesType[] = [
@@ -36,7 +36,7 @@ export const studies: StudiesType[] = [
       where: 'Argentina, Online',
       start: 'May 2024',
       end: 'Jun 2024',
-      title: 'Intensive course un English - B1',
+      title: 'Intensive course of English Language - B1',
     },
     fr: {
       institution: 'Université de Buenos Aires',
@@ -135,7 +135,7 @@ export const aboutMe: AboutMeType = {
 
     "Après avoir déménagé en France en 2019, j'ai travaillé pendant 3 ans en tant que gérant de restaurant, où j'ai mis en pratique mes compétences en travail d'équipe et en communication avec les clients et les fournisseurs.",
 
-    "Depuis 2022, je poursuis mon objectif de devenir développeur web et je suis sur le point d'obtenir mon deuxième diplôme. Je suis enthousiaste à l'idée d'appliquer mes connaissances à des projets concrets et je crois que j'ai beaucoup à apporter à une équipe.",
+    "Depuis 2022, je poursuis mon objectif de devenir développeur web et je suis sur le point d'obtenir mon deuxième diplôme. Je suis enthousiaste à l'idée d'appliquer mes connaissances à des projets concrets et je crois que j'ai beaucoup à apporter à une équipe de développeurs.",
   ],
   es: [
     'Con más de 6 años de experiencia como freelance en Argentina, he\

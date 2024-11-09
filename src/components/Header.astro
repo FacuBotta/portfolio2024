@@ -1,6 +1,6 @@
 ---
-import { getLangFromUrl, useTranslations } from "../i18n/utils";
-import LanguageSwitch from "./LanguageSwitch.astro";
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import LanguageSwitch from './LanguageSwitch.astro';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
@@ -13,25 +13,27 @@ const t = useTranslations(lang);
   >
     <LanguageSwitch />
     <nav>
-      <ul class="flex items-center gap-4 text-sm sm:text-xl font-semibold">
+      <ul
+        class="flex items-center gap-2 lg:gap-4 text-sm sm:text-xl font-semibold"
+      >
         <li>
           <a class="hover:text-primary-cyan" href="#home-section"
-            >{t("nav.home")}</a
+            >{t('nav.home')}</a
           >
         </li>
         <li>
           <a class="hover:text-primary-cyan" href="#projects-section"
-            >{t("nav.projects")}</a
+            >{t('nav.projects')}</a
           >
         </li>
         <li>
           <a class="hover:text-primary-cyan" href="#skills-section"
-            >{t("nav.about")}</a
+            >{t('nav.about')}</a
           >
         </li>
         <li>
           <a class="hover:text-primary-cyan" href="#contact-section"
-            >{t("nav.contact")}</a
+            >{t('nav.contact')}</a
           >
         </li>
       </ul>
