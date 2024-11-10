@@ -3,20 +3,55 @@ import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import { getLangFromUrl } from '../i18n/utils';
 const lang = getLangFromUrl(Astro.url);
+
+const { description, ogUrl } = Astro.props;
 ---
 
 <!doctype html>
 <html lang={lang}>
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>"FacuDev Portfolio"</title>
+    <meta name="description" content={description} />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="FacuDev portfolio" />
+    <meta property="og:description" content={description} />
     <meta
-      name="description"
-      content="Facundo Botta fullstack web developer living in Montpellier, France. React, JavaScript, Typescript, Node.js, MySQL, PHP, Python, Docker, Linux, Figma, Git, Github, Gmail, LinkedIn, Resume, CV, About me, Contact me"
+      property="og:image"
+      content="https://avatars.githubusercontent.com/u/118886942?v=4"
     />
-    <meta name="viewport" content="width=device-width" />
+    <meta property="og:url" content={ogUrl} />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="FacuDev portfolio" />
+    <meta name="twitter:description" content={description} />
+    <meta
+      name="twitter:image"
+      content="https://avatars.githubusercontent.com/u/118886942?v=4"
+    />
+
+    <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Link alternate -->
+    <link
+      rel="alternate"
+      hreflang="fr"
+      href="https://facubotta.netlify.app/fr/"
+    />
+    <link
+      rel="alternate"
+      hreflang="es"
+      href="https://facubotta.netlify.app/es/"
+    />
+    <link rel="alternate" hreflang="en" href="https://facubotta.netlify.app/" />
+
     <meta name="generator" content={Astro.generator} />
-    <title>FacuDev porfolio 🚀</title>
   </head>
   <body class="relative bg-black">
     <div

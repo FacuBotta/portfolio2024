@@ -1,4 +1,7 @@
 ---
+description: '';
+ogUrl: 'https://tusitio.com/fr';
+
 import ContactIcons from '../../components/ContactIcons.astro';
 import IconWrapper from '../../components/IconWrapper.astro';
 import Presentation from '../../components/Presentation.astro';
@@ -16,7 +19,10 @@ const currentLang = 'fr';
 const t = useTranslations(currentLang);
 ---
 
-<Layout title="FacuDev portfolio">
+<Layout
+  description="Facundo Botta, développeur web fullstack basé à Montpellier, France. Spécialisé en React, JavaScript, Typescript, Node.js, MySQL"
+  goUrl="https://facubotta.netlify.app/fr/"
+>
   <main>
     <!-- Home section =============================== -->
     <section

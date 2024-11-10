@@ -19,12 +19,12 @@ const t = useTranslations(lang);
 
     <!-- Modal que aparece al hacer clic -->
     <div
-      class="image-modal fixed inset-0 h-screen w-screen py-10 bg-black/70 peer-checked:flex hidden justify-center items-center z-20"
+      class="image-modal fixed inset-0 h-screen w-screen py-10 bg-black/70 peer-checked:flex hidden justify-center items-center z-20 overflow-auto"
     >
       <img
         src={`/projectsImages/${image}`}
         alt={`Imagen del proyecto: ${title[lang]}`}
-        class="h-[80%] object-contain rounded-md border-2 border-white/50 cursor-zoom-out"
+        class="lg:min-h-[85%] object-contain rounded-md border-2 border-white/50 cursor-zoom-out"
       />
     </div>
 
@@ -32,7 +32,7 @@ const t = useTranslations(lang);
     <img
       src={`/projectsImages/${image}`}
       alt={`Imagen del proyecto: ${title[lang]}`}
-      class="animate-card-in-viewport w-full lg:h-full object-contain lg:object-cover rounded-md border-2 border-white/50 cursor-zoom-out"
+      class="animate-card-in-viewport w-full lg:h-full object-contain lg:object-cover rounded-md border-2 border-white/50 cursor-zoom-in"
     />
   </label>
   <div
@@ -60,6 +60,10 @@ const t = useTranslations(lang);
 </article>
 
 <style>
+  .image-modal {
+    touch-action: pinch-zoom; /* Permite gestos de zoom solo en el modal */
+    overscroll-behavior: contain; /* Evita que el scroll afecte fuera del modal */
+  }
   .animate-card-in-viewport {
     animation-timeline: view();
     animation-name: animate-project-card;

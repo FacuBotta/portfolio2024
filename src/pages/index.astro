@@ -1,4 +1,7 @@
 ---
+description: '';
+ogUrl: 'https://tusitio.com/en';
+
 import Presentation from '../components/Presentation.astro';
 import Layout from '../layouts/Layout.astro';
 import SkillCard from '../components/SkillCard.astro';
@@ -17,7 +20,10 @@ const currentLang = 'en';
 const t = useTranslations(currentLang);
 ---
 
-<Layout title="FacuDev portfolio">
+<Layout
+  description="Facundo Botta, fullstack web developer based in Montpellier, France. Specializing in React, JavaScript, Typescript, Node.js, MySQL"
+  ogUrl="https://facubotta.netlify.app/"
+>
   <main>
     <!-- Home section =============================== -->
     <section
