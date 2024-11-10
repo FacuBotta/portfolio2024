@@ -12,16 +12,31 @@ const t = useTranslations(lang);
 ---
 
 <article
-  class={`project-card flex ${index % 2 === 0 ? 'flex-row-reverse' : 'flex'} justify-center gap-5 w-full mt-10 flex-wrap-reverse lg:flex-nowrap`}
+  class={`flex ${index % 2 === 0 ? 'flex-row-reverse' : 'flex'} justify-center gap-5 w-full mt-10 flex-wrap-reverse lg:flex-nowrap`}
 >
-  <aside
-    style={`background-image: url('/projectsImages/${image}'); background-position: left top;`}
-    class="w-full h-[80vw] lg:h-auto lg:w-1/2 rounded-md border border-white/50 bg-center bg-cover"
-    aria-label={`Imagen del proyecto: ${title[lang]}`}
-  >
-  </aside>
+  <label class="w-full h-[80vw] lg:h-auto lg:w-1/2 lg:cursor-zoom-in relative">
+    <input type="checkbox" class="hidden peer" />
+
+    <!-- Modal que aparece al hacer clic -->
+    <div
+      class="image-modal fixed inset-0 h-screen w-screen py-10 bg-black/70 peer-checked:flex hidden justify-center items-center z-20"
+    >
+      <img
+        src={`/projectsImages/${image}`}
+        alt={`Imagen del proyecto: ${title[lang]}`}
+        class="h-[80%] object-contain rounded-md border-2 border-white/50 cursor-zoom-out"
+      />
+    </div>
+
+    <!-- Vista en miniatura de la imagen en el fondo del label -->
+    <img
+      src={`/projectsImages/${image}`}
+      alt={`Imagen del proyecto: ${title[lang]}`}
+      class="animate-card-in-viewport w-full lg:h-full object-contain lg:object-cover rounded-md border-2 border-white/50 cursor-zoom-out"
+    />
+  </label>
   <div
-    class="flex flex-col justify-between gap-5 lg:mx-0 w-full lg:w-1/2 border-2 p-5 rounded-lg"
+    class="animate-card-in-viewport flex flex-col justify-between gap-5 lg:mx-0 w-full lg:w-1/2 border-2 p-5 rounded-lg select-none"
   >
     <div class="flex justify-between flex-wrap lg:flex-nowrap">
       <h3 class="font-bold text-2xl text-balance">{title[lang]}</h3>
@@ -45,7 +60,7 @@ const t = useTranslations(lang);
 </article>
 
 <style>
-  .project-card {
+  .animate-card-in-viewport {
     animation-timeline: view();
     animation-name: animate-project-card;
     animation-duration: 1ms;
@@ -57,5 +72,8 @@ const t = useTranslations(lang);
     to {
       opacity: 1;
     }
+  }
+  .image-modal {
+    animation: none !important;
   }
 </style>

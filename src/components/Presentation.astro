@@ -1,13 +1,13 @@
 ---
-import { myDescription } from "../data/myDescription";
-import { getLangFromUrl } from "../i18n/utils";
-import ContactIcons from "./ContactIcons.astro";
+import { myDescription } from '../data/myDescription';
+import { getLangFromUrl } from '../i18n/utils';
+import ContactIcons from './ContactIcons.astro';
 
 const lang = getLangFromUrl(Astro.url);
 ---
 
 <div
-  class="h-full w-[80vw] lg:w-[40vw] select-none flex flex-col items-start justify-center gap-5"
+  class="h-full w-[80%] lg:w-[60%] select-none flex flex-col items-start justify-center gap-5"
 >
   <div class="message-description hidden text-center lg:text-left">
     <h1 class="facudev-title text-[5rem] sm:text-[7rem]">Facundo Botta</h1>
@@ -24,9 +24,9 @@ const lang = getLangFromUrl(Astro.url);
 </div>
 
 <script>
-  const messageDescription = document.querySelector(".message-description");
-  window.addEventListener("load", () => {
-    messageDescription?.classList.add("animate-facuDev");
+  const messageDescription = document.querySelector('.message-description');
+  window.addEventListener('load', () => {
+    messageDescription?.classList.add('animate-facuDev');
   });
 </script>
 <style>
@@ -38,7 +38,7 @@ const lang = getLangFromUrl(Astro.url);
     animation: fadeInFacuDev 1s forwards;
   }
   h1.facudev-title {
-    font-family: "Fifties Condensed", serif;
+    font-family: 'Fifties Condensed', serif;
     font-weight: bold;
     line-height: 1;
   }

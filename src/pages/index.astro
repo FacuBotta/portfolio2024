@@ -31,13 +31,18 @@ const t = useTranslations(currentLang);
     <!-- Projects section =============================== -->
     <section
       id="projects-section"
-      class="w-[90vw] max-w-[1100px] m-auto min-h-screen flex flex-col items-start justify-start mb-40 pt-20 lg:pt-0 scroll-mt-20"
+      class="relative w-[90vw] max-w-[1100px] m-auto min-h-screen flex flex-col items-start justify-start mb-40 pt-20 lg:pt-0 scroll-mt-20"
     >
       <h2 class="animate-in-view text-white mx-auto lg:mx-0">Projects</h2>
       <div class="flex flex-col gap-10 w-full pt-5">
         {
           projects.map((project: ProjectType, index: number) => (
-            <ProjectCard {...project} index={index} lang={currentLang} />
+            <ProjectCard
+              {...project}
+              index={index}
+              lang={currentLang}
+              key={project.title.en}
+            />
           ))
         }
       </div>

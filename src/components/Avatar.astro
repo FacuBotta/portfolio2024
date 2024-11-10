@@ -1,6 +1,4 @@
 ---
-import facudevImage from '../../public/facuImage.webp';
-import { Image } from 'astro:assets';
 import JavaScriptIcon from './icons/JavaScriptIcon.astro';
 import TypesCriptIcon from './icons/TypesCriptIcon.astro';
 import HtmlIcon from './icons/HtmlIcon.astro';
@@ -9,15 +7,17 @@ import ReactIcon from './icons/ReactIcon.astro';
 import MysqlIcon from './icons/MysqlIcon.astro';
 import NodeIcon from './icons/NodeIcon.astro';
 import TailwindIcon from './icons/TailwindIcon.astro';
+import { Image } from 'astro:assets';
+import facuImage from '../../public/facuImage.webp';
 ---
 
 <div
-  class="relative h-[300] w-[300] lg:h-[450px] lg:w-[450px] mt-20 lg:mt-0 aspect-square flex justify-center items-center"
+  class="relative h-[300px] w-[300px] lg:h-[480px] lg:w-[480px] mt-20 lg:mt-0 flex justify-center items-center"
 >
   <Image
-    src={facudevImage}
+    src={facuImage}
     alt="Facudev face"
-    class={'rounded-full w-[70%] h-[70%] lg:w-[76%] lg:h-[76%] aspect-square border-2 border-white'}
+    class={'rounded-full w-[220px] h-[220px] lg:w-[330px] lg:h-[330px] border-2 border-white'}
     loading="eager"
   />
 
