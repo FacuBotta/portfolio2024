@@ -1,20 +1,17 @@
 ---
-description: '';
-ogUrl: 'https://tusitio.com/en';
-
-import Presentation from '../components/Presentation.astro';
-import Layout from '../layouts/Layout.astro';
-import SkillCard from '../components/SkillCard.astro';
+import Avatar from '../components/Avatar.astro';
+import ContactIcons from '../components/ContactIcons.astro';
 import IconWrapper from '../components/IconWrapper.astro';
+import Presentation from '../components/Presentation.astro';
 import ProjectCard from '../components/ProjectCard.astro';
-import type { ProjectType } from '../types';
+import SkillCard from '../components/SkillCard.astro';
+import StudiesTimeLine from '../components/StudiesTimeLine.astro';
+import { aboutMe } from '../data/myDescription';
 import { projects } from '../data/projects';
 import { skills, stack, touching } from '../data/skills';
-import { aboutMe } from '../data/myDescription';
-import ContactIcons from '../components/ContactIcons.astro';
 import { useTranslations } from '../i18n/utils';
-import StudiesTimeLine from '../components/StudiesTimeLine.astro';
-import Avatar from '../components/Avatar.astro';
+import Layout from '../layouts/Layout.astro';
+import type { ProjectType } from '../types';
 
 const currentLang = 'en';
 const t = useTranslations(currentLang);
@@ -57,9 +54,9 @@ const t = useTranslations(currentLang);
     <!-- Studies section =============================== -->
     <section
       id="skills-section"
-      class="animate-in-view w-[90vw] max-w-[1100px] m-auto flex flex-col items-start justify-start scroll-mt-40"
+      class="relative animate-in-view w-[90vw] max-w-[1100px] m-auto flex flex-col items-start justify-start scroll-mt-40"
     >
-      <h2 class="text-white text-4xl mb-10 mx-auto lg:mx-0">Studies</h2>
+      <h2 class="text-white text-4xl mx-auto lg:mx-0">Studies</h2>
       <StudiesTimeLine />
     </section>
 

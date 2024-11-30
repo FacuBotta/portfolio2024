@@ -1,13 +1,15 @@
 ---
-import type { StudiesType } from '../types';
 import { getLangFromUrl } from '../i18n/utils';
+import type { StudiesType } from '../types';
+import CastleIcon from './icons/CastleIcon.astro';
+import MapPinIcon from './icons/MapPinIcon.astro';
 
 const { studie } = Astro.props as { studie: StudiesType };
 const lang = getLangFromUrl(Astro.url);
 ---
 
 <div
-  class="relative flex flex-col items-center justify-start gap-8 text-sm mx-2 px-2 min-w-[220px]"
+  class="relative flex flex-col items-center justify-start gap-8 text-sm mx-2 px-2 min-w-[270px] lg:min-w-[305px]"
 >
   <div
     class="absolute top-20 -translate-y-1/2 left-1/2 -translate-x-2 w-4 h-4 rounded-full bg-primary-cyan shadow-lg shadow-black"
@@ -18,11 +20,33 @@ const lang = getLangFromUrl(Astro.url);
   <p class="text-white/70 absolute top-8 -rotate-45 translate-x-7">
     {studie[lang].end}
   </p>
-  <!-- <div class="absolute -rotate-45 -top-5 font-semibold text-white/70">
-  </div> -->
-  <div class="mt-24 border p-2 rounded-lg text-balance">
-    <p class="text-white mb-2 text-[1.1rem]">{studie[lang].title}</p>
-    <p class="text-white/70">{studie[lang].institution}</p>
-    <p class="text-white/70">{studie[lang].where}</p>
+  <div class="mt-24 border p-2 rounded-lg text-balance flex flex-col gap-2">
+    <p class="text-white text-[1.1rem] mb-1">{studie[lang].title}</p>
+    <div class="flex items-center gap-2">
+      <CastleIcon />
+      <p class="text-white/70">
+        {studie[lang].institution}
+      </p>
+    </div>
+    <div class="flex items-center gap-2">
+      <MapPinIcon />
+      <p class="text-white/70">{studie[lang].where}</p>
+    </div>
+    {
+      studie[lang].details && (
+        <p class="text-white my-2 ">{studie[lang].details}</p>
+      )
+    }
+    {
+      studie[lang].learned && (
+        <div class="flex flex-wrap gap-2 w-full ">
+          {studie[lang].learned?.map((learned) => (
+            <p class="text-sm border rounded-sm px-[5px] border-primary-magenta">
+              {learned}
+            </p>
+          ))}
+        </div>
+      )
+    }
   </div>
 </div>

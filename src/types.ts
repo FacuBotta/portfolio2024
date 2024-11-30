@@ -28,6 +28,8 @@ export interface StudiesType {
     start: string;
     end: string;
     title: string;
+    details?: string;
+    learned?: string[];
   };
   fr: {
     institution: string;
@@ -35,6 +37,8 @@ export interface StudiesType {
     start: string;
     end: string;
     title: string;
+    details?: string;
+    learned?: string[];
   };
   es: {
     institution: string;
@@ -42,6 +46,8 @@ export interface StudiesType {
     start: string;
     end: string;
     title: string;
+    details?: string;
+    learned?: string[];
   };
 }
 export interface AboutMeType {
