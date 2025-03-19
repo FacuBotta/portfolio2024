@@ -3,7 +3,8 @@ import type { IconName } from './components/icons/icon-names';
 export interface ProjectType {
   title: { en: string; es: string; fr: string };
   description: { en: string; es: string; fr: string };
-  link: string;
+  link_repo?: string;
+  link_demo?: string;
   image: string;
   readme?: string;
   stack: IconName[];

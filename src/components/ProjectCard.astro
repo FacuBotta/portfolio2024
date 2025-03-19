@@ -1,10 +1,12 @@
 ---
 import { getLangFromUrl, useTranslations } from '../i18n/utils';
 import type { ProjectType } from '../types';
+import GitHubMiniIcon from './icons/GitHubMiniIcon.astro';
 import type { IconName } from './icons/icon-names';
+import OpenLinkIcon from './icons/OpenLinkIcon.astro';
 import IconWrapper from './IconWrapper.astro';
 
-const { title, description, link, image, stack, index } =
+const { title, description, link_repo, link_demo, image, stack, index } =
   Astro.props as ProjectType & { index: number };
 
 const lang = getLangFromUrl(Astro.url);
@@ -40,14 +42,31 @@ const t = useTranslations(lang);
   >
     <div class="flex justify-between flex-wrap lg:flex-nowrap">
       <h3 class="font-bold text-2xl text-balance">{title[lang]}</h3>
-      <a
-        class="border mt-2 lg:mt-0 h-fit px-2 rounded-lg text-nowrap hover:border-primary-cyan hover:text-primary-cyan transition-colors ease-in-out duration-300"
-        href={link}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label={`Enlace al repositorio del proyecto: ${title[lang]}`}
-        >{t('projects.repoBtn')}
-      </a>
+      <div class="flex flex-wrap gap-2">
+        <a
+          class="flex gap-1 items-center border mt-2 lg:mt-0 h-8 p-[5px] rounded-lg text-nowrap hover:border-primary-cyan hover:text-primary-cyan transition-colors ease-in-out duration-300"
+          href={link_repo}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`Enlace al repositorio del proyecto: ${title[lang]}`}
+          >{t('projects.repoBtn')}
+          <GitHubMiniIcon color="currentColor" />
+        </a>
+        {
+          link_demo && (
+            <a
+              class="flex gap-1 items-center border mt-2 lg:mt-0 h-8 p-[5px] rounded-lg text-nowrap hover:border-primary-yellow hover:text-primary-yellow transition-colors ease-in-out duration-300"
+              href={link_demo}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Enlace al repositorio del proyecto: ${title[lang]}`}
+            >
+              {t('projects.demoBtn')}
+              <OpenLinkIcon />
+            </a>
+          )
+        }
+      </div>
     </div>
     <p class="text-white/70 text-sm lg:text-lg">{description[lang]}</p>
     <div class="flex flex-col gap-5">
