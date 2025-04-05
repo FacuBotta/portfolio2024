@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    
+    <url>
+      <loc>https://facudev.com/</loc>
+      <lastmod>2025-04-05T00:00:00.000Z</lastmod>
+    </url>
+
+    <url>
+      <loc>https://facudev.fr/</loc>
+      <lastmod>2025-04-05T00:00:00.000Z</lastmod>
+    </url>
+    <url>
+      <loc>https://facudev.com/es/</loc>
+      <lastmod>2025-04-05T00:00:00.000Z</lastmod>
+    </url>
+
+    <url>
+      <loc>https://facudev.fr/es/</loc>
+      <lastmod>2025-04-05T00:00:00.000Z</lastmod>
+    </url>
+    <url>
+      <loc>https://facudev.com/fr/</loc>
+      <lastmod>2025-04-05T00:00:00.000Z</lastmod>
+    </url>
+
+    <url>
+      <loc>https://facudev.fr/fr/</loc>
+      <lastmod>2025-04-05T00:00:00.000Z</lastmod>
+    </url>
+  </urlset>
