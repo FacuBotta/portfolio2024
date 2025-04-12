@@ -12,44 +12,42 @@ const { description, ogUrl } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="canonical" href="https://facudev.fr/" />
 
-    <title>FacuDev Portfolio</title>
+    <title>FacuDev | Portfolio</title>
     <meta name="description" content={description} />
-
+    <meta name="author" content="Facundo Botta" />
+    <meta name="robots" content="index, follow" />
     <!-- Open Graph -->
-    <meta property="og:title" content="FacuDev portfolio" />
+    <meta property="og:title" content="Facundo Botta | Portfolio" />
     <meta property="og:description" content={description} />
     <meta
       property="og:image"
-      content="https://avatars.githubusercontent.com/u/118886942?v=4"
+      content="https://facudev.fr/facudev-logo-og.png"
     />
     <meta property="og:url" content={ogUrl} />
     <meta property="og:type" content="website" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="FacuDev portfolio" />
+    <meta name="twitter:title" content="Facundo Botta | Portfolio" />
     <meta name="twitter:description" content={description} />
     <meta
       name="twitter:image"
-      content="https://avatars.githubusercontent.com/u/118886942?v=4"
+      content="https://facudev.fr/facudev-logo-og.png"
     />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
 
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <!-- Link alternate -->
-    <link
-      rel="alternate"
-      hreflang="fr"
-      href="https://facubotta.netlify.app/fr/"
-    />
-    <link
-      rel="alternate"
-      hreflang="es"
-      href="https://facubotta.netlify.app/es/"
-    />
-    <link rel="alternate" hreflang="en" href="https://facubotta.netlify.app/" />
+    <link rel="alternate" hreflang="fr" href="https://facudev.fr/fr/" />
+    <link rel="alternate" hreflang="es" href="https://facudev.fr/es/" />
+    <link rel="alternate" hreflang="en" href="https://facudev.fr/" />
 
     <meta name="generator" content={Astro.generator} />
   </head>

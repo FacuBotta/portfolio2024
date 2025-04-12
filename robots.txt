@@ -1,4 +1,8 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
+Disallow: /_astro/
+Disallow: /fonts/
+Disallow: /game/
+Disallow: /projectsImages/
 
 Sitemap: https://facudev.fr/sitemap.xml
