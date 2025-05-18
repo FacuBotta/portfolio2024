@@ -5,4 +5,4 @@ Disallow: /fonts/
 Disallow: /game/
 Disallow: /projectsImages/
 
-Sitemap: https://facudev.fr/sitemap.xml
+Sitemap: https://portfolio.facudev.fr/sitemap.xml
