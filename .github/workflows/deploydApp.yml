@@ -46,8 +46,11 @@ jobs:
       - name: Copy sitemap.xml into dist folder
         run: cp public/sitemap.xml dist/
 
-      - name: Copy robots.tsxt into dist folder
+      - name: Copy robots.txt into dist folder
         run: cp robots.txt dist/
+
+      - name: Copy htaccess into dist folder
+        run: cp .htaccess dist/
 
       - name: Deploy to cpanel via FTP
         uses: SamKirkland/FTP-Deploy-Action@4.3.0
