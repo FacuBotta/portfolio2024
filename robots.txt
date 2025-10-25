@@ -4,5 +4,6 @@ Disallow: /_astro/
 Disallow: /fonts/
 Disallow: /game/
 Disallow: /projectsImages/
+Disallow: /resume/
 
 Sitemap: https://facundobotta.com/sitemap.xml
